@@ -1,0 +1,8 @@
+Context,Community,Implemented,Example,N_Example,total,Prop_Example,id
+N,N,Y,Disaster funds,1,1,1,1
+N,Y,N,Coordination and organization,1,1,1,1
+N,Y,Y,Financial assistance to help survive bad fishing years,2,8,0.25,1
+N,Y,Y,Financial assistance to help transition out of fishery,2,8,0.25,2
+N,Y,Y,Research,2,8,0.25,3
+N,Y,Y,Diversify livelihoods,1,8,0.125,4
+N,Y,Y,Education,1,8,0.125,5

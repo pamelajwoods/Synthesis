@@ -1,0 +1,63 @@
+Context,Community,Implemented,Example,N_Example,total,Prop_Example,id
+CC,N,N,Investment in new gear or innovations,5,19,0.2631578947368421,1
+CC,N,N,Education,2,19,0.10526315789473684,2
+CC,N,N,Enforcement,2,19,0.10526315789473684,3
+CC,N,N,Research,2,19,0.10526315789473684,4
+CC,N,N,Review programs / regulations,2,19,0.10526315789473684,5
+CC,N,N,Adaptation programs,1,19,0.05263157894736842,6
+CC,N,N,Dynamic ocean management,1,19,0.05263157894736842,7
+CC,N,N,Insurance,1,19,0.05263157894736842,8
+CC,N,N,MPAs,1,19,0.05263157894736842,9
+CC,N,N,Reductions in other stressors,1,19,0.05263157894736842,10
+CC,N,Y,Research,14,29,0.4827586206896552,1
+CC,N,Y,Investment in new gear or innovations,4,29,0.13793103448275862,2
+CC,N,Y,Adaptation programs,2,29,0.06896551724137931,3
+CC,N,Y,Market diversification,2,29,0.06896551724137931,4
+CC,N,Y,Disaster risk management,1,29,0.034482758620689655,5
+CC,N,Y,Diversify livelihoods,1,29,0.034482758620689655,6
+CC,N,Y,Enforcement,1,29,0.034482758620689655,7
+CC,N,Y,Investments to improve value chain,1,29,0.034482758620689655,8
+CC,N,Y,MPAs,1,29,0.034482758620689655,9
+CC,N,Y,Reductions in other stressors,1,29,0.034482758620689655,10
+CC,Y,N,Investments to improve value chain,3,12,0.25,1
+CC,Y,N,Coordination and organization,2,12,0.16666666666666666,2
+CC,Y,N,Diversify livelihoods,2,12,0.16666666666666666,3
+CC,Y,N,Disaster funds,1,12,0.08333333333333333,4
+CC,Y,N,Dynamic ocean management,1,12,0.08333333333333333,5
+CC,Y,N,Education,1,12,0.08333333333333333,6
+CC,Y,N,Enforcement,1,12,0.08333333333333333,7
+CC,Y,N,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",1,12,0.08333333333333333,8
+CC,Y,Y,Research,5,13,0.38461538461538464,1
+CC,Y,Y,Adaptation programs,2,13,0.15384615384615385,2
+CC,Y,Y,Review programs / regulations,2,13,0.15384615384615385,3
+CC,Y,Y,Coordination and organization,1,13,0.07692307692307693,4
+CC,Y,Y,Education,1,13,0.07692307692307693,5
+CC,Y,Y,International agreements,1,13,0.07692307692307693,6
+CC,Y,Y,Investments to improve value chain,1,13,0.07692307692307693,7
+N,N,N,Enforcement,3,7,0.42857142857142855,1
+N,N,N,Research,2,7,0.2857142857142857,2
+N,N,N,Investments to improve value chain,1,7,0.14285714285714285,3
+N,N,N,Review programs / regulations,1,7,0.14285714285714285,4
+N,N,Y,Enforcement,43,117,0.36752136752136755,1
+N,N,Y,Research,26,117,0.2222222222222222,2
+N,N,Y,Review programs / regulations,13,117,0.1111111111111111,3
+N,N,Y,Investment in new gear or innovations,11,117,0.09401709401709402,4
+N,N,Y,Transition out of fisheries,10,117,0.08547008547008547,5
+N,N,Y,International agreements,4,117,0.03418803418803419,6
+N,N,Y,Disaster risk management,3,117,0.02564102564102564,7
+N,N,Y,MPAs,3,117,0.02564102564102564,8
+N,N,Y,Coordination and organization,1,117,0.008547008547008548,9
+N,N,Y,Disaster funds,1,117,0.008547008547008548,10
+N,Y,N,Economic/community development,1,3,0.3333333333333333,1
+N,Y,N,Enforcement,1,3,0.3333333333333333,2
+N,Y,N,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",1,3,0.3333333333333333,3
+N,Y,Y,Coordination and organization,9,49,0.1836734693877551,1
+N,Y,Y,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",8,49,0.16326530612244897,2
+N,Y,Y,Research,7,49,0.14285714285714285,3
+N,Y,Y,Enforcement,4,49,0.08163265306122448,4
+N,Y,Y,MPAs,4,49,0.08163265306122448,5
+N,Y,Y,Review programs / regulations,3,49,0.061224489795918366,6
+N,Y,Y,Cooperatives,2,49,0.04081632653061224,7
+N,Y,Y,Individual property rights,2,49,0.04081632653061224,8
+N,Y,Y,Adaptation programs,1,49,0.02040816326530612,9
+N,Y,Y,Community-based rights,1,49,0.02040816326530612,10

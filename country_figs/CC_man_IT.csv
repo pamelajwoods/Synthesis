@@ -1,0 +1,105 @@
+Context,Example,Implemented,Internat.,Nat. govt.,Region. govt.,Local govt.,NGO,Uni.,Community assoc.,Business coop.,Business,Individual,all,id,Prop_top,Prop_bottom,Prop_NGO,Prop_ind
+CC,Disaster funds,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,Disaster funds,Y,0,1,1,0,0,0,0,0,0,0,2,2,1,0,0,0
+N,Disaster funds,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,Fair trade laws,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Fair trade laws,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,Individual property rights,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,Individual property rights,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Individual property rights,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Individual property rights,Y,1,1,0,0,0,0,0,0,0,0,2,NA,1,0,0,0
+CC,International agreements,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,International agreements,Y,1,1,0,0,0,0,0,0,0,0,2,6,1,0,0,0
+N,International agreements,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,International agreements,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,Permit/license/quota banks,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Permit/license/quota banks,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Permit/license/quota banks,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,MPAs,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,MPAs,Y,0,1,1,1,0,0,0,0,0,0,3,15,0.6666666666666666,0.3333333333333333,0,0
+N,MPAs,N,0,1,0,0,0,0,0,0,0,0,1,15,1,0,0,0
+N,MPAs,Y,0,4,2,0,0,0,1,0,0,0,7,15,0.8571428571428571,0.14285714285714285,0,0
+CC,Enforcement,N,0,1,0,0,0,0,0,0,0,0,1,4,1,0,0,0
+CC,Enforcement,Y,0,1,0,0,0,0,0,0,0,0,1,4,1,0,0,0
+N,Enforcement,N,3,5,0,2,0,0,1,0,0,0,11,4,0.7272727272727273,0.2727272727272727,0,0
+N,Enforcement,Y,2,7,2,1,0,0,2,1,0,0,15,4,0.7333333333333333,0.26666666666666666,0,0
+CC,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",Y,1,2,1,1,0,0,0,0,0,0,5,12,0.8,0.2,0,0
+N,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",N,0,1,0,0,0,0,0,0,0,0,1,12,1,0,0,0
+N,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,Reductions in other stressors,N,0,2,1,0,0,0,0,0,0,0,3,9,1,0,0,0
+CC,Reductions in other stressors,Y,1,2,2,0,0,0,0,0,0,0,5,9,1,0,0,0
+N,Reductions in other stressors,N,1,1,0,0,0,0,0,0,0,0,2,9,1,0,0,0
+N,Reductions in other stressors,Y,0,0,0,1,0,0,1,0,0,0,2,9,0,1,0,0
+CC,Review programs / regulations,N,0,1,1,0,0,0,0,0,0,0,2,11,1,0,0,0
+CC,Review programs / regulations,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Review programs / regulations,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Review programs / regulations,Y,0,2,1,0,0,0,1,0,0,0,4,11,0.75,0.25,0,0
+CC,Dynamic ocean management,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,Dynamic ocean management,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Dynamic ocean management,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Dynamic ocean management,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,Restoration,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,Restoration,Y,0,1,0,0,0,0,0,0,0,0,1,10,1,0,0,0
+N,Restoration,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Restoration,Y,0,1,1,0,0,0,0,0,0,0,2,10,1,0,0,0
+CC,Disaster risk management,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,Disaster risk management,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Disaster risk management,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Disaster risk management,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,Financial assistance to help transition out of fishery,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Financial assistance to help transition out of fishery,N,0,1,0,0,0,0,0,0,0,0,1,NA,1,0,0,0
+N,Financial assistance to help transition out of fishery,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,Education,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,Education,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Education,N,0,1,0,0,0,0,1,1,0,0,3,NA,0.3333333333333333,0.6666666666666666,0,0
+N,Education,Y,1,2,1,1,1,0,2,0,0,0,8,NA,0.5,0.375,0.125,0
+CC,Adaptation programs,N,1,2,1,1,0,1,0,0,0,0,6,13,0.6666666666666666,0.16666666666666666,0.16666666666666666,0
+CC,Adaptation programs,Y,1,1,1,0,0,0,0,0,0,0,3,13,1,0,0,0
+N,Adaptation programs,Y,0,1,1,0,0,0,1,0,0,0,3,13,0.6666666666666666,0.3333333333333333,0,0
+CC,Research,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,Research,Y,1,1,0,0,0,0,0,0,0,0,2,16,1,0,0,0
+N,Research,N,10,8,1,2,0,1,0,0,0,0,22,16,0.8636363636363636,0.09090909090909091,0.045454545454545456,0
+N,Research,Y,1,2,1,1,1,0,5,0,0,0,11,16,0.36363636363636365,0.5454545454545454,0.09090909090909091,0
+CC,Coordination and organization,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,Coordination and organization,Y,0,0,1,0,0,0,0,0,0,0,1,1,1,0,0,0
+N,Coordination and organization,N,1,1,0,1,1,0,1,0,0,1,6,1,0.3333333333333333,0.3333333333333333,0.16666666666666666,0.16666666666666666
+N,Coordination and organization,Y,1,2,2,1,0,0,3,0,2,1,12,1,0.4166666666666667,0.3333333333333333,0,0.25
+CC,Market diversification,N,0,1,0,0,0,0,0,0,0,0,1,8,1,0,0,0
+CC,Market diversification,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Market diversification,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Market diversification,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,Transition out of fisheries,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,Transition out of fisheries,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Transition out of fisheries,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Transition out of fisheries,Y,0,1,1,0,0,0,0,0,0,0,2,NA,1,0,0,0
+CC,Economic/community development,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Economic/community development,N,0,1,0,0,0,0,0,0,0,0,1,NA,1,0,0,0
+N,Economic/community development,Y,1,2,1,2,0,0,3,1,0,0,10,NA,0.4,0.6,0,0
+CC,Insurance,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,Insurance,Y,0,1,0,0,0,0,0,0,0,0,1,5,1,0,0,0
+N,Insurance,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Insurance,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,Investments to improve value chain,N,0,1,0,0,0,0,0,0,0,0,1,7,1,0,0,0
+CC,Investments to improve value chain,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Investments to improve value chain,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Investments to improve value chain,Y,1,3,1,4,0,0,5,1,1,0,16,7,0.3125,0.625,0,0.0625
+CC,Cooperatives,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,Cooperatives,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Cooperatives,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Cooperatives,Y,0,1,0,1,0,0,1,1,0,0,4,NA,0.25,0.75,0,0
+CC,Investment in new gear or innovations,N,0,1,1,0,0,0,0,0,0,1,3,14,0.6666666666666666,0,0,0.3333333333333333
+CC,Investment in new gear or innovations,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Investment in new gear or innovations,N,4,3,0,0,0,0,0,0,1,1,9,14,0.7777777777777778,0,0,0.2222222222222222
+N,Investment in new gear or innovations,Y,1,2,1,0,1,0,2,0,1,1,9,14,0.4444444444444444,0.2222222222222222,0.1111111111111111,0.2222222222222222
+CC,Diversify livelihoods,N,0,1,0,0,0,0,0,0,0,0,1,3,1,0,0,0
+CC,Diversify livelihoods,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Diversify livelihoods,N,0,1,0,1,0,0,0,0,0,0,2,3,0.5,0.5,0,0
+N,Diversify livelihoods,Y,1,2,1,2,0,0,3,0,1,2,12,3,0.3333333333333333,0.4166666666666667,0,0.25
+CC,Community-based rights,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+CC,Community-based rights,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Community-based rights,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Community-based rights,Y,0,2,0,1,0,0,2,1,1,0,7,NA,0.2857142857142857,0.5714285714285714,0,0.14285714285714285
+CC,Financial assistance to help survive bad fishing years,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Financial assistance to help survive bad fishing years,N,0,1,0,0,0,0,0,0,0,0,1,NA,1,0,0,0
+N,Financial assistance to help survive bad fishing years,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA

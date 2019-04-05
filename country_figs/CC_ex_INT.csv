@@ -1,0 +1,16 @@
+Context,Community,Implemented,Example,N_Example,total,Prop_Example,id
+CC,N,N,Diversify livelihoods,2,15,0.13333333333333333,1
+CC,N,N,International agreements,2,15,0.13333333333333333,2
+CC,N,N,Investment in new gear or innovations,2,15,0.13333333333333333,3
+CC,N,N,Market diversification,2,15,0.13333333333333333,4
+CC,N,N,MPAs,2,15,0.13333333333333333,5
+CC,N,N,Review programs / regulations,2,15,0.13333333333333333,6
+CC,N,N,Cooperatives,1,15,0.06666666666666667,7
+CC,N,N,Disaster funds,1,15,0.06666666666666667,8
+CC,N,N,Research,1,15,0.06666666666666667,9
+CC,Y,N,Diversify livelihoods,1,5,0.2,1
+CC,Y,N,Financial assistance to help transition out of fishery,1,5,0.2,2
+CC,Y,N,Insurance,1,5,0.2,3
+CC,Y,N,Research,1,5,0.2,4
+CC,Y,N,Transition out of fisheries,1,5,0.2,5
+CC,Y,Y,Insurance,1,1,1,1

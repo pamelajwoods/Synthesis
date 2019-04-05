@@ -1,0 +1,64 @@
+Context,Community,Implemented,Example,N_Example,total,Prop_Example,id
+CC,N,N,MPAs,10,71,0.14084507042253522,1
+CC,N,N,Research,10,71,0.14084507042253522,2
+CC,N,N,Reductions in other stressors,9,71,0.1267605633802817,3
+CC,N,N,Coordination and organization,7,71,0.09859154929577464,4
+CC,N,N,Education,7,71,0.09859154929577464,5
+CC,N,N,Review programs / regulations,7,71,0.09859154929577464,6
+CC,N,N,Restoration,6,71,0.08450704225352113,7
+CC,N,N,Diversify livelihoods,3,71,0.04225352112676056,8
+CC,N,N,International agreements,3,71,0.04225352112676056,9
+CC,N,N,Transition out of fisheries,3,71,0.04225352112676056,10
+CC,N,Y,MPAs,4,19,0.21052631578947367,1
+CC,N,Y,Research,3,19,0.15789473684210525,2
+CC,N,Y,Restoration,3,19,0.15789473684210525,3
+CC,N,Y,Adaptation programs,2,19,0.10526315789473684,4
+CC,N,Y,Education,2,19,0.10526315789473684,5
+CC,N,Y,Coordination and organization,1,19,0.05263157894736842,6
+CC,N,Y,Dynamic ocean management,1,19,0.05263157894736842,7
+CC,N,Y,International agreements,1,19,0.05263157894736842,8
+CC,N,Y,Investment in new gear or innovations,1,19,0.05263157894736842,9
+CC,N,Y,Reductions in other stressors,1,19,0.05263157894736842,10
+CC,Y,N,Diversify livelihoods,2,11,0.18181818181818182,1
+CC,Y,N,Research,2,11,0.18181818181818182,2
+CC,Y,N,Cooperatives,1,11,0.09090909090909091,3
+CC,Y,N,Disaster risk management,1,11,0.09090909090909091,4
+CC,Y,N,Dynamic ocean management,1,11,0.09090909090909091,5
+CC,Y,N,Financial assistance to help transition out of fishery,1,11,0.09090909090909091,6
+CC,Y,N,Market diversification,1,11,0.09090909090909091,7
+CC,Y,N,Reductions in other stressors,1,11,0.09090909090909091,8
+CC,Y,N,Restoration,1,11,0.09090909090909091,9
+CC,Y,Y,Adaptation programs,6,12,0.5,1
+CC,Y,Y,Research,2,12,0.16666666666666666,2
+CC,Y,Y,Cooperatives,1,12,0.08333333333333333,3
+CC,Y,Y,Coordination and organization,1,12,0.08333333333333333,4
+CC,Y,Y,Diversify livelihoods,1,12,0.08333333333333333,5
+CC,Y,Y,Education,1,12,0.08333333333333333,6
+N,N,N,Coordination and organization,3,7,0.42857142857142855,1
+N,N,N,Market diversification,2,7,0.2857142857142857,2
+N,N,N,Insurance,1,7,0.14285714285714285,3
+N,N,N,Investments to improve value chain,1,7,0.14285714285714285,4
+N,N,Y,Disaster funds,1,4,0.25,1
+N,N,Y,Disaster risk management,1,4,0.25,2
+N,N,Y,Investment in new gear or innovations,1,4,0.25,3
+N,N,Y,Transition out of fisheries,1,4,0.25,4
+N,Y,N,Economic/community development,3,17,0.17647058823529413,1
+N,Y,N,Coordination and organization,2,17,0.11764705882352941,2
+N,Y,N,Review programs / regulations,2,17,0.11764705882352941,3
+N,Y,N,Community-based rights,1,17,0.058823529411764705,4
+N,Y,N,Diversify livelihoods,1,17,0.058823529411764705,5
+N,Y,N,Education,1,17,0.058823529411764705,6
+N,Y,N,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",1,17,0.058823529411764705,7
+N,Y,N,Financial assistance to help survive bad fishing years,1,17,0.058823529411764705,8
+N,Y,N,Financial assistance to help transition out of fishery,1,17,0.058823529411764705,9
+N,Y,N,Investment in new gear or innovations,1,17,0.058823529411764705,10
+N,Y,Y,Diversify livelihoods,5,23,0.21739130434782608,1
+N,Y,Y,Investments to improve value chain,4,23,0.17391304347826086,2
+N,Y,Y,Community-based rights,2,23,0.08695652173913043,3
+N,Y,Y,Economic/community development,2,23,0.08695652173913043,4
+N,Y,Y,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",2,23,0.08695652173913043,5
+N,Y,Y,Market diversification,2,23,0.08695652173913043,6
+N,Y,Y,Fair trade laws,1,23,0.043478260869565216,7
+N,Y,Y,Permit/license/quota banks,1,23,0.043478260869565216,8
+N,Y,Y,Reductions in other stressors,1,23,0.043478260869565216,9
+N,Y,Y,Research,1,23,0.043478260869565216,10

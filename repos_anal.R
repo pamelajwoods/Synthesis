@@ -589,19 +589,29 @@ country_list[[1]]<-c(allcountries)
 for(i in (length(allcountries)+1):2){
   country_list[[i]] <- c(allcountries[i-1])
 }
-set_names(country_list[-1], allcountries)
-set_names(country_list[1], 'all')
+
+country_list <-
+ set_names(country_list[-1], allcountries)
+#set_names(country_list[1], 'all')
 
 
-country_list[-1] %>% 
-  map(function(x){
+#country_list[-1] %>% 
+#  map(function(x){
+
+  for( i in 1:length(country_list[-1])){
+    x <- country_list[-1][[i]]
+    
+  try(
+    {
+    dat2 <- 
+      dat %>% 
+      filter(Country %in% country_list[[x]]) 
     
     #What are examples most often in response to? In CC vs not?
     CC_stressor_spread_c <- 
-      dat %>% 
-      filter(Country %in% country_list[[x]]) %>% 
-      mutate(stress_tot = apply(dat[5:14], 1, sum, na.rm = T),
-             max_tot = apply(dat[5:14], 1, max, na.rm = T),
+      dat2 %>% 
+      mutate(stress_tot = apply(dat2[5:14], 1, sum, na.rm = T),
+             max_tot = apply(dat2[5:14], 1, max, na.rm = T),
              `Stock decline` = (max_tot + 1 - `Stock decline`)/stress_tot,
              `Sp. distributional shifts` = (max_tot + 1 - `Sp. distributional shifts`)/stress_tot,
              `Ocean acidification` = (max_tot + 1 - `Ocean acidification`)/stress_tot,
@@ -713,20 +723,18 @@ country_list[-1] %>%
     #What examples are used most within a CC context vs without? Difference between implemented versus idea?
     
     CC_ex_c <-
-      dat %>%
-      filter(Country %in% country_list[[x]]) %>% 
+      dat2 %>% 
       filter(!(is.na(Implemented) | is.na(Community) | is.na(Context) | is.na(Example))) %>% 
       group_by(Context, Community, Implemented, Example) %>% 
       summarise(N_Example = n()) %>% 
-      left_join(dat %>%
-                  filter(Country %in% country_list[[x]]) %>%  
+      left_join(dat2 %>%  
                   filter(!(is.na(Implemented) | is.na(Community) | is.na(Context)| is.na(Example))) %>% 
                   group_by(Context, Community, Implemented) %>%
                   summarise(total = n())) %>% 
       mutate(Prop_Example = N_Example/total) %>% 
       arrange(Context, Community, Implemented, desc(Prop_Example)) %>% 
-      right_join(CC_ex %>% 
-                   select(Context, Community, Implemented)) %>% 
+      #right_join(CC_ex %>% 
+      #             select(Context, Community, Implemented)) %>% 
       mutate(id = 1:n()) %>% 
       filter(id < 11)
     
@@ -777,8 +785,7 @@ country_list[-1] %>%
     
     
     CC_ant_c <-
-      dat %>%
-      filter(Country %in% country_list[[x]]) %>% 
+      dat2 %>% 
       filter(!(is.na(Context) | is.na(Example) | is.na(Implemented))) %>% 
       group_by(Context, Example, Implemented) %>% 
       summarise(Anticipatory = sum(Anticipatory, na.rm = T),
@@ -786,8 +793,7 @@ country_list[-1] %>%
                 Both = sum(Both, na.rm = T)
       )%>% 
       mutate(all = Anticipatory+Responsive+Both) %>% 
-      left_join(dat %>%
-                  filter(Country %in% country_list[[x]]) %>% 
+      left_join(dat2 %>% 
                   filter(!(is.na(Context) | is.na(Example))) %>% 
                   group_by(Context, Example) %>% 
                   filter(Context=='CC') %>% 
@@ -954,8 +960,7 @@ country_list[-1] %>%
     #What managers implement which examples?
     
     CC_man_c <-
-      dat %>%
-      filter(Country %in% country_list[[x]]) %>% 
+      dat2 %>% 
       filter(!(is.na(Context) | is.na(Example) | is.na(Implemented))) %>% 
       group_by(Context, Example, Implemented) %>% 
       summarise(Internat. = sum(Internat., na.rm = T),
@@ -970,8 +975,7 @@ country_list[-1] %>%
                 Individual = sum(Individual, na.rm = T)
       )%>% 
       mutate(all = Internat. + `Nat. govt.` + `Region. govt.` + `Local govt.` + NGO + Uni. + `Community assoc.` + `Business coop.` + Business + Individual) %>% 
-      left_join(dat %>% 
-                  filter(Country %in% country_list[[x]]) %>% 
+      left_join(dat2 %>% 
                   filter(!(is.na(Context) | is.na(Example))) %>% 
                   group_by(Context, Example) %>% 
                   filter(Context=='CC') %>% 
@@ -1114,8 +1118,9 @@ country_list[-1] %>%
     #print(grid.draw(legend), vp=viewport(layout.pos.row = 5, layout.pos.col = 1))
     print(grid.draw(gp0), vp =viewport(layout.pos.row = 1:8, layout.pos.col = 2:6))
     dev.off()
-    
-    
-  })
+    }
+    , silent = T)  
+ }   
+#  })
 
 
