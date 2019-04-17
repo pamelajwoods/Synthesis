@@ -3,8 +3,6 @@ library(grid)
 library(gtable)
 library(gridExtra)
 
-
-
 dat_raw <- 
   read_csv('Adaptation option repository_consolidated.csv') %>% 
   select(-c(grep('X', names(read_csv('Adaptation option repository_consolidated.csv')), value = T))) 
@@ -48,6 +46,21 @@ dat <-
          Anticipatory = ifelse(Anticipatory %in% c('x', 'X'), 1, Anticipatory) %>% as.numeric(.),
          Responsive = ifelse(Responsive %in% c('x', 'X'), 1, Responsive) %>% as.numeric(.),
          Both = ifelse(Both %in% c('x', 'X'), 1, Both) %>% as.numeric(.),
+         `Stock decline` = ifelse(is.na(`Stock decline`), NA, `Stock decline`),
+         `Sp. distributional shifts` = ifelse(is.na(`Sp. distributional shifts`), NA, `Sp. distributional shifts`),
+         `Ocean acidification` = ifelse(is.na(`Ocean acidification`), NA, `Ocean acidification`),
+         `Extreme climatic events` = ifelse(is.na(`Extreme climatic events`), NA, `Extreme climatic events`),
+         `Uncertainty (ecological)` = ifelse(is.na(`Uncertainty (ecological)`), NA, `Uncertainty (ecological)`),
+         `Market changes` = ifelse(is.na(`Market changes`), NA, `Market changes`),
+         `Regulation change` = ifelse(is.na(`Regulation change`), NA, `Regulation change`),
+         `Consolidation` = ifelse(is.na(`Consolidation`), NA, `Consolidation`),
+         `Globalization` = ifelse(is.na(`Globalization`), NA, `Globalization`),
+         `Uncertainty (social)` = ifelse(is.na(`Uncertainty (social)`), NA, `Uncertainty (social)`),
+         `Reduce stressor` = ifelse(`Reduce stressor` %in% c('x', 'X', '1'), 1, NA) %>% as.numeric(.),
+         `Reduce sensitivity` = ifelse(`Reduce sensitivity` %in% c('x', 'X', '1'), 1, NA) %>% as.numeric(.),
+         Cope = ifelse(Cope %in% c('x', 'X', '1'), 1, NA) %>% as.numeric(.),
+         `No change` = ifelse(`No change` %in% c('x', 'X', '1'), 1, NA) %>% as.numeric(.),
+         `Take advantage` = ifelse(`Take advantage` %in% c('x', 'X', '1'), 1, NA) %>% as.numeric(.),
          Internat. = ifelse(Internat. %in% c('x', 'X'), 1, Internat.) %>% as.numeric(.),
          `Nat. govt.` = ifelse(`Nat. govt.` %in% c('x', 'X'), 1, `Nat. govt.`) %>% as.numeric(.),
          `Region. govt.` = ifelse(`Region. govt.` %in% c('x', 'X'), 1, `Region. govt.`) %>% as.numeric(.),
@@ -74,42 +87,57 @@ dat <-
 
 #What are examples most often in response to? In CC vs not?
 CC_stressor_spread <- 
-  dat %>% 
-  mutate(stress_tot = apply(dat[5:14], 1, sum, na.rm = T),
-         max_tot = apply(dat[5:14], 1, max, na.rm = T),
-         `Stock decline` = (max_tot + 1 - `Stock decline`)/stress_tot,
-         `Sp. distributional shifts` = (max_tot + 1 - `Sp. distributional shifts`)/stress_tot,
-         `Ocean acidification` = (max_tot + 1 - `Ocean acidification`)/stress_tot,
-         `Extreme climatic events` = (max_tot + 1 - `Extreme climatic events`)/stress_tot,
-         `Uncertainty (ecological)` = (max_tot + 1 - `Uncertainty (ecological)`)/stress_tot,
-         `Market changes` = (max_tot + 1 - `Market changes`)/stress_tot,
-         `Regulation change` = (max_tot + 1 - `Regulation change`)/stress_tot,
-         `Consolidation` = (max_tot + 1 - `Consolidation`)/stress_tot,
-         `Globalization` = (max_tot + 1 - `Globalization`)/stress_tot,
-         `Uncertainty (social)` = (max_tot + 1 - `Uncertainty (social)`)/stress_tot) %>% 
-  filter(!(is.na(Context) | is.na(Example) | stress_tot==0)) %>% 
-  group_by(Context, Example) %>%
-  summarise(`Stock decline` = sum(`Stock decline`, na.rm = T),
-            `Sp. distributional shifts` = sum(`Sp. distributional shifts`, na.rm = T),
-            `Ocean acidification` = sum(`Ocean acidification`, na.rm = T),
-            `Extreme climatic events` = sum(`Extreme climatic events`, na.rm = T),
-            `Uncertainty (ecological)` = sum(`Uncertainty (ecological)`, na.rm = T),
-            `Market changes` = sum(`Market changes`, na.rm = T),
-            `Regulation change` = sum(`Regulation change`, na.rm = T),
-            `Consolidation` = sum(`Consolidation`, na.rm = T),
-            `Globalization` = sum(`Globalization`, na.rm = T),
-            `Uncertainty (social)` = sum(`Uncertainty (social)`, na.rm = T)
-            ) %>% 
-  mutate(`Total score` = `Stock decline` +  `Sp. distributional shifts` + `Ocean acidification` + `Extreme climatic events` +
-           `Uncertainty (ecological)` + `Market changes` + `Regulation change` + `Consolidation` + `Globalization` +`Uncertainty (social)`) %>% 
+    dat %>% 
+    mutate(stress_tot = apply(dat[5:14], 1, sum, na.rm = T),
+           max_tot = apply(dat[5:14], 1, max, na.rm = T),
+           `Stock decline` = (max_tot + 1 - `Stock decline`)/stress_tot,
+           `Sp. distributional shifts` = (max_tot + 1 - `Sp. distributional shifts`)/stress_tot,
+           `Ocean acidification` = (max_tot + 1 - `Ocean acidification`)/stress_tot,
+           `Extreme climatic events` = (max_tot + 1 - `Extreme climatic events`)/stress_tot,
+           `Uncertainty (ecological)` = (max_tot + 1 - `Uncertainty (ecological)`)/stress_tot,
+           `Market changes` = (max_tot + 1 - `Market changes`)/stress_tot,
+           `Regulation change` = (max_tot + 1 - `Regulation change`)/stress_tot,
+           `Consolidation` = (max_tot + 1 - `Consolidation`)/stress_tot,
+           `Globalization` = (max_tot + 1 - `Globalization`)/stress_tot,
+           `Uncertainty (social)` = (max_tot + 1 - `Uncertainty (social)`)/stress_tot) %>% 
+    filter(!(is.na(Context) | is.na(Example) | stress_tot==0)) %>% 
+    group_by(Context, Example) %>%
+    summarise(`Stock decline` = sum(`Stock decline`, na.rm = T),
+              `Sp. distributional shifts` = sum(`Sp. distributional shifts`, na.rm = T),
+              `Ocean acidification` = sum(`Ocean acidification`, na.rm = T),
+              `Extreme climatic events` = sum(`Extreme climatic events`, na.rm = T),
+              `Uncertainty (ecological)` = sum(`Uncertainty (ecological)`, na.rm = T),
+              `Market changes` = sum(`Market changes`, na.rm = T),
+              `Regulation change` = sum(`Regulation change`, na.rm = T),
+              `Consolidation` = sum(`Consolidation`, na.rm = T),
+              `Globalization` = sum(`Globalization`, na.rm = T),
+              `Uncertainty (social)` = sum(`Uncertainty (social)`, na.rm = T)
+              ) %>% 
+    mutate(tot = `Stock decline` +  `Sp. distributional shifts` + `Ocean acidification` + `Extreme climatic events` +
+             `Uncertainty (ecological)` + `Market changes` + `Regulation change` + `Consolidation` + `Globalization` +`Uncertainty (social)`,
+           `Total score` = tot,
+           ) %>% 
   arrange(Context, desc(`Total score`)) %>% 
   ungroup() %>% 
   filter(!is.na(`Total score`)) %>% 
   mutate(order = n():1) %>% 
-  select(order, Context, Example, `Uncertainty (ecological)`, `Ocean acidification`, `Uncertainty (social)`,`Sp. distributional shifts`, `Extreme climatic events`, `Stock decline`, `Market changes`,`Regulation change`, `Globalization`, `Consolidation`) 
+  select(order, Context, Example, `Total score`, `Uncertainty (ecological)`, `Ocean acidification`, `Uncertainty (social)`,`Sp. distributional shifts`, `Extreme climatic events`, `Stock decline`, `Market changes`,`Regulation change`, `Globalization`, `Consolidation`) 
 
 CC_stressor <-
   CC_stressor_spread %>% 
+  # mutate(max_tot = apply(CC_stressor_spread[5:14], 1, max, na.rm = T),
+  #        min_tot = apply(CC_stressor_spread[5:14], 1, min, na.rm = T),
+  #        `Stock decline` = (`Stock decline` - min_tot+0.001)/(max_tot- min_tot+0.001),
+  #        `Sp. distributional shifts` = (`Sp. distributional shifts`- min_tot+0.001)/(max_tot- min_tot+0.001),
+  #        `Ocean acidification` = (`Ocean acidification`- min_tot+0.001)/(max_tot- min_tot+0.001),
+  #        `Extreme climatic events` = (`Extreme climatic events`- min_tot+0.001)/(max_tot- min_tot+0.001),
+  #        `Uncertainty (ecological)` = (`Uncertainty (ecological)`- min_tot+0.001)/(max_tot- min_tot+0.001),
+  #        `Market changes` = (`Market changes`- min_tot+0.001)/(max_tot- min_tot+0.001),
+  #        `Regulation change` = (`Regulation change`- min_tot+0.001)/(max_tot- min_tot+0.001),
+  #        `Consolidation` = (`Consolidation`- min_tot+0.001)/(max_tot- min_tot+0.001),
+  #        `Globalization` = (`Globalization`- min_tot+0.001)/(max_tot- min_tot+0.001),
+  #        `Uncertainty (social)` = (`Uncertainty (social)`- min_tot)/(max_tot- min_tot+0.001)) %>% 
+  # select(-max_tot, -min_tot) %>% 
   gather(val = 'Score', key = 'Stressor', -c(Context, Example, order)) %>% 
   mutate(Score = ifelse(Score==0, NA, Score))
 
@@ -118,21 +146,24 @@ CC_stressor <-
 br <- CC_stressor_spread %>% select(order) %>% unlist %>% c(.)
 lab <- CC_stressor_spread %>% select(Example) %>% unlist %>% substr(., 1, 49) 
 
-labs <- data.frame(x = -12.5, br, lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab), col = c('aquamarine3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'aquamarine3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkblue', 'darkblue', 'darkblue', 'darkgoldenrod3'))
+labs <- data.frame(x = -12.5, br, lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab), col = c('aquamarine3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'aquamarine3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkblue', 'aquamarine3', 'darkgoldenrod3'))
 
 CC_stress_plot <-
   CC_stressor %>% 
   mutate(Stressor_name = Stressor, 
-         Stressor = recode(Stressor, `Uncertainty (ecological)` = 'A', `Ocean acidification` = 'B', `Uncertainty (social)` = 'C', `Sp. distributional shifts` = 'D', `Extreme climatic events` = 'E', `Stock decline` = 'F', `Market changes` = 'G', `Regulation change` = 'H', `Globalization` = 'I', `Consolidation` = 'J')) %>% 
+         Stressor = recode(Stressor,`Total score` = 'A', `Uncertainty (ecological)` = 'B', `Ocean acidification` = 'C', `Uncertainty (social)` = 'D', `Sp. distributional shifts` = 'E', `Extreme climatic events` = 'F', `Stock decline` = 'G', `Market changes` = 'H', `Regulation change` = 'I', `Globalization` = 'J', `Consolidation` = 'K')) %>% 
+  filter(Stressor != 'A') %>% 
   ggplot(aes(Stressor, order, size = Score, color = Context)) + 
   geom_point() + 
   theme_light() + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5),
+  theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5),
         plot.margin = unit(c(1,5,1,17), "lines")) +
   ylab('') + 
-  scale_x_discrete(breaks=c('A', 'B','C', 'D', 'E', 'F', 'G', 'H', 'I' , 'J'),
+  #scale_size_continuous(trans = 'boxcox')+
+  scale_x_discrete(breaks=c('B','C', 'D', 'E', 'F', 'G', 'H', 'I' , 'J', 'K'),
                                   labels=c("Uncertainty (ecological)", "Ocean acidification", "Uncertainty (social)",
-                                           "Sp. distributional shifts", "Extreme climatic events", "Stock decline", "Market changes","Regulation change", "Globalization", "Consolidation")) +
+                                           "Sp. distributional shifts", "Extreme climatic events", "Stock decline", "Market changes","Regulation change", "Globalization", "Consolidation"), 
+                   position = 'top') +
   scale_y_continuous(breaks = c(0,57), labels = c('', ''), limits = c(0,57), expand = expand_scale())
 
 
@@ -182,6 +213,109 @@ pdf('Stressor_plot.pdf', width = 8.3, height = 11.7)
   grid::grid.draw(gt)
 
 dev.off()
+
+#What are examples most often intended to do? In CC vs not?
+CC_goal_spread <- 
+  dat %>% 
+  mutate(stress_tot = apply(dat[30:34], 1, sum, na.rm = T),
+         max_tot = apply(dat[30:34], 1, max, na.rm = T),
+         `Reduce stressor` = (max_tot + 1 - `Reduce stressor`)/stress_tot,
+         `Reduce sensitivity` = (max_tot + 1 - `Reduce sensitivity`)/stress_tot,
+          Cope = (max_tot + 1 - Cope)/stress_tot,
+         `No change` = (max_tot + 1 - `No change`)/stress_tot,
+         `Take advantage` = (max_tot + 1 - `Take advantage`)/stress_tot) %>% 
+  filter(!(is.na(Context) | is.na(Example) | stress_tot==0)) %>% 
+  group_by(Context, Example) %>%
+  summarise(`Reduce stressor` = sum(`Reduce stressor`, na.rm = T),
+            `Reduce sensitivity` = sum(`Reduce sensitivity`, na.rm = T),
+            Cope = sum(Cope, na.rm = T),
+            `No change` = sum(`No change`, na.rm = T),
+            `Take advantage` = sum(`Take advantage`, na.rm = T)
+  ) %>% 
+  mutate(`Total score` = `Reduce stressor` +  `Reduce sensitivity` + Cope + `No change` + `Take advantage`) %>% 
+  arrange(Context, desc(`Total score`)) %>% 
+  ungroup() %>% 
+  filter(!is.na(`Total score`)) %>% 
+  mutate(order = n():1) %>% 
+  select(order, Context, Example, `Reduce stressor`, `Reduce sensitivity`, Cope, `No change`, `Take advantage`) 
+
+CC_goal <-
+  CC_goal_spread %>% 
+  gather(val = 'Score', key = 'Goal', -c(Context, Example, order)) %>% 
+  mutate(Score = ifelse(Score==0, NA, Score))
+
+#View(CC_stressor_spread)
+
+br <- CC_goal_spread %>% select(order) %>% unlist %>% c(.)
+lab <- CC_goal_spread %>% select(Example) %>% unlist %>% substr(., 1, 49) 
+
+labsg <- data.frame(x = -13.75, br, lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab)) %>% 
+  left_join(labs %>% select(lab, col) %>% distinct)
+
+CC_goal_plot <-
+  CC_goal %>% 
+  mutate(Goal_name = Goal, 
+         Goal = recode(Goal, `Reduce stressor` = 'A', `Reduce sensitivity` = 'B', Cope = 'C', `No change` = 'D', `Take advantage` = 'E')) %>% 
+  ggplot(aes(Goal, order, size = Score, color = Context)) + 
+  geom_point() + 
+  theme_light() + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5),
+        plot.margin = unit(c(1,5,1,17), "lines")) +
+  ylab('') + 
+  scale_x_discrete(breaks=c('A', 'B','C', 'D', 'E'),
+                   labels=c("Reduce stressor", "Reduce sensitivity", "Cope",
+                            "No change", "Take advantage"),
+                   position = 'top') +
+  scale_y_continuous(breaks = c(0,57), labels = c('', ''), limits = c(0,57), expand = expand_scale())
+
+
+for(i in 1:length(labs$br)){ 
+  CC_goal_plot <-
+    CC_goal_plot + 
+    annotation_custom(
+      grob = grid::textGrob(label = labsg$lab[i], just = 'left',gp = gpar(col = as.character(labsg$col[i]))), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+      ymin = labsg$br[i]+0.2,      # Vertical position of the textGrob
+      ymax = labsg$br[i]-0.2,
+      xmin = labsg$x[i],         # Note: The grobs are positioned outside the plot area
+      xmax = labsg$x[i])
+}
+
+
+CC_goal_plot <-
+  CC_goal_plot + 
+  annotation_custom(
+    grob = grid::textGrob(label = 'Adaptation options:', just = 'left',gp = gpar(fontsize = 12, fontface = 'bold')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+    ymin = 57,      # Vertical position of the textGrob
+    ymax = 57,
+    xmin = 5.75,         # Note: The grobs are positioned outside the plot area
+    xmax = 5.75)+ 
+  annotation_custom(
+    grob = grid::textGrob(label = 'Social', just = 'left',gp = gpar(fontsize = 12, col = 'goldenrod3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+    ymin = 55,      # Vertical position of the textGrob
+    ymax = 55,
+    xmin = 5.75,         # Note: The grobs are positioned outside the plot area
+    xmax = 5.75)+ 
+  annotation_custom(
+    grob = grid::textGrob(label = 'Natural resource mgmt', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+    ymin = 56,      # Vertical position of the textGrob
+    ymax = 56,
+    xmin = 5.75,         # Note: The grobs are positioned outside the plot area
+    xmax = 5.75)+ 
+  annotation_custom(
+    grob = grid::textGrob(label = 'Institutional', just = 'left',gp = gpar(fontsize = 12, col = 'darkblue')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+    ymin = 54,      # Vertical position of the textGrob
+    ymax = 54,
+    xmin = 5.75,         # Note: The grobs are positioned outside the plot area
+    xmax = 5.75)
+
+pdf('Goal_plot.pdf', width = 6.8, height = 11.7)
+
+gt <- ggplot_gtable(ggplot_build(CC_goal_plot))
+gt$layout$clip[gt$layout$name == "panel"] <- "off"
+grid::grid.draw(gt)
+
+dev.off()
+
 
 #What examples are used most within a CC context vs without? Difference between implemented versus idea?
 
@@ -607,6 +741,7 @@ country_list <-
       dat %>% 
       filter(Country %in% country_list[[x]]) 
     
+    
     #What are examples most often in response to? In CC vs not?
     CC_stressor_spread_c <- 
       dat2 %>% 
@@ -635,19 +770,32 @@ country_list <-
                 `Globalization` = sum(`Globalization`, na.rm = T),
                 `Uncertainty (social)` = sum(`Uncertainty (social)`, na.rm = T)
       ) %>% 
-      mutate(`Total score` = `Stock decline` +  `Sp. distributional shifts` + `Ocean acidification` + `Extreme climatic events` +
-               `Uncertainty (ecological)` + `Market changes` + `Regulation change` + `Consolidation` + `Globalization` +`Uncertainty (social)`) %>% 
+      mutate(tot = `Stock decline` +  `Sp. distributional shifts` + `Ocean acidification` + `Extreme climatic events` +
+               `Uncertainty (ecological)` + `Market changes` + `Regulation change` + `Consolidation` + `Globalization` +`Uncertainty (social)`,
+             `Total score` = tot,
+      ) %>% 
       arrange(Context, desc(`Total score`)) %>% 
       ungroup() %>% 
       filter(!is.na(`Total score`)) %>% 
-      right_join(CC_stressor_spread %>% 
-                   select(Context, Example)) %>%
       mutate(order = n():1) %>% 
-      select(order, Context, Example, `Uncertainty (ecological)`, `Ocean acidification`, `Uncertainty (social)`,`Sp. distributional shifts`, `Extreme climatic events`, `Stock decline`, `Market changes`,`Regulation change`, `Globalization`, `Consolidation`)
+      select(order, Context, Example, `Total score`, `Uncertainty (ecological)`, `Ocean acidification`, `Uncertainty (social)`,`Sp. distributional shifts`, `Extreme climatic events`, `Stock decline`, `Market changes`,`Regulation change`, `Globalization`, `Consolidation`) 
     
-    CC_stressor <-
+    CC_stressor_c <-
       CC_stressor_spread_c %>% 
-      gather(val = 'Score', key = 'Stressor', -c(Context, Example, order)) %>% 
+      # mutate(max_tot = apply(CC_stressor_spread[5:14], 1, max, na.rm = T),
+      #        min_tot = apply(CC_stressor_spread[5:14], 1, min, na.rm = T),
+      #        `Stock decline` = (`Stock decline` - min_tot+0.001)/(max_tot- min_tot+0.001),
+      #        `Sp. distributional shifts` = (`Sp. distributional shifts`- min_tot+0.001)/(max_tot- min_tot+0.001),
+      #        `Ocean acidification` = (`Ocean acidification`- min_tot+0.001)/(max_tot- min_tot+0.001),
+      #        `Extreme climatic events` = (`Extreme climatic events`- min_tot+0.001)/(max_tot- min_tot+0.001),
+      #        `Uncertainty (ecological)` = (`Uncertainty (ecological)`- min_tot+0.001)/(max_tot- min_tot+0.001),
+      #        `Market changes` = (`Market changes`- min_tot+0.001)/(max_tot- min_tot+0.001),
+      #        `Regulation change` = (`Regulation change`- min_tot+0.001)/(max_tot- min_tot+0.001),
+      #        `Consolidation` = (`Consolidation`- min_tot+0.001)/(max_tot- min_tot+0.001),
+      #        `Globalization` = (`Globalization`- min_tot+0.001)/(max_tot- min_tot+0.001),
+    #        `Uncertainty (social)` = (`Uncertainty (social)`- min_tot)/(max_tot- min_tot+0.001)) %>% 
+    # select(-max_tot, -min_tot) %>% 
+    gather(val = 'Score', key = 'Stressor', -c(Context, Example, order)) %>% 
       mutate(Score = ifelse(Score==0, NA, Score))
     
     #View(CC_stressor_spread)
@@ -655,33 +803,37 @@ country_list <-
     br <- CC_stressor_spread_c %>% select(order) %>% unlist %>% c(.)
     lab <- CC_stressor_spread_c %>% select(Example) %>% unlist %>% substr(., 1, 49) 
     
-    labs <- data.frame(x = -12.5, br, lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab), col = c('aquamarine3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'aquamarine3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkblue', 'darkblue', 'darkblue', 'darkgoldenrod3'))
+    labsc <- data.frame(x = -12.5, br, lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab)) %>% 
+      left_join(labs %>% select(lab, col) %>% distinct)
     
     CC_stress_plot <-
-      CC_stressor %>% 
+      CC_stressor_c %>% 
       mutate(Stressor_name = Stressor, 
-             Stressor = recode(Stressor, `Uncertainty (ecological)` = 'A', `Ocean acidification` = 'B', `Uncertainty (social)` = 'C', `Sp. distributional shifts` = 'D', `Extreme climatic events` = 'E', `Stock decline` = 'F', `Market changes` = 'G', `Regulation change` = 'H', `Globalization` = 'I', `Consolidation` = 'J')) %>% 
+             Stressor = recode(Stressor,`Total score` = 'A', `Uncertainty (ecological)` = 'B', `Ocean acidification` = 'C', `Uncertainty (social)` = 'D', `Sp. distributional shifts` = 'E', `Extreme climatic events` = 'F', `Stock decline` = 'G', `Market changes` = 'H', `Regulation change` = 'I', `Globalization` = 'J', `Consolidation` = 'K')) %>% 
+      filter(Stressor != 'A') %>% 
       ggplot(aes(Stressor, order, size = Score, color = Context)) + 
       geom_point() + 
       theme_light() + 
-      theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5),
+      theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5),
             plot.margin = unit(c(1,5,1,17), "lines")) +
       ylab('') + 
-      scale_x_discrete(breaks=c('A', 'B','C', 'D', 'E', 'F', 'G', 'H', 'I' , 'J'),
+      #scale_size_continuous(trans = 'boxcox')+
+      scale_x_discrete(breaks=c('B','C', 'D', 'E', 'F', 'G', 'H', 'I' , 'J', 'K'),
                        labels=c("Uncertainty (ecological)", "Ocean acidification", "Uncertainty (social)",
-                                "Sp. distributional shifts", "Extreme climatic events", "Stock decline", "Market changes","Regulation change", "Globalization", "Consolidation")) +
+                                "Sp. distributional shifts", "Extreme climatic events", "Stock decline", "Market changes","Regulation change", "Globalization", "Consolidation"), 
+                       position = 'top') +
       scale_y_continuous(breaks = c(0,57), labels = c('', ''), limits = c(0,57), expand = expand_scale())
     
     
-    for(i in 1:length(labs$br)){ 
+    for(i in 1:length(labsc$br)){ 
       CC_stress_plot <-
         CC_stress_plot + 
         annotation_custom(
-          grob = grid::textGrob(label = labs$lab[i], just = 'left',gp = gpar(col = as.character(labs$col[i]))), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-          ymin = labs$br[i]+0.2,      # Vertical position of the textGrob
-          ymax = labs$br[i]-0.2,
-          xmin = labs$x[i],         # Note: The grobs are positioned outside the plot area
-          xmax = labs$x[i])
+          grob = grid::textGrob(label = labs$lab[i], just = 'left',gp = gpar(col = as.character(labsc$col[i]))), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+          ymin = labsc$br[i]+0.2,      # Vertical position of the textGrob
+          ymax = labsc$br[i]-0.2,
+          xmin = labsc$x[i],         # Note: The grobs are positioned outside the plot area
+          xmax = labsc$x[i])
     }
     
     
@@ -719,6 +871,110 @@ country_list <-
     grid::grid.draw(gt)
     
     dev.off()
+    
+    
+    #What are examples most often intended to do? In CC vs not?
+    CC_goal_spread_c <- 
+      dat2 %>% 
+      mutate(stress_tot = apply(dat2[30:34], 1, sum, na.rm = T),
+             max_tot = apply(dat2[30:34], 1, max, na.rm = T),
+             `Reduce stressor` = (max_tot + 1 - `Reduce stressor`)/stress_tot,
+             `Reduce sensitivity` = (max_tot + 1 - `Reduce sensitivity`)/stress_tot,
+             Cope = (max_tot + 1 - Cope)/stress_tot,
+             `No change` = (max_tot + 1 - `No change`)/stress_tot,
+             `Take advantage` = (max_tot + 1 - `Take advantage`)/stress_tot) %>% 
+      filter(!(is.na(Context) | is.na(Example) | stress_tot==0)) %>% 
+      group_by(Context, Example) %>%
+      summarise(`Reduce stressor` = sum(`Reduce stressor`, na.rm = T),
+                `Reduce sensitivity` = sum(`Reduce sensitivity`, na.rm = T),
+                Cope = sum(Cope, na.rm = T),
+                `No change` = sum(`No change`, na.rm = T),
+                `Take advantage` = sum(`Take advantage`, na.rm = T)
+      ) %>% 
+      mutate(`Total score` = `Reduce stressor` +  `Reduce sensitivity` + Cope + `No change` + `Take advantage`) %>% 
+      arrange(Context, desc(`Total score`)) %>% 
+      ungroup() %>% 
+      filter(!is.na(`Total score`)) %>% 
+      mutate(order = n():1) %>% 
+      select(order, Context, Example, `Reduce stressor`, `Reduce sensitivity`, Cope, `No change`, `Take advantage`) 
+    
+    CC_goal_c <-
+      CC_goal_spread_c %>% 
+      gather(val = 'Score', key = 'Goal', -c(Context, Example, order)) %>% 
+      mutate(Score = ifelse(Score==0, NA, Score))
+    
+    #View(CC_stressor_spread)
+    
+    br <- CC_goal_spread_c %>% select(order) %>% unlist %>% c(.)
+    lab <- CC_goal_spread_c %>% select(Example) %>% unlist %>% substr(., 1, 49) 
+    
+    labsg <- data.frame(x = -13.75, br, lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab)) %>% 
+      left_join(labs %>% select(lab, col) %>% distinct)
+    
+    CC_goal_plot <-
+      CC_goal_c %>% 
+      mutate(Goal_name = Goal, 
+             Goal = recode(Goal, `Reduce stressor` = 'A', `Reduce sensitivity` = 'B', Cope = 'C', `No change` = 'D', `Take advantage` = 'E')) %>% 
+      ggplot(aes(Goal, order, size = Score, color = Context)) + 
+      geom_point() + 
+      theme_light() + 
+      theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5),
+            plot.margin = unit(c(1,5,1,17), "lines")) +
+      ylab('') + 
+      scale_x_discrete(breaks=c('A', 'B','C', 'D', 'E'),
+                       labels=c("Reduce stressor", "Reduce sensitivity", "Cope",
+                                "No change", "Take advantage"),
+                       position = 'top') +
+      scale_y_continuous(breaks = c(0,57), labels = c('', ''), limits = c(0,57), expand = expand_scale())
+    
+    
+    for(i in 1:length(labsg$br)){ 
+      CC_goal_plot <-
+        CC_goal_plot + 
+        annotation_custom(
+          grob = grid::textGrob(label = labsg$lab[i], just = 'left',gp = gpar(col = as.character(labsg$col[i]))), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+          ymin = labsg$br[i]+0.2,      # Vertical position of the textGrob
+          ymax = labsg$br[i]-0.2,
+          xmin = labsg$x[i],         # Note: The grobs are positioned outside the plot area
+          xmax = labsg$x[i])
+    }
+    
+    
+    CC_goal_plot <-
+      CC_goal_plot + 
+      annotation_custom(
+        grob = grid::textGrob(label = 'Adaptation options:', just = 'left',gp = gpar(fontsize = 12, fontface = 'bold')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+        ymin = 57,      # Vertical position of the textGrob
+        ymax = 57,
+        xmin = 5.75,         # Note: The grobs are positioned outside the plot area
+        xmax = 5.75)+ 
+      annotation_custom(
+        grob = grid::textGrob(label = 'Social', just = 'left',gp = gpar(fontsize = 12, col = 'goldenrod3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+        ymin = 55,      # Vertical position of the textGrob
+        ymax = 55,
+        xmin = 5.75,         # Note: The grobs are positioned outside the plot area
+        xmax = 5.75)+ 
+      annotation_custom(
+        grob = grid::textGrob(label = 'Natural resource mgmt', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+        ymin = 56,      # Vertical position of the textGrob
+        ymax = 56,
+        xmin = 5.75,         # Note: The grobs are positioned outside the plot area
+        xmax = 5.75)+ 
+      annotation_custom(
+        grob = grid::textGrob(label = 'Institutional', just = 'left',gp = gpar(fontsize = 12, col = 'darkblue')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+        ymin = 54,      # Vertical position of the textGrob
+        ymax = 54,
+        xmin = 5.75,         # Note: The grobs are positioned outside the plot area
+        xmax = 5.75)
+    
+    pdf(paste0('country_figs/Goal_plot_', country_list[[x]],'.pdf'), width = 6.8, height = 11.7)
+    
+    gt <- ggplot_gtable(ggplot_build(CC_goal_plot))
+    gt$layout$clip[gt$layout$name == "panel"] <- "off"
+    grid::grid.draw(gt)
+    
+    dev.off()
+    
     
     #What examples are used most within a CC context vs without? Difference between implemented versus idea?
     
