@@ -3,6 +3,12 @@ library(grid)
 library(gtable)
 library(gridExtra)
 
+byregion <- FALSE
+noresearch <- FALSE
+
+for(noresearch in c(FALSE, TRUE)){
+  
+
 dat_raw <- 
   read_csv('Adaptation option repository_consolidated.csv') %>% 
   select(-c(grep('X', names(read_csv('Adaptation option repository_consolidated.csv')), value = T))) 
@@ -80,9 +86,19 @@ dat <-
                                                              ifelse(Country=='NL (Southwest Delta)', 'NL', 
                                                                     ifelse(Country == 'Italy', 'IT', 
                                                                            ifelse(Country == 'Sweden', 'SW',
-                                                                                  Country)))))))))
+                                                                                  ifelse(Country == 'USA-NE', 'US-NE',
+                                                                                                Country)))))))))),
+         Country = ifelse(Country=='USA-NW', 'US-NW',Country)
   )
          
+
+nr <-''
+if(noresearch){
+  dat <- 
+    dat %>% 
+    filter(!(Example %in% c('Research', 'Enforcement')))
+  nr <- '_noresearch'
+}
 
 
 #What are examples most often in response to? In CC vs not?
@@ -206,7 +222,7 @@ CC_stress_plot <-
     xmin = 11,         # Note: The grobs are positioned outside the plot area
     xmax = 11)
 
-pdf('Stressor_plot.pdf', width = 8.3, height = 11.7)
+pdf(paste0('Stressor_plot',nr,'.pdf'), width = 8.3, height = 11.7)
 
   gt <- ggplot_gtable(ggplot_build(CC_stress_plot))
   gt$layout$clip[gt$layout$name == "panel"] <- "off"
@@ -308,7 +324,7 @@ CC_goal_plot <-
     xmin = 5.75,         # Note: The grobs are positioned outside the plot area
     xmax = 5.75)
 
-pdf('Goal_plot.pdf', width = 6.8, height = 11.7)
+pdf(paste0('Goal_plot',nr,'.pdf'), width = 6.8, height = 11.7)
 
 gt <- ggplot_gtable(ggplot_build(CC_goal_plot))
 gt$layout$clip[gt$layout$name == "panel"] <- "off"
@@ -339,7 +355,7 @@ CC_ex_plot <-
   CC_ex %>% 
   ungroup %>% 
   rename(`Proportion of adaptation options` = Prop_Example) %>% 
-  mutate(Context = ifelse(Context=='CC', 'Climate change', 'Fisheries'),
+  mutate(Context = ifelse(Context=='CC', 'Climate change included', 'Not including climate change'),
          Community = ifelse(Community == 'Y', 'Community focused', 'Not community focused'),
          Implemented = ifelse(Implemented == 'Y', 'Implemented', 'Not implemented'),
          Example = ifelse(grepl('Financial assistance or investment for entering,', Example), 'Financial assistance or investment for entering,', Example)) %>% 
@@ -350,28 +366,28 @@ CC_ex_plot <-
   xlab('')+ylab('')+
   labs(size="Proportion of\nadaptation\noptions") +
   scale_y_continuous(expand = expand_scale(), limits = c(0,11))+
-  facet_grid( Context ~ Community*Implemented) 
+  facet_grid(Community*Implemented ~ Context) 
 
 g <- ggplot_gtable(ggplot_build(CC_ex_plot))
 strip_both <- which(grepl('strip-', g$layout$name))
-fills <- c("goldenrod1","thistle1","goldenrod1","white", "white","thistle1","white","white")
+fills <- c("green","gold","white","gold", "green","white","white","white")
 k <- 1
-for (i in strip_both[1:4]) {
+for (i in strip_both[3:6]) {
   j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
   jj <- which(grepl('rect', g$grobs[[i]]$grobs[[2]]$childrenOrder))
   g$grobs[[i]]$grobs[[1]]$children[[j]]$gp$fill <- fills[k]
   g$grobs[[i]]$grobs[[2]]$children[[jj]]$gp$fill <- fills[k+1]
   k <- k+2
 }
-fills <- c("orange", "cyan")
+fills <- c('#F8766D', '#00BFC4')
 k <- 1
-for (i in strip_both[5:6]) {
+for (i in strip_both[1:2]) {
   j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
   g$grobs[[i]]$grobs[[1]]$children[[j]]$gp$fill <- fills[k]
   k <- k+1
 }
 
-pdf('CC_ex.pdf', width = 12.5, height = 4)
+pdf(paste0('CC_ex',nr,'.pdf'), width = 7.8, height = 6.2)
 grid.draw(g)
 dev.off()
 
@@ -444,7 +460,9 @@ ant_labs <-
 Ant_plot1 <-
   CC_ant %>% 
   select(Context, Example, Implemented, Prop_Anticipatory, Prop_Responsive, Prop_Both) %>%
-  rename(Anticipatory = Prop_Anticipatory, Responsive = Prop_Responsive, Both = Prop_Both) %>% 
+#  rename(Anticipatory = Prop_Anticipatory, Responsive = Prop_Responsive, Both = Prop_Both) %>% 
+  mutate(Anticipatory = Prop_Anticipatory, `Resp. or Both` = Prop_Responsive + Prop_Both) %>% 
+  select(-c(Prop_Anticipatory, Prop_Responsive, Prop_Both)) %>% 
   ungroup() %>% 
   mutate(Example = substr(Example, 1, 49),
          Example = ifelse(Example=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', Example),
@@ -455,17 +473,20 @@ Ant_plot1 <-
   group_by(Context, Example, Implemented) %>% 
   ggplot(aes(x="", y=Count, fill=Group))+
   geom_bar(width = 1, stat = "identity")+ 
-  scale_fill_manual(values=c("aquamarine", "blue", "red"))+ 
+  #scale_fill_manual(values=c("aquamarine", "blue", "red"))+ 
+  scale_fill_manual(values=c("blue", "red"))+ 
   coord_polar("y", start=0) + 
   theme_void() + 
-  theme(legend.position="left")+
+  theme(legend.position="left", plot.margin=unit(c(0,0,0,0.1),"cm"))+
   labs(fill = '') +
   facet_grid(Example ~Context*Implemented) 
 
 Ant_plot <-
   CC_ant %>% 
   select(Context, Example, Implemented, Prop_Anticipatory, Prop_Responsive, Prop_Both) %>%
-  rename(Anticipatory = Prop_Anticipatory, Responsive = Prop_Responsive, Both = Prop_Both) %>% 
+  #  rename(Anticipatory = Prop_Anticipatory, Responsive = Prop_Responsive, Both = Prop_Both) %>% 
+  mutate(Anticipatory = Prop_Anticipatory, `Resp. or Both` = Prop_Responsive + Prop_Both) %>% 
+  select(-c(Prop_Anticipatory, Prop_Responsive, Prop_Both)) %>% 
   ungroup() %>% 
   mutate(Example = substr(Example, 1, 49),
          Example = ifelse(Example=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', Example),
@@ -476,10 +497,11 @@ Ant_plot <-
   group_by(Context, Example, Implemented) %>% 
   ggplot(aes(x="", y=Count, fill=Group))+
   geom_bar(width = 1, stat = "identity")+ 
-  scale_fill_manual(values=c("aquamarine", "blue", "red"))+
+  #scale_fill_manual(values=c("aquamarine", "blue", "red"))+ 
+  scale_fill_manual(values=c("blue", "red"))+ 
   coord_polar("y", start=0) + 
   theme_void() + 
-  theme(legend.position="left", strip.text.y = element_text(colour = 'white'))+
+  theme(legend.position="left", strip.text.y = element_text(colour = 'white'), plot.margin=unit(c(0,0,0,0.1),"cm"))+
   labs(fill = '') +
   facet_grid(Example ~Context*Implemented)  
 
@@ -507,26 +529,26 @@ leg2 <- ggplot() + geom_blank(aes(c(0,rep(1,4)),1:5)) +  theme_void() +
     grob = grid::textGrob(label = 'Adaptation\noptions:', just = 'left',gp = gpar(fontsize = 12, fontface = 'bold')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
     ymin = 4,      # Vertical position of the textGrob
     ymax = 5,
-    xmin = 0,         # Note: The grobs are positioned outside the plot area
-    xmax = 0) +
+    xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+    xmax = 0.05) +
   annotation_custom(
     grob = grid::textGrob(label = 'Natural\nresource\nmgmt', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
     ymin = 3,      # Vertical position of the textGrob
     ymax = 4,
-    xmin = 0,         # Note: The grobs are positioned outside the plot area
-    xmax = 0) +
+    xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+    xmax = 0.05) +
   annotation_custom(
     grob = grid::textGrob(label = 'Social', just = 'left',gp = gpar(fontsize = 12, col = 'goldenrod3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
     ymin = 2,      # Vertical position of the textGrob
     ymax = 3,
-    xmin = 0,         # Note: The grobs are positioned outside the plot area
-    xmax = 0)+
+    xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+    xmax = 0.05)+
   annotation_custom(
     grob = grid::textGrob(label = 'Institutional', just = 'left',gp = gpar(fontsize = 12, col = 'darkblue')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
     ymin = 1.5,      # Vertical position of the textGrob
     ymax = 2.5,
-    xmin = 0,         # Note: The grobs are positioned outside the plot area
-    xmax = 0)
+    xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+    xmax = 0.05)
 
 for(i in 1:dim(areas)[1]){
  gp0 <- gtable_add_grob(x = gp0,
@@ -542,7 +564,7 @@ for(i in 1:dim(areas)[1]){
 
 grid::grid.draw(gp0)
 
-pdf('Ant_plot.pdf', width = 6, height = 7)
+pdf(paste0('Ant_plot',nr,'.pdf'), width = 6, height = 7)
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(8, 6)))
 print(leg2, vp=viewport(layout.pos.row = 1:3, layout.pos.col = 1))
@@ -615,14 +637,14 @@ Man_plot1 <-
   ggplot(aes(x="", y=Count, fill=Group))+
   geom_bar(width = 1, stat = "identity")+ 
 #  scale_fill_discrete(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual')) +
-  scale_fill_manual(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual'), values=c("aquamarine", "blue", "red","yellow"))+ 
+  scale_fill_manual(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual'), values=c("blue", "red", "darkorange","yellow"))+ 
   coord_polar("y", start=0) + 
   theme_void() + 
-  theme(legend.position="left")+
+  theme(legend.position="left", plot.margin=unit(c(0.1,0,0.1,0.1),"cm"))+
   labs(fill = '') +
   facet_grid(Example ~Context*Implemented) 
 
-Man_plot <-
+  Man_plot <-
   CC_man %>% 
   select(Context, Example, Implemented, Prop_top, Prop_bottom, Prop_NGO, Prop_ind) %>%
   rename(`Top-down` = Prop_top, `Bottom-up` = Prop_bottom, `Non-profit` = Prop_NGO, Individual = Prop_ind ) %>% 
@@ -637,10 +659,10 @@ Man_plot <-
   ggplot(aes(x="", y=Count, fill=Group))+
   geom_bar(width = 1, stat = "identity")+ 
   #  scale_fill_discrete(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual')) +
-  scale_fill_manual(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual'), values=c("aquamarine", "blue", "red","yellow"))+ 
+  scale_fill_manual(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual'), values=c("blue", "red", "darkorange","yellow"))+ #"aquamarine"
   coord_polar("y", start=0) + 
   theme_void() + 
-  theme(legend.position="left", strip.text.y = element_text(colour = 'white'))+
+  theme(legend.position="left", strip.text.y = element_text(colour = 'white'), plot.margin=unit(c(0.1,0,0.1,0.1),"cm"))+
   labs(fill = '') +
   facet_grid(Example ~Context*Implemented) 
 #, strip.text.y = element_text(colour = 'white')
@@ -667,26 +689,26 @@ leg2 <- ggplot() + geom_blank(aes(c(0,rep(1,4)),1:5)) +  theme_void() +
     grob = grid::textGrob(label = 'Adaptation\noptions:', just = 'left',gp = gpar(fontsize = 12, fontface = 'bold')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
     ymin = 4,      # Vertical position of the textGrob
     ymax = 5,
-    xmin = 0,         # Note: The grobs are positioned outside the plot area
-    xmax = 0) +
+    xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+    xmax = 0.05) +
   annotation_custom(
     grob = grid::textGrob(label = 'Natural\nresource\nmgmt', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
     ymin = 3,      # Vertical position of the textGrob
     ymax = 4,
-    xmin = 0,         # Note: The grobs are positioned outside the plot area
-    xmax = 0) +
+    xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+    xmax = 0.05) +
   annotation_custom(
     grob = grid::textGrob(label = 'Social', just = 'left',gp = gpar(fontsize = 12, col = 'goldenrod3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
     ymin = 2,      # Vertical position of the textGrob
     ymax = 3,
-    xmin = 0,         # Note: The grobs are positioned outside the plot area
-    xmax = 0)+
+    xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+    xmax = 0.05)+
   annotation_custom(
     grob = grid::textGrob(label = 'Institutional', just = 'left',gp = gpar(fontsize = 12, col = 'darkblue')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
     ymin = 1.5,      # Vertical position of the textGrob
     ymax = 2.5,
-    xmin = 0,         # Note: The grobs are positioned outside the plot area
-    xmax = 0)
+    xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+    xmax = 0.05)
 
 for(i in 1:dim(areas)[1]){
   gp0 <- gtable_add_grob(x = gp0,
@@ -702,7 +724,7 @@ for(i in 1:dim(areas)[1]){
 
 grid::grid.draw(gp0)
 
-pdf('Man_plot.pdf', width = 6, height = 7)
+pdf(paste0('Man_plot',nr,'.pdf'), width = 6, height = 7)
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(8, 6)))
 print(leg2, vp=viewport(layout.pos.row = 1:3, layout.pos.col = 1))
@@ -710,12 +732,34 @@ print(leg2, vp=viewport(layout.pos.row = 1:3, layout.pos.col = 1))
 print(grid.draw(gp0), vp =viewport(layout.pos.row = 1:8, layout.pos.col = 2:6))
 dev.off()
 
+#Frequency tables
+dat %>% 
+  ungroup() %>% 
+  group_by(Country, Context, Implemented, Community) %>% 
+  count() %>% 
+  #table(.) %>% 
+  write.csv('Freq_table.csv')
+
+
 
 #What are some differences among countries in examples, managers, and responsiveness?
 
 
 #NOW ADD FILTERS THROUGHOUT AND JOIN TO INTRODUCE NAs
 
+for(byregion in c(FALSE, TRUE)){
+
+if(byregion){
+  dat <-
+    dat %>% 
+    mutate(region = ifelse(Country %in% c('USA', 'US-SE', 'US-SW', 'US-NE', 'US-NW', 'US-AK', 'US-HA', 'US','CAN'), 'NAM', 
+                           ifelse(Country %in% c('AUS', 'NZ'), 'SP',
+                                  ifelse(Country %in% c('ICE', 'FIN', 'FAROES', 'SW','NOR'), 'NEU',
+                                         ifelse(Country %in% c('UK', 'IT', 'EU', 'GER','NL'), 'SEU', Country))))) %>%
+    mutate(Country = region) %>% 
+    select(-region)
+  
+}
 
 allcountries <- dat %>% select(Country) %>% unique %>% unlist
 country_list <- NULL
@@ -727,6 +771,7 @@ for(i in (length(allcountries)+1):2){
 country_list <-
  set_names(country_list[-1], allcountries)
 #set_names(country_list[1], 'all')
+
 
 
 #country_list[-1] %>% 
@@ -815,15 +860,15 @@ country_list <-
       geom_point() + 
       theme_light() + 
       theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5),
-            plot.margin = unit(c(1,5,1,17), "lines")) +
+            plot.margin = unit(c(1,5,1,17.5), "lines")) +
       ylab('') + 
       #scale_size_continuous(trans = 'boxcox')+
       scale_x_discrete(breaks=c('B','C', 'D', 'E', 'F', 'G', 'H', 'I' , 'J', 'K'),
                        labels=c("Uncertainty (ecological)", "Ocean acidification", "Uncertainty (social)",
                                 "Sp. distributional shifts", "Extreme climatic events", "Stock decline", "Market changes","Regulation change", "Globalization", "Consolidation"), 
                        position = 'top') +
-      scale_y_continuous(breaks = c(0,57), labels = c('', ''), limits = c(0,57), expand = expand_scale())
-    
+      scale_y_continuous(breaks = NULL, labels = c('', ''), limits = c(0,max(CC_stressor_c$order)+1), expand = expand_scale())
+    #c(0, max(CC_stressor_c$order)+1)
     
     for(i in 1:length(labsc$br)){ 
       CC_stress_plot <-
@@ -841,30 +886,30 @@ country_list <-
       CC_stress_plot + 
       annotation_custom(
         grob = grid::textGrob(label = 'Adaptation options:', just = 'left',gp = gpar(fontsize = 12, fontface = 'bold')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = 57,      # Vertical position of the textGrob
-        ymax = 57,
+        ymin = max(CC_stressor_c$order)+1,      # Vertical position of the textGrob
+        ymax = max(CC_stressor_c$order)+1,
         xmin = 11,         # Note: The grobs are positioned outside the plot area
         xmax = 11)+ 
       annotation_custom(
         grob = grid::textGrob(label = 'Social', just = 'left',gp = gpar(fontsize = 12, col = 'goldenrod3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = 55,      # Vertical position of the textGrob
-        ymax = 55,
+        ymin = (max(CC_stressor_c$order)+1)*13/15,      # Vertical position of the textGrob
+        ymax = (max(CC_stressor_c$order)+1)*13/15,
         xmin = 11,         # Note: The grobs are positioned outside the plot area
         xmax = 11)+ 
       annotation_custom(
         grob = grid::textGrob(label = 'Natural resource mgmt', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = 56,      # Vertical position of the textGrob
-        ymax = 56,
+        ymin = (max(CC_stressor_c$order)+1)*14/15,      # Vertical position of the textGrob
+        ymax = (max(CC_stressor_c$order)+1)*14/15,
         xmin = 11,         # Note: The grobs are positioned outside the plot area
         xmax = 11)+ 
       annotation_custom(
         grob = grid::textGrob(label = 'Institutional', just = 'left',gp = gpar(fontsize = 12, col = 'darkblue')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = 54,      # Vertical position of the textGrob
-        ymax = 54,
+        ymin = (max(CC_stressor_c$order)+1)*12/15,      # Vertical position of the textGrob
+        ymax = (max(CC_stressor_c$order)+1)*12/15,
         xmin = 11,         # Note: The grobs are positioned outside the plot area
         xmax = 11)
     
-    pdf(paste0('country_figs/Stressor_plot_', country_list[[x]],'.pdf'), width = 8.3, height = 11.7)
+    pdf(paste0('country_figs/Stressor_plot_', country_list[[x]],nr,'.pdf'), width = 8.3)
     
     gt <- ggplot_gtable(ggplot_build(CC_stress_plot))
     gt$layout$clip[gt$layout$name == "panel"] <- "off"
@@ -919,13 +964,13 @@ country_list <-
       geom_point() + 
       theme_light() + 
       theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5),
-            plot.margin = unit(c(1,5,1,17), "lines")) +
+            plot.margin = unit(c(1,5,1,17.5), "lines")) +
       ylab('') + 
       scale_x_discrete(breaks=c('A', 'B','C', 'D', 'E'),
                        labels=c("Reduce stressor", "Reduce sensitivity", "Cope",
                                 "No change", "Take advantage"),
                        position = 'top') +
-      scale_y_continuous(breaks = c(0,57), labels = c('', ''), limits = c(0,57), expand = expand_scale())
+      scale_y_continuous(breaks = NULL, labels = c('', ''), limits = c(0,max(CC_goal_c$order)+1), expand = expand_scale())
     
     
     for(i in 1:length(labsg$br)){ 
@@ -944,30 +989,30 @@ country_list <-
       CC_goal_plot + 
       annotation_custom(
         grob = grid::textGrob(label = 'Adaptation options:', just = 'left',gp = gpar(fontsize = 12, fontface = 'bold')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = 57,      # Vertical position of the textGrob
-        ymax = 57,
+        ymin = max(CC_goal_c$order)+1,      # Vertical position of the textGrob
+        ymax = max(CC_goal_c$order)+1,
         xmin = 5.75,         # Note: The grobs are positioned outside the plot area
         xmax = 5.75)+ 
       annotation_custom(
         grob = grid::textGrob(label = 'Social', just = 'left',gp = gpar(fontsize = 12, col = 'goldenrod3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = 55,      # Vertical position of the textGrob
-        ymax = 55,
+        ymin = (max(CC_goal_c$order)+1)*13/15,      # Vertical position of the textGrob
+        ymax = (max(CC_goal_c$order)+1)*13/15,
         xmin = 5.75,         # Note: The grobs are positioned outside the plot area
         xmax = 5.75)+ 
       annotation_custom(
         grob = grid::textGrob(label = 'Natural resource mgmt', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = 56,      # Vertical position of the textGrob
-        ymax = 56,
+        ymin = (max(CC_goal_c$order)+1)*14/15,      # Vertical position of the textGrob
+        ymax = (max(CC_goal_c$order)+1)*14/15,
         xmin = 5.75,         # Note: The grobs are positioned outside the plot area
         xmax = 5.75)+ 
       annotation_custom(
         grob = grid::textGrob(label = 'Institutional', just = 'left',gp = gpar(fontsize = 12, col = 'darkblue')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = 54,      # Vertical position of the textGrob
-        ymax = 54,
+        ymin = (max(CC_goal_c$order)+1)*12/15,      # Vertical position of the textGrob
+        ymax = (max(CC_goal_c$order)+1)*12/15,
         xmin = 5.75,         # Note: The grobs are positioned outside the plot area
         xmax = 5.75)
     
-    pdf(paste0('country_figs/Goal_plot_', country_list[[x]],'.pdf'), width = 6.8, height = 11.7)
+    pdf(paste0('country_figs/Goal_plot_', country_list[[x]],nr,'.pdf'), width = 6.8)
     
     gt <- ggplot_gtable(ggplot_build(CC_goal_plot))
     gt$layout$clip[gt$layout$name == "panel"] <- "off"
@@ -1011,28 +1056,28 @@ country_list <-
       xlab('')+ylab('')+
       labs(size="Proportion of\nadaptation\noptions") +
       scale_y_continuous(expand = expand_scale(), limits = c(0,11))+
-      facet_grid( Context ~ Community*Implemented) 
-    
+      facet_grid( Community*Implemented ~ Context) 
+
     g <- ggplot_gtable(ggplot_build(CC_ex_plot))
     strip_both <- which(grepl('strip-', g$layout$name))
-    fills <- c("goldenrod1","thistle1","goldenrod1","white", "white","thistle1","white","white")
+    fills <- c("green","gold","white","gold", "green","white","white","white")
     k <- 1
-    for (i in strip_both[1:4]) {
+    for (i in strip_both[3:6]) {
       j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
       jj <- which(grepl('rect', g$grobs[[i]]$grobs[[2]]$childrenOrder))
       g$grobs[[i]]$grobs[[1]]$children[[j]]$gp$fill <- fills[k]
       g$grobs[[i]]$grobs[[2]]$children[[jj]]$gp$fill <- fills[k+1]
       k <- k+2
     }
-    fills <- c("orange", "cyan")
+    fills <- c('#F8766D', '#00BFC4')
     k <- 1
-    for (i in strip_both[5:6]) {
+    for (i in strip_both[1:2]) {
       j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
       g$grobs[[i]]$grobs[[1]]$children[[j]]$gp$fill <- fills[k]
       k <- k+1
     }
     
-    pdf(paste0('country_figs/CC_ex_', country_list[[x]], '.pdf'), width = 12.5, height = 4)
+    pdf(paste0('country_figs/CC_ex_', country_list[[x]],nr, '.pdf'), width = 7.8, height = 6.2)
     grid.draw(g)
     dev.off()
     
@@ -1107,7 +1152,9 @@ country_list <-
     Ant_plot1 <-
       CC_ant_c %>% 
       select(Context, Example, Implemented, Prop_Anticipatory, Prop_Responsive, Prop_Both) %>%
-      rename(Anticipatory = Prop_Anticipatory, Responsive = Prop_Responsive, Both = Prop_Both) %>% 
+#      rename(Anticipatory = Prop_Anticipatory, Responsive = Prop_Responsive, Both = Prop_Both) %>% 
+      mutate(Anticipatory = Prop_Anticipatory, `Resp. or Both` = Prop_Responsive + Prop_Both) %>% 
+      select(-c(Prop_Anticipatory, Prop_Responsive, Prop_Both)) %>% 
       ungroup() %>% 
       mutate(Example = substr(Example, 1, 49),
              Example = ifelse(Example=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', Example),
@@ -1118,17 +1165,20 @@ country_list <-
       group_by(Context, Example, Implemented) %>% 
       ggplot(aes(x="", y=Count, fill=Group))+
       geom_bar(width = 1, stat = "identity")+ 
-      scale_fill_manual(values=c("aquamarine", "blue", "red"))+ 
+      #scale_fill_manual(values=c("aquamarine", "blue", "red"))+ 
+      scale_fill_manual(values=c("blue", "red"))+ 
       coord_polar("y", start=0) + 
       theme_void() + 
-      theme(legend.position="left")+
+      theme(legend.position="left", plot.margin=unit(c(0,0,0,0.1),"cm"))+
       labs(fill = '') +
       facet_grid(Example ~Context*Implemented) 
     
     Ant_plot <-
       CC_ant_c %>% 
       select(Context, Example, Implemented, Prop_Anticipatory, Prop_Responsive, Prop_Both) %>%
-      rename(Anticipatory = Prop_Anticipatory, Responsive = Prop_Responsive, Both = Prop_Both) %>% 
+      #rename(Anticipatory = Prop_Anticipatory, Responsive = Prop_Responsive, Both = Prop_Both) %>% 
+      mutate(Anticipatory = Prop_Anticipatory, `Resp. or Both` = Prop_Responsive + Prop_Both) %>% 
+      select(-c(Prop_Anticipatory, Prop_Responsive, Prop_Both)) %>% 
       ungroup() %>% 
       mutate(Example = substr(Example, 1, 49),
              Example = ifelse(Example=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', Example),
@@ -1139,10 +1189,11 @@ country_list <-
       group_by(Context, Example, Implemented) %>% 
       ggplot(aes(x="", y=Count, fill=Group))+
       geom_bar(width = 1, stat = "identity")+ 
-      scale_fill_manual(values=c("aquamarine", "blue", "red"))+
+      #scale_fill_manual(values=c("aquamarine", "blue", "red"))+
+      scale_fill_manual(values=c("blue", "red"))+
       coord_polar("y", start=0) + 
       theme_void() + 
-      theme(legend.position="left", strip.text.y = element_text(colour = 'white'))+
+      theme(legend.position="left", strip.text.y = element_text(colour = 'white'), plot.margin=unit(c(0,0,0,0.1),"cm"))+
       labs(fill = '') +
       facet_grid(Example ~Context*Implemented)  
     
@@ -1170,26 +1221,26 @@ country_list <-
         grob = grid::textGrob(label = 'Adaptation\noptions:', just = 'left',gp = gpar(fontsize = 12, fontface = 'bold')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
         ymin = 4,      # Vertical position of the textGrob
         ymax = 5,
-        xmin = 0,         # Note: The grobs are positioned outside the plot area
-        xmax = 0) +
+        xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+        xmax = 0.05) +
       annotation_custom(
         grob = grid::textGrob(label = 'Natural\nresource\nmgmt', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
         ymin = 3,      # Vertical position of the textGrob
         ymax = 4,
-        xmin = 0,         # Note: The grobs are positioned outside the plot area
-        xmax = 0) +
+        xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+        xmax = 0.05) +
       annotation_custom(
         grob = grid::textGrob(label = 'Social', just = 'left',gp = gpar(fontsize = 12, col = 'goldenrod3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
         ymin = 2,      # Vertical position of the textGrob
         ymax = 3,
-        xmin = 0,         # Note: The grobs are positioned outside the plot area
-        xmax = 0)+
+        xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+        xmax = 0.05)+
       annotation_custom(
         grob = grid::textGrob(label = 'Institutional', just = 'left',gp = gpar(fontsize = 12, col = 'darkblue')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
         ymin = 1.5,      # Vertical position of the textGrob
         ymax = 2.5,
-        xmin = 0,         # Note: The grobs are positioned outside the plot area
-        xmax = 0)
+        xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+        xmax = 0.05)
     
     for(i in 1:dim(areas)[1]){
       gp0 <- gtable_add_grob(x = gp0,
@@ -1205,7 +1256,7 @@ country_list <-
     
     #grid::grid.draw(gp0)
     
-    pdf(paste0('country_figs/Ant_plot_', country_list[[x]], '.pdf'), width = 6, height = 7)
+    pdf(paste0('country_figs/Ant_plot_', country_list[[x]],nr, '.pdf'), width = 6, height = 7)
     grid.newpage()
     pushViewport(viewport(layout = grid.layout(8, 6)))
     print(leg2, vp=viewport(layout.pos.row = 1:3, layout.pos.col = 1))
@@ -1280,10 +1331,10 @@ country_list <-
       ggplot(aes(x="", y=Count, fill=Group))+
       geom_bar(width = 1, stat = "identity")+ 
       #  scale_fill_discrete(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual')) +
-      scale_fill_manual(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual'), values=c("aquamarine", "blue", "red","yellow"))+ 
+      scale_fill_manual(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual'), values=c("blue", "red", "darkorange","yellow"))+ 
       coord_polar("y", start=0) + 
       theme_void() + 
-      theme(legend.position="left")+
+      theme(legend.position="left", plot.margin=unit(c(0.1,0,0.1,0.1),"cm"))+
       labs(fill = '') +
       facet_grid(Example ~Context*Implemented) 
     
@@ -1302,10 +1353,10 @@ country_list <-
       ggplot(aes(x="", y=Count, fill=Group))+
       geom_bar(width = 1, stat = "identity")+ 
       #  scale_fill_discrete(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual')) +
-      scale_fill_manual(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual'), values=c("aquamarine", "blue", "red","yellow"))+ 
+      scale_fill_manual(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual'), values=c("blue", "red", "darkorange","yellow"))+ 
       coord_polar("y", start=0) + 
       theme_void() + 
-      theme(legend.position="left", strip.text.y = element_text(colour = 'white'))+
+      theme(legend.position="left", strip.text.y = element_text(colour = 'white'), plot.margin=unit(c(0.1,0,0.1,0.1),"cm"))+
       labs(fill = '') +
       facet_grid(Example ~Context*Implemented) 
     #, strip.text.y = element_text(colour = 'white')
@@ -1332,26 +1383,26 @@ country_list <-
         grob = grid::textGrob(label = 'Adaptation\noptions:', just = 'left',gp = gpar(fontsize = 12, fontface = 'bold')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
         ymin = 4,      # Vertical position of the textGrob
         ymax = 5,
-        xmin = 0,         # Note: The grobs are positioned outside the plot area
-        xmax = 0) +
+        xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+        xmax = 0.05) +
       annotation_custom(
         grob = grid::textGrob(label = 'Natural\nresource\nmgmt', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
         ymin = 3,      # Vertical position of the textGrob
         ymax = 4,
-        xmin = 0,         # Note: The grobs are positioned outside the plot area
-        xmax = 0) +
+        xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+        xmax = 0.05) +
       annotation_custom(
         grob = grid::textGrob(label = 'Social', just = 'left',gp = gpar(fontsize = 12, col = 'goldenrod3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
         ymin = 2,      # Vertical position of the textGrob
         ymax = 3,
-        xmin = 0,         # Note: The grobs are positioned outside the plot area
-        xmax = 0)+
+        xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+        xmax = 0.05)+
       annotation_custom(
         grob = grid::textGrob(label = 'Institutional', just = 'left',gp = gpar(fontsize = 12, col = 'darkblue')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
         ymin = 1.5,      # Vertical position of the textGrob
         ymax = 2.5,
-        xmin = 0,         # Note: The grobs are positioned outside the plot area
-        xmax = 0)
+        xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+        xmax = 0.05)
     
     for(i in 1:dim(areas)[1]){
       gp0 <- gtable_add_grob(x = gp0,
@@ -1367,7 +1418,7 @@ country_list <-
     
     grid::grid.draw(gp0)
     
-    pdf(paste0('country_figs/Man_plot_',country_list[[x]],'.pdf'), width = 6, height = 7)
+    pdf(paste0('country_figs/Man_plot_',country_list[[x]],nr,'.pdf'), width = 6, height = 7)
     grid.newpage()
     pushViewport(viewport(layout = grid.layout(8, 6)))
     print(leg2, vp=viewport(layout.pos.row = 1:3, layout.pos.col = 1))
@@ -1377,6 +1428,8 @@ country_list <-
     }
     , silent = T)  
  }   
-#  })
+  #  })
 
+}
 
+}
