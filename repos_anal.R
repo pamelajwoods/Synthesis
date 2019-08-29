@@ -3,7 +3,7 @@ library(grid)
 library(gtable)
 library(gridExtra)
 
-byregion <- FALSE
+byregion <- TRUE
 noresearch <- FALSE
 
 for(noresearch in c(FALSE, TRUE)){
@@ -747,7 +747,7 @@ dat %>%
 
 #NOW ADD FILTERS THROUGHOUT AND JOIN TO INTRODUCE NAs
 
-for(byregion in c(FALSE, TRUE)){
+for(byregion in c(TRUE, FALSE)){
 
 if(byregion){
   dat <-
@@ -768,8 +768,10 @@ for(i in (length(allcountries)+1):2){
   country_list[[i]] <- c(allcountries[i-1])
 }
 
+if(!byregion){country_list <- country_list[-1]}
+
 country_list <-
- set_names(country_list[-1], allcountries)
+ set_names(country_list, allcountries)
 #set_names(country_list[1], 'all')
 
 
@@ -777,8 +779,9 @@ country_list <-
 #country_list[-1] %>% 
 #  map(function(x){
 
-  for( i in 1:length(country_list[-1])){
-    x <- country_list[-1][[i]]
+  for( i in 1:length(country_list)){
+    x <- country_list[[i]]
+    print(x)
     
   try(
     {
