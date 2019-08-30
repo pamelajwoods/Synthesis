@@ -6,7 +6,7 @@ library(gridExtra)
 byregion <- TRUE
 noresearch <- FALSE
 
-for(noresearch in c(FALSE, TRUE)){
+for(noresearch in c(FALSE)){
   
 
 dat_raw <- 
@@ -162,7 +162,11 @@ CC_stressor <-
 br <- CC_stressor_spread %>% select(order) %>% unlist %>% c(.)
 lab <- CC_stressor_spread %>% select(Example) %>% unlist %>% substr(., 1, 49) 
 
-labs <- data.frame(x = -12.5, br, lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab), col = c('aquamarine3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'aquamarine3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkblue', 'aquamarine3', 'darkgoldenrod3'))
+labs <- data.frame(x = -12.5, 
+                   Context = CC_stressor_spread %>% select(Context) %>% unlist,
+                   Example = CC_stressor_spread %>% select(Example) %>% unlist,
+                   br, 
+                   lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab), col = c('aquamarine3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'aquamarine3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkblue', 'aquamarine3', 'darkgoldenrod3'))
 
 CC_stress_plot <-
   CC_stressor %>% 
@@ -249,10 +253,10 @@ CC_goal_spread <-
             `Take advantage` = sum(`Take advantage`, na.rm = T)
   ) %>% 
   mutate(`Total score` = `Reduce stressor` +  `Reduce sensitivity` + Cope + `No change` + `Take advantage`) %>% 
-  arrange(Context, desc(`Total score`)) %>% 
+  left_join(labs %>% select(order = br, Example, Context)) %>%  
   ungroup() %>% 
   filter(!is.na(`Total score`)) %>% 
-  mutate(order = n():1) %>% 
+  arrange(desc(order)) %>% 
   select(order, Context, Example, `Reduce stressor`, `Reduce sensitivity`, Cope, `No change`, `Take advantage`) 
 
 CC_goal <-
@@ -262,11 +266,12 @@ CC_goal <-
 
 #View(CC_stressor_spread)
 
-br <- CC_goal_spread %>% select(order) %>% unlist %>% c(.)
-lab <- CC_goal_spread %>% select(Example) %>% unlist %>% substr(., 1, 49) 
+#br <- CC_goal_spread %>% select(order) %>% unlist %>% c(.)
+#lab <- CC_goal_spread %>% select(Example) %>% unlist %>% substr(., 1, 49) 
 
-labsg <- data.frame(x = -13.75, br, lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab)) %>% 
-  left_join(labs %>% select(lab, col) %>% distinct)
+labsg <- #data.frame(x = -13.75, br, lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab)) %>% 
+  #left_join(labs %>% select(lab, col) %>% distinct)
+  labs %>% mutate(x = -13.75)
 
 CC_goal_plot <-
   CC_goal %>% 
@@ -564,7 +569,7 @@ for(i in 1:dim(areas)[1]){
 
 grid::grid.draw(gp0)
 
-pdf(paste0('Ant_plot',nr,'.pdf'), width = 6, height = 7)
+pdf(paste0('Ant_plot_',nr,'.pdf'), width = 6.5, height = 7)
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(8, 6)))
 print(leg2, vp=viewport(layout.pos.row = 1:3, layout.pos.col = 1))
@@ -733,21 +738,155 @@ print(grid.draw(gp0), vp =viewport(layout.pos.row = 1:8, layout.pos.col = 2:6))
 dev.off()
 
 #Frequency tables
-dat %>% 
+freq <-
+  dat %>% 
   ungroup() %>% 
   group_by(Country, Context, Implemented, Community) %>% 
-  count() %>% 
+  count() 
   #table(.) %>% 
-  write.csv('Freq_table.csv')
-
+write.csv(freq,'Freq_table.csv')
 
 
 #What are some differences among countries in examples, managers, and responsiveness?
 
+#ADD CA
+
+#prcomp([,c(1:7,10,11)], center = TRUE,scale. = TRUE)
+#install.packages('ca')
+library(devtools)
+install_github('fawda123/ggord')
+library(ggord)
+library(ca)
+
+abbr <-
+  dat_ca %>% 
+  ungroup %>% 
+  select(Example) %>% 
+  distinct %>% 
+  mutate(AO = c('ADA', 'ORG', 'DIV', 'ENF', 'IAG','NEW','VAL','MAR', 'PLQ', 'RED', 'RES','RET','REV', 'OUT', 'EDU', 'CRI','COO','ECD','ENT','SUR','TRA','INS', 'IRI', 'DRM','DOM', 'MPAs','DFU', 'FAI')) %>% 
+  left_join(labs %>% 
+              ungroup %>% 
+              select(Example, col) %>% 
+              distinct %>% 
+              mutate(Type = ifelse(col=='aquamarine3', 'Nat. Res. Mgmt.', 
+                                   ifelse(col=='darkgoldenrod3', 'Social',
+                                          ifelse(col=='darkblue', 'Insitutional',NA)))))
+
+dat_ca <-
+  dat %>% 
+  ungroup() %>% 
+  mutate(Region = ifelse(Country %in% c('USA', 'US-SE', 'US-SW', 'US-NE', 'US-NW', 'US-AK', 'US-HA', 'US','CAN'), 'NAM', 
+                         ifelse(Country %in% c('AUS', 'NZ'), 'SP',
+                                ifelse(Country %in% c('ICE', 'FIN', 'FAROES', 'SW','NOR'), 'NEU',
+                                       ifelse(Country %in% c('UK', 'IT', 'EU', 'GER','NL'), 'SEU', Country))))) %>%
+  mutate(Country = ifelse(Country %in% c('USA', 'US-SE', 'US-SW', 'US-NE', 'US-NW', 'US-AK', 'US-HA', 'US'), 'USA', 
+                          ifelse(Country=='FAROES', 'FAR', Country))) %>% 
+                                 group_by(Region, Country, Context, Community, Example) %>% 
+  count() %>%
+  filter(!is.na(Community), !is.na(Country), !is.na(Context), !is.na(Example), Region!='INT') %>% 
+  left_join(abbr) %>% 
+  ungroup %>% 
+  select(-c(Example)) %>% 
+  group_by(Region, Country, Context, Community, col, Type) %>% 
+  summarise(n = sum(n, na.rm = T))
+
+
+dat_ca1<-
+  dat_ca %>% 
+  filter(Context=='CC', Community=='Y') %>% 
+  spread(key = Type, value = n, fill = 0) %>% 
+  ungroup() %>% 
+  group_by(Region, Country, Context, Community) %>% 
+  summarise(Institutional = sum(Insitutional), 
+            `Nat. Res. Mgmt.` = sum(`Nat. Res. Mgmt.`),
+            Social = sum(Social)) %>% 
+  ungroup
+ord_cc_comm <- ca(dat_ca1 %>% 
+                    column_to_rownames(var = "Country") %>% 
+                    select(-c(Region, Context, Community)))
+
+dat_ca2 <-
+  dat_ca %>% 
+  filter(Context=='N', Community=='Y') %>% 
+  spread(key = Type, value = n, fill = 0) %>% 
+  group_by(Region, Country, Context, Community) %>% 
+  summarise(Institutional = sum(Insitutional), 
+            `Nat. Res. Mgmt.` = sum(`Nat. Res. Mgmt.`),
+            Social = sum(Social))%>% 
+  ungroup
+ord_f_comm <- ca(dat_ca2 %>% 
+                   column_to_rownames(var = "Country") %>% 
+                   select(-c(Region, Context, Community)))
+dat_ca3 <-
+  dat_ca %>% 
+  filter(Context=='CC', Community=='N') %>% 
+  spread(key = Type, value = n, fill = 0) %>% 
+  group_by(Region, Country, Context, Community) %>% 
+  summarise(Institutional = sum(Insitutional), 
+            `Nat. Res. Mgmt.` = sum(`Nat. Res. Mgmt.`),
+            Social = sum(Social))%>% 
+  ungroup
+ord_cc_ncomm <- ca(dat_ca3 %>% 
+                     column_to_rownames(var = "Country") %>% 
+                     select(-c(Region, Context, Community)))
+dat_ca4 <-
+  dat_ca %>% 
+  filter(Context=='N', Community=='N') %>% 
+  spread(key = Type, value = n, fill = 0) %>% 
+  group_by(Region, Country, Context, Community) %>% 
+  summarise(Institutional = sum(Insitutional), 
+            `Nat. Res. Mgmt.` = sum(`Nat. Res. Mgmt.`),
+            Social = sum(Social))%>% 
+  ungroup
+
+ord_f_ncomm <- ca(dat_ca4 %>% 
+                    column_to_rownames(var = "Country") %>% 
+                    select(-c(Region, Context, Community)))
+
+xlims <- c(-1.1, 1.1)
+
+ord_cc_comm$rowcoord[,1] <- ord_cc_comm$rowcoord[,1]*-1
+ord_cc_comm$colcoord[,1] <- ord_cc_comm$colcoord[,1]*-1
+pdf(paste0('Ord_CC_Comm_',nr,'.pdf'), width = 5, height = 5)
+  ggord(ord_cc_comm, dat_ca1$Region, ellipse = FALSE, obslab = TRUE,
+        xlims = xlims,
+        ylims = c(-0.9,0.9))+ 
+    theme(legend.position = 'none')
+dev.off()
+
+
+
+pdf(paste0('Ord_F_Comm_',nr,'.pdf'), width = 5, height = 5)
+  ggord(ord_f_comm, dat_ca2$Region, ellipse = FALSE, obslab = TRUE,
+        xlims = xlims,
+        ylims = c(-0.9,0.9))+ 
+    theme(legend.position = 'none')
+dev.off()
+
+pdf(paste0('Ord_CC_Ncomm_',nr,'.pdf'), width = 5, height = 5)
+  ggord(ord_cc_ncomm, dat_ca3$Region, ellipse = FALSE, obslab = TRUE,
+        xlims = xlims,
+        ylims = c(-0.9,0.9))+ 
+    theme(legend.position = 'none')
+dev.off()
+
+pdf(paste0('Ord_F_Ncomm_',nr,'.pdf'), width = 5, height = 5)
+  ggord(ord_f_ncomm, dat_ca4$Region, ellipse = FALSE, obslab = TRUE,
+        xlims = xlims,
+        ylims = c(-0.9,0.9))+ 
+    theme(legend.position = 'none')
+dev.off()
+
+pdf(paste0('Ord_F_Ncomm_leg',nr,'.pdf'), width = 5, height = 5)
+  ggord(ord_f_ncomm, dat_ca4$Region, ellipse = FALSE,
+        xlims = xlims,
+        ylims = c(-0.9,0.9)) 
+dev.off()
+
 
 #NOW ADD FILTERS THROUGHOUT AND JOIN TO INTRODUCE NAs
 
-for(byregion in c(TRUE, FALSE)){
+for(byregion in c(FALSE)){
 
 if(byregion){
   dat <-
@@ -768,10 +907,10 @@ for(i in (length(allcountries)+1):2){
   country_list[[i]] <- c(allcountries[i-1])
 }
 
-if(!byregion){country_list <- country_list[-1]}
+#if(!byregion){country_list <- country_list[-1]}
 
 country_list <-
- set_names(country_list, allcountries)
+ set_names(country_list[-1], allcountries)
 #set_names(country_list[1], 'all')
 
 
@@ -851,8 +990,12 @@ country_list <-
     br <- CC_stressor_spread_c %>% select(order) %>% unlist %>% c(.)
     lab <- CC_stressor_spread_c %>% select(Example) %>% unlist %>% substr(., 1, 49) 
     
-    labsc <- data.frame(x = -12.5, br, lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab)) %>% 
-      left_join(labs %>% select(lab, col) %>% distinct)
+    labsc <- data.frame(x = -12.5, 
+                        br, 
+                        lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab),
+                        Example = CC_stressor_spread_c %>% select(Example) %>% unlist,
+                        Context = CC_stressor_spread_c %>% select(Context) %>% unlist) %>% 
+      left_join(labs %>% select(lab, col, Example, Context) %>% distinct)
     
     CC_stress_plot <-
       CC_stressor_c %>% 
@@ -877,7 +1020,7 @@ country_list <-
       CC_stress_plot <-
         CC_stress_plot + 
         annotation_custom(
-          grob = grid::textGrob(label = labs$lab[i], just = 'left',gp = gpar(col = as.character(labsc$col[i]))), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+          grob = grid::textGrob(label = labsc$lab[i], just = 'left',gp = gpar(col = as.character(labsc$col[i]))), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
           ymin = labsc$br[i]+0.2,      # Vertical position of the textGrob
           ymax = labsc$br[i]-0.2,
           xmin = labsc$x[i],         # Note: The grobs are positioned outside the plot area
@@ -940,10 +1083,10 @@ country_list <-
                 `Take advantage` = sum(`Take advantage`, na.rm = T)
       ) %>% 
       mutate(`Total score` = `Reduce stressor` +  `Reduce sensitivity` + Cope + `No change` + `Take advantage`) %>% 
-      arrange(Context, desc(`Total score`)) %>% 
+      left_join(labsc %>% select(order = br, Example, Context)) %>%  
       ungroup() %>% 
       filter(!is.na(`Total score`)) %>% 
-      mutate(order = n():1) %>% 
+      arrange(desc(order)) %>% 
       select(order, Context, Example, `Reduce stressor`, `Reduce sensitivity`, Cope, `No change`, `Take advantage`) 
     
     CC_goal_c <-
@@ -956,8 +1099,9 @@ country_list <-
     br <- CC_goal_spread_c %>% select(order) %>% unlist %>% c(.)
     lab <- CC_goal_spread_c %>% select(Example) %>% unlist %>% substr(., 1, 49) 
     
-    labsg <- data.frame(x = -13.75, br, lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab)) %>% 
-      left_join(labs %>% select(lab, col) %>% distinct)
+    labsg <- #data.frame(x = -13.75, br, lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab)) %>% 
+      #left_join(labs %>% select(lab, col) %>% distinct)
+      labsc %>% mutate(x = -13.75)
     
     CC_goal_plot <-
       CC_goal_c %>% 
@@ -992,8 +1136,8 @@ country_list <-
       CC_goal_plot + 
       annotation_custom(
         grob = grid::textGrob(label = 'Adaptation options:', just = 'left',gp = gpar(fontsize = 12, fontface = 'bold')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = max(CC_goal_c$order)+1,      # Vertical position of the textGrob
-        ymax = max(CC_goal_c$order)+1,
+        ymin = max(CC_goal_c$order, na.rm = T)+1,      # Vertical position of the textGrob
+        ymax = max(CC_goal_c$order, na.rm)+1,
         xmin = 5.75,         # Note: The grobs are positioned outside the plot area
         xmax = 5.75)+ 
       annotation_custom(
@@ -1137,13 +1281,12 @@ country_list <-
       distinct() %>% 
       mutate(id = 1:n()) %>%
       ungroup() %>% 
-      select(Example, id) %>% 
-      rename(lab = Example) %>% 
-      mutate(lab = substr(lab, 1, 49),
+      select(Example, Context, id) %>% 
+      mutate(lab = substr(Example, 1, 49),
              lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab)
       ) %>% 
-      left_join(labs %>% 
-                  select(lab, col)) %>% 
+      left_join(labsc %>% 
+                  select(lab, col, Example, Context)) %>% 
       distinct() %>% 
       mutate(col_order=ifelse(col=='aquamarine3',1,
                               ifelse(col=='darkgoldenrod3',2,3))) %>% 
@@ -1259,7 +1402,7 @@ country_list <-
     
     #grid::grid.draw(gp0)
     
-    pdf(paste0('country_figs/Ant_plot_', country_list[[x]],nr, '.pdf'), width = 6, height = 7)
+    pdf(paste0('country_figs/Ant_plot_', country_list[[x]],nr, '.pdf'), width = 6.25, height = 7.5)
     grid.newpage()
     pushViewport(viewport(layout = grid.layout(8, 6)))
     print(leg2, vp=viewport(layout.pos.row = 1:3, layout.pos.col = 1))
@@ -1421,7 +1564,7 @@ country_list <-
     
     grid::grid.draw(gp0)
     
-    pdf(paste0('country_figs/Man_plot_',country_list[[x]],nr,'.pdf'), width = 6, height = 7)
+    pdf(paste0('country_figs/Man_plot_',country_list[[x]],nr,'.pdf'), width = 6.25, height = 7.5)
     grid.newpage()
     pushViewport(viewport(layout = grid.layout(8, 6)))
     print(leg2, vp=viewport(layout.pos.row = 1:3, layout.pos.col = 1))
