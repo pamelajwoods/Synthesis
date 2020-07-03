@@ -1,0 +1,29 @@
+Example,CC_Implemented,CC_Not implemented,N_Implemented,N_Not implemented
+Adaptation programs,0.88,1,NA,NA
+Community-based rights,1,NaN,0.18,0
+Cooperatives,0.75,1,0.44,1
+Coordination and organization,0.6,0.91,0,0.41
+Disaster funds,NA,NA,0,NA
+Disaster risk management,NA,1,0,1
+Diversify livelihoods,0.25,0.73,0.38,0.33
+Dynamic ocean management,0.67,1,1,1
+Economic/community development,NA,1,0.27,0.38
+Education,0.73,0.95,0.12,0.67
+Enforcement,0.5,0.67,0,0
+Fair trade laws,NA,NA,1,NA
+"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",NA,NaN,0.4,0.33
+Financial assistance to help survive bad fishing years,NA,0,0.09,0.5
+Financial assistance to help transition out of fishery,NA,0.5,0,0.5
+Individual property rights,NaN,NA,0,0
+Insurance,NA,1,0,1
+International agreements,1,0.75,NA,1
+Investment in new gear or innovations,0.29,0.93,0.5,0.67
+Investments to improve value chain,0.67,0.5,0.45,0.8
+Market diversification,NA,0.6,0.18,0.83
+MPAs,1,0.94,0,0.33
+Permit/license/quota banks,1,NA,0.43,1
+Reductions in other stressors,0.83,0.95,0,0.5
+Research,0.93,0.7,0.08,0.6
+Restoration,0.9,1,0,0.6
+Review programs / regulations,0,0.96,0.67,0.25
+Transition out of fisheries,0,0.22,0,0

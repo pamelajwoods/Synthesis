@@ -1,5 +1,5 @@
-Context,Community,Implemented,Example,N_Example,total,Prop_Example,id
-N,N,Y,Dynamic ocean management,2,5,0.4,1
-N,N,Y,Fair trade laws,1,5,0.2,2
-N,N,Y,Financial assistance to help transition out of fishery,1,5,0.2,3
-N,N,Y,Transition out of fisheries,1,5,0.2,4
+Example,N_Not community focused_Implemented
+Dynamic ocean management,0.4
+Fair trade laws,0.2
+Financial assistance to help transition out of fishery,0.2
+Transition out of fisheries,0.2

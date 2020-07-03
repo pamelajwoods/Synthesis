@@ -1,7 +1,6 @@
-Context,Community,Implemented,Example,N_Example,total,Prop_Example,id
-N,N,N,Individual property rights,1,2,0.5,1
-N,N,N,Investments to improve value chain,1,2,0.5,2
-N,N,Y,Dynamic ocean management,1,1,1,1
-N,Y,N,Community-based rights,1,2,0.5,1
-N,Y,N,Diversify livelihoods,1,2,0.5,2
-N,Y,Y,Community-based rights,3,3,1,1
+Example,N_Community focused_Implemented,N_Community focused_Not implemented,N_Not community focused_Implemented,N_Not community focused_Not implemented
+Community-based rights,1,0.5,NA,NA
+Diversify livelihoods,NA,0.5,NA,NA
+Dynamic ocean management,NA,NA,1,NA
+Individual property rights,NA,NA,NA,0.5
+Investments to improve value chain,NA,NA,NA,0.5

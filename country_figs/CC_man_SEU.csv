@@ -1,0 +1,105 @@
+Example,Context,Implemented,Proportion Top-down,Proportion Bottom-up,Proportion NGO,Proportion Individual
+Adaptation programs,CC,N,0.667,0.167,0.167,0
+Adaptation programs,CC,Y,0.75,0.25,0,0
+Adaptation programs,N,Y,0.75,0.25,0,0
+Community-based rights,CC,N,NA,NA,NA,NA
+Community-based rights,CC,Y,NA,NA,NA,NA
+Community-based rights,N,N,NA,NA,NA,NA
+Community-based rights,N,Y,0.286,0.571,0,0.143
+Cooperatives,CC,N,NA,NA,NA,NA
+Cooperatives,CC,Y,NA,NA,NA,NA
+Cooperatives,N,N,NA,NA,NA,NA
+Cooperatives,N,Y,0.25,0.75,0,0
+Coordination and organization,CC,N,0.75,0,0,0.25
+Coordination and organization,CC,Y,1,0,0,0
+Coordination and organization,N,N,0.429,0.286,0.143,0.143
+Coordination and organization,N,Y,0.417,0.333,0,0.25
+Disaster funds,CC,N,NA,NA,NA,NA
+Disaster funds,CC,Y,1,0,0,0
+Disaster funds,N,Y,NA,NA,NA,NA
+Disaster risk management,CC,N,1,0,0,0
+Disaster risk management,CC,Y,NA,NA,NA,NA
+Disaster risk management,N,N,NA,NA,NA,NA
+Disaster risk management,N,Y,NA,NA,NA,NA
+Diversify livelihoods,CC,N,0.667,0,0,0.333
+Diversify livelihoods,CC,Y,1,0,0,0
+Diversify livelihoods,N,N,0.5,0.5,0,0
+Diversify livelihoods,N,Y,0.308,0.385,0,0.308
+Dynamic ocean management,CC,N,0.778,0,0.222,0
+Dynamic ocean management,CC,Y,0,1,0,0
+Dynamic ocean management,N,N,NA,NA,NA,NA
+Dynamic ocean management,N,Y,0.667,0,0.333,0
+Economic/community development,CC,N,1,0,0,0
+Economic/community development,N,N,1,0,0,0
+Economic/community development,N,Y,0.4,0.6,0,0
+Education,CC,N,0.533,0.4,0.067,0
+Education,CC,Y,1,0,0,0
+Education,N,N,0.25,0.75,0,0
+Education,N,Y,0.444,0.333,0.222,0
+Enforcement,CC,N,0.882,0.088,0,0.029
+Enforcement,CC,Y,1,0,0,0
+Enforcement,N,N,0.769,0.231,0,0
+Enforcement,N,Y,0.778,0.222,0,0
+Fair trade laws,CC,N,1,0,0,0
+Fair trade laws,N,Y,NA,NA,NA,NA
+"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",CC,N,0.667,0.333,0,0
+"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",CC,Y,0.714,0.286,0,0
+"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",N,N,1,0,0,0
+"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",N,Y,1,0,0,0
+Financial assistance to help survive bad fishing years,CC,N,NA,NA,NA,NA
+Financial assistance to help survive bad fishing years,N,N,1,0,0,0
+Financial assistance to help survive bad fishing years,N,Y,1,0,0,0
+Financial assistance to help transition out of fishery,CC,N,NA,NA,NA,NA
+Financial assistance to help transition out of fishery,N,N,1,0,0,0
+Financial assistance to help transition out of fishery,N,Y,NA,NA,NA,NA
+Individual property rights,CC,N,1,0,0,0
+Individual property rights,CC,Y,NA,NA,NA,NA
+Individual property rights,N,N,NA,NA,NA,NA
+Individual property rights,N,Y,1,0,0,0
+Insurance,CC,N,0.5,0,0.25,0.25
+Insurance,CC,Y,1,0,0,0
+Insurance,N,N,NA,NA,NA,NA
+Insurance,N,Y,NA,NA,NA,NA
+International agreements,CC,N,1,0,0,0
+International agreements,CC,Y,1,0,0,0
+International agreements,N,N,NA,NA,NA,NA
+International agreements,N,Y,1,0,0,0
+Investment in new gear or innovations,CC,N,0.692,0.077,0,0.231
+Investment in new gear or innovations,CC,Y,1,0,0,0
+Investment in new gear or innovations,N,N,0.75,0.083,0,0.167
+Investment in new gear or innovations,N,Y,0.444,0.167,0.167,0.222
+Investments to improve value chain,CC,N,0.667,0.111,0,0.222
+Investments to improve value chain,CC,Y,NA,NA,NA,NA
+Investments to improve value chain,N,N,0.429,0.286,0,0.286
+Investments to improve value chain,N,Y,0.286,0.571,0.048,0.095
+Market diversification,CC,N,0.647,0.353,0,0
+Market diversification,CC,Y,1,0,0,0
+Market diversification,N,N,0.75,0,0,0.25
+Market diversification,N,Y,NA,NA,NA,NA
+MPAs,CC,N,1,0,0,0
+MPAs,CC,Y,0.9,0.1,0,0
+MPAs,N,N,1,0,0,0
+MPAs,N,Y,0.8,0.1,0.1,0
+Permit/license/quota banks,CC,Y,NA,NA,NA,NA
+Permit/license/quota banks,N,N,NA,NA,NA,NA
+Permit/license/quota banks,N,Y,NA,NA,NA,NA
+Reductions in other stressors,CC,N,0.8,0.2,0,0
+Reductions in other stressors,CC,Y,1,0,0,0
+Reductions in other stressors,N,N,1,0,0,0
+Reductions in other stressors,N,Y,0.429,0.286,0.143,0.143
+Research,CC,N,0.579,0.044,0.263,0.114
+Research,CC,Y,1,0,0,0
+Research,N,N,0.826,0.13,0.043,0
+Research,N,Y,0.357,0.429,0.143,0.071
+Restoration,CC,N,0.778,0.111,0.111,0
+Restoration,CC,Y,1,0,0,0
+Restoration,N,N,1,0,0,0
+Restoration,N,Y,0.8,0.1,0,0.1
+Review programs / regulations,CC,N,0.739,0.261,0,0
+Review programs / regulations,CC,Y,0,0.5,0,0.5
+Review programs / regulations,N,N,NA,NA,NA,NA
+Review programs / regulations,N,Y,0.75,0.25,0,0
+Transition out of fisheries,CC,N,NA,NA,NA,NA
+Transition out of fisheries,CC,Y,NA,NA,NA,NA
+Transition out of fisheries,N,N,1,0,0,0
+Transition out of fisheries,N,Y,1,0,0,0

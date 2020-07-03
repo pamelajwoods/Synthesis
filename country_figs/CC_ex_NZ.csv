@@ -1,18 +1,12 @@
-Context,Community,Implemented,Example,N_Example,total,Prop_Example,id
-CC,N,Y,Research,3,6,0.5,1
-CC,N,Y,Dynamic ocean management,2,6,0.3333333333333333,2
-CC,N,Y,Enforcement,1,6,0.16666666666666666,3
-CC,Y,N,Adaptation programs,1,3,0.3333333333333333,1
-CC,Y,N,Coordination and organization,1,3,0.3333333333333333,2
-CC,Y,N,Review programs / regulations,1,3,0.3333333333333333,3
-CC,Y,Y,Research,1,2,0.5,1
-CC,Y,Y,Review programs / regulations,1,2,0.5,2
-N,N,N,Review programs / regulations,1,1,1,1
-N,N,Y,Research,3,7,0.42857142857142855,1
-N,N,Y,Enforcement,2,7,0.2857142857142857,2
-N,N,Y,International agreements,1,7,0.14285714285714285,3
-N,N,Y,MPAs,1,7,0.14285714285714285,4
-N,Y,N,Coordination and organization,1,1,1,1
-N,Y,Y,Community-based rights,3,5,0.6,1
-N,Y,Y,Investment in new gear or innovations,1,5,0.2,2
-N,Y,Y,Transition out of fisheries,1,5,0.2,3
+Example,CC_Community focused_Implemented,CC_Community focused_Not implemented,CC_Not community focused_Implemented,N_Community focused_Implemented,N_Community focused_Not implemented,N_Not community focused_Implemented,N_Not community focused_Not implemented
+Adaptation programs,NA,0.33,NA,NA,NA,NA,NA
+Community-based rights,NA,NA,NA,0.6,NA,NA,NA
+Coordination and organization,NA,0.33,NA,NA,1,NA,NA
+Dynamic ocean management,NA,NA,0.33,NA,NA,NA,NA
+Enforcement,NA,NA,0.17,NA,NA,0.29,NA
+International agreements,NA,NA,NA,NA,NA,0.14,NA
+Investment in new gear or innovations,NA,NA,NA,0.2,NA,NA,NA
+MPAs,NA,NA,NA,NA,NA,0.14,NA
+Research,0.5,NA,0.5,NA,NA,0.43,NA
+Review programs / regulations,0.5,0.33,NA,NA,NA,NA,1
+Transition out of fisheries,NA,NA,NA,0.2,NA,NA,NA

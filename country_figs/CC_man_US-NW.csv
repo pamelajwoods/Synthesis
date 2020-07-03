@@ -1,7 +1,7 @@
 Context,Example,Implemented,Internat.,Nat. govt.,Region. govt.,Local govt.,NGO,Uni.,Community assoc.,Business coop.,Business,Individual,all,id,Prop_top,Prop_bottom,Prop_NGO,Prop_ind
 CC,Disaster funds,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 CC,Disaster funds,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-N,Disaster funds,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Disaster funds,Y,0,1,0,0,0,0,0,0,0,0,1,NA,1,0,0,0
 CC,Fair trade laws,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 N,Fair trade laws,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 CC,Individual property rights,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -49,21 +49,21 @@ N,Disaster risk management,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 N,Disaster risk management,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 CC,Financial assistance to help transition out of fishery,N,0,0,0,1,1,0,0,0,0,0,2,13,0,0.5,0.5,0
 N,Financial assistance to help transition out of fishery,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-N,Financial assistance to help transition out of fishery,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Financial assistance to help transition out of fishery,Y,0,0,2,0,0,0,0,0,0,0,2,13,1,0,0,0
 CC,Education,N,0,0,1,0,0,0,0,0,0,0,1,2,1,0,0,0
 CC,Education,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 N,Education,N,0,0,1,1,0,0,0,0,0,0,2,2,0.5,0.5,0,0
-N,Education,Y,0,0,1,0,0,0,0,0,0,0,1,2,1,0,0,0
+N,Education,Y,0,0,2,0,0,0,0,0,0,0,2,2,1,0,0,0
 CC,Adaptation programs,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 CC,Adaptation programs,Y,0,0,0,1,0,0,0,0,0,0,1,10,0,1,0,0
 N,Adaptation programs,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 CC,Research,N,0,0,2,1,0,0,0,0,0,0,3,8,0.6666666666666666,0.3333333333333333,0,0
 CC,Research,Y,0,0,1,1,0,0,0,0,1,1,4,8,0.25,0.25,0,0.5
 N,Research,N,0,0,1,1,0,0,0,0,0,0,2,8,0.5,0.5,0,0
-N,Research,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Research,Y,0,0,2,0,0,0,0,0,0,0,2,8,1,0,0,0
 CC,Coordination and organization,N,0,0,1,0,0,0,0,0,0,0,1,1,1,0,0,0
 CC,Coordination and organization,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-N,Coordination and organization,N,0,1,1,1,0,0,0,0,0,0,3,1,0.6666666666666666,0.3333333333333333,0,0
+N,Coordination and organization,N,0,1,2,1,0,0,0,0,0,0,4,1,0.75,0.25,0,0
 N,Coordination and organization,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 CC,Market diversification,N,0,0,0,1,0,0,0,0,0,0,1,15,0,1,0,0
 CC,Market diversification,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -95,11 +95,11 @@ N,Investment in new gear or innovations,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 CC,Diversify livelihoods,N,0,0,0,0,0,0,0,0,1,0,1,11,0,0,0,1
 CC,Diversify livelihoods,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 N,Diversify livelihoods,N,1,1,0,0,0,0,0,0,0,0,2,11,1,0,0,0
-N,Diversify livelihoods,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+N,Diversify livelihoods,Y,0,0,1,0,0,0,0,0,0,0,1,11,1,0,0,0
 CC,Community-based rights,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 CC,Community-based rights,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 N,Community-based rights,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 N,Community-based rights,Y,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 CC,Financial assistance to help survive bad fishing years,N,0,0,0,1,1,0,0,0,0,0,2,12,0,0.5,0.5,0
 N,Financial assistance to help survive bad fishing years,N,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-N,Financial assistance to help survive bad fishing years,Y,1,2,1,1,0,0,0,0,0,0,5,12,0.8,0.2,0,0
+N,Financial assistance to help survive bad fishing years,Y,1,3,3,1,0,0,0,0,0,0,8,12,0.875,0.125,0,0

@@ -23,20 +23,23 @@ N,N,N,MPAs,2,5,0.4,1
 N,N,N,Coordination and organization,1,5,0.2,2
 N,N,N,Restoration,1,5,0.2,3
 N,N,N,Review programs / regulations,1,5,0.2,4
-N,N,Y,Financial assistance to help survive bad fishing years,2,4,0.5,1
-N,N,Y,Individual property rights,1,4,0.25,2
-N,N,Y,Transition out of fisheries,1,4,0.25,3
-N,Y,N,Diversify livelihoods,1,5,0.2,1
-N,Y,N,Economic/community development,1,5,0.2,2
-N,Y,N,Education,1,5,0.2,3
-N,Y,N,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",1,5,0.2,4
-N,Y,N,Research,1,5,0.2,5
-N,Y,Y,Cooperatives,3,14,0.21428571428571427,1
-N,Y,Y,Dynamic ocean management,2,14,0.14285714285714285,2
-N,Y,Y,Economic/community development,2,14,0.14285714285714285,3
-N,Y,Y,Market diversification,2,14,0.14285714285714285,4
-N,Y,Y,Education,1,14,0.07142857142857142,5
-N,Y,Y,Investments to improve value chain,1,14,0.07142857142857142,6
-N,Y,Y,MPAs,1,14,0.07142857142857142,7
-N,Y,Y,Permit/license/quota banks,1,14,0.07142857142857142,8
-N,Y,Y,Transition out of fisheries,1,14,0.07142857142857142,9
+N,N,Y,Financial assistance to help survive bad fishing years,2,5,0.4,1
+N,N,Y,Disaster funds,1,5,0.2,2
+N,N,Y,Individual property rights,1,5,0.2,3
+N,N,Y,Transition out of fisheries,1,5,0.2,4
+N,Y,N,Coordination and organization,1,6,0.16666666666666666,1
+N,Y,N,Diversify livelihoods,1,6,0.16666666666666666,2
+N,Y,N,Economic/community development,1,6,0.16666666666666666,3
+N,Y,N,Education,1,6,0.16666666666666666,4
+N,Y,N,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",1,6,0.16666666666666666,5
+N,Y,N,Research,1,6,0.16666666666666666,6
+N,Y,Y,Cooperatives,3,22,0.13636363636363635,1
+N,Y,Y,Dynamic ocean management,2,22,0.09090909090909091,2
+N,Y,Y,Economic/community development,2,22,0.09090909090909091,3
+N,Y,Y,Education,2,22,0.09090909090909091,4
+N,Y,Y,Financial assistance to help survive bad fishing years,2,22,0.09090909090909091,5
+N,Y,Y,Financial assistance to help transition out of fishery,2,22,0.09090909090909091,6
+N,Y,Y,Market diversification,2,22,0.09090909090909091,7
+N,Y,Y,Research,2,22,0.09090909090909091,8
+N,Y,Y,Diversify livelihoods,1,22,0.045454545454545456,9
+N,Y,Y,Investments to improve value chain,1,22,0.045454545454545456,10

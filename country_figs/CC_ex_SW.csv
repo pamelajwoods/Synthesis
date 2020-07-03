@@ -1,7 +1,10 @@
-Context,Community,Implemented,Example,N_Example,total,Prop_Example,id
-CC,N,N,Research,2,3,0.6666666666666666,1
-CC,N,N,Enforcement,1,3,0.3333333333333333,2
-N,N,Y,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",1,3,0.3333333333333333,1
-N,N,Y,Financial assistance to help transition out of fishery,1,3,0.3333333333333333,2
-N,N,Y,Investments to improve value chain,1,3,0.3333333333333333,3
-N,Y,Y,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",1,1,1,1
+Example,CC_Not community focused_Not implemented,N_Community focused_Implemented,N_Not community focused_Implemented,N_Not community focused_Not implemented
+Coordination and organization,0.08,NA,NA,NA
+Enforcement,0.17,NA,NA,NA
+"Financial assistance or investment for entering,",NA,1,0.33,NA
+Financial assistance to help transition out of fishery,NA,NA,0.33,NA
+Investments to improve value chain,NA,NA,0.33,NA
+MPAs,0.08,NA,NA,NA
+Reductions in other stressors,0.08,NA,NA,NA
+Research,0.5,NA,NA,1
+Restoration,0.08,NA,NA,NA

@@ -1,12 +1,10 @@
-Context,Community,Implemented,Example,N_Example,total,Prop_Example,id
-N,N,N,Investments to improve value chain,1,1,1,1
-N,N,Y,Enforcement,1,8,0.125,1
-N,N,Y,Individual property rights,1,8,0.125,2
-N,N,Y,International agreements,1,8,0.125,3
-N,N,Y,Investment in new gear or innovations,1,8,0.125,4
-N,N,Y,Investments to improve value chain,1,8,0.125,5
-N,N,Y,MPAs,1,8,0.125,6
-N,N,Y,Research,1,8,0.125,7
-N,N,Y,Review programs / regulations,1,8,0.125,8
-N,Y,N,Economic/community development,1,2,0.5,1
-N,Y,N,Investments to improve value chain,1,2,0.5,2
+Example,N_Community focused_Not implemented,N_Not community focused_Implemented,N_Not community focused_Not implemented
+Economic/community development,0.5,NA,NA
+Enforcement,NA,0.12,NA
+Individual property rights,NA,0.12,NA
+International agreements,NA,0.12,NA
+Investment in new gear or innovations,NA,0.12,NA
+Investments to improve value chain,0.5,0.12,1
+MPAs,NA,0.12,NA
+Research,NA,0.12,NA
+Review programs / regulations,NA,0.12,NA

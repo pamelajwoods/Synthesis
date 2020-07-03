@@ -1,47 +1,16 @@
-Context,Community,Implemented,Example,N_Example,total,Prop_Example,id
-CC,N,N,Investment in new gear or innovations,6,22,0.2727272727272727,1
-CC,N,N,Adaptation programs,3,22,0.13636363636363635,2
-CC,N,N,Market diversification,3,22,0.13636363636363635,3
-CC,N,N,Diversify livelihoods,2,22,0.09090909090909091,4
-CC,N,N,Reductions in other stressors,2,22,0.09090909090909091,5
-CC,N,N,Research,2,22,0.09090909090909091,6
-CC,N,N,Restoration,2,22,0.09090909090909091,7
-CC,N,N,Enforcement,1,22,0.045454545454545456,8
-CC,N,N,Review programs / regulations,1,22,0.045454545454545456,9
-CC,N,Y,Investment in new gear or innovations,4,8,0.5,1
-CC,N,Y,International agreements,2,8,0.25,2
-CC,N,Y,Adaptation programs,1,8,0.125,3
-CC,N,Y,Reductions in other stressors,1,8,0.125,4
-CC,Y,N,Adaptation programs,1,4,0.25,1
-CC,Y,N,Diversify livelihoods,1,4,0.25,2
-CC,Y,N,Investment in new gear or innovations,1,4,0.25,3
-CC,Y,N,Research,1,4,0.25,4
-N,N,N,Diversify livelihoods,1,8,0.125,1
-N,N,N,Economic/community development,1,8,0.125,2
-N,N,N,Education,1,8,0.125,3
-N,N,N,Enforcement,1,8,0.125,4
-N,N,N,Investment in new gear or innovations,1,8,0.125,5
-N,N,N,Investments to improve value chain,1,8,0.125,6
-N,N,N,Market diversification,1,8,0.125,7
-N,N,N,Review programs / regulations,1,8,0.125,8
-N,N,Y,Diversify livelihoods,2,11,0.18181818181818182,1
-N,N,Y,Enforcement,2,11,0.18181818181818182,2
-N,N,Y,Investment in new gear or innovations,2,11,0.18181818181818182,3
-N,N,Y,Research,2,11,0.18181818181818182,4
-N,N,Y,Education,1,11,0.09090909090909091,5
-N,N,Y,Investments to improve value chain,1,11,0.09090909090909091,6
-N,N,Y,MPAs,1,11,0.09090909090909091,7
-N,Y,N,Diversify livelihoods,2,6,0.3333333333333333,1
-N,Y,N,Cooperatives,1,6,0.16666666666666666,2
-N,Y,N,Economic/community development,1,6,0.16666666666666666,3
-N,Y,N,Enforcement,1,6,0.16666666666666666,4
-N,Y,N,Investment in new gear or innovations,1,6,0.16666666666666666,5
-N,Y,Y,Education,3,16,0.1875,1
-N,Y,Y,Investment in new gear or innovations,3,16,0.1875,2
-N,Y,Y,Investments to improve value chain,2,16,0.125,3
-N,Y,Y,Market diversification,2,16,0.125,4
-N,Y,Y,Restoration,2,16,0.125,5
-N,Y,Y,Community-based rights,1,16,0.0625,6
-N,Y,Y,Diversify livelihoods,1,16,0.0625,7
-N,Y,Y,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",1,16,0.0625,8
-N,Y,Y,Research,1,16,0.0625,9
+Example,CC_Community focused_Not implemented,CC_Not community focused_Implemented,CC_Not community focused_Not implemented,N_Community focused_Implemented,N_Community focused_Not implemented,N_Not community focused_Implemented,N_Not community focused_Not implemented
+Adaptation programs,NA,0.14,0.14,NA,NA,NA,NA
+Community-based rights,NA,NA,NA,0.1,NA,NA,NA
+Cooperatives,NA,NA,NA,NA,0.17,NA,NA
+Diversify livelihoods,0.33,NA,0.09,NA,0.33,0.5,0.14
+Economic/community development,NA,NA,NA,NA,0.17,NA,0.14
+Education,NA,NA,NA,0.1,NA,NA,0.14
+Enforcement,NA,NA,0.05,NA,0.17,NA,0.14
+International agreements,NA,0.29,NA,NA,NA,NA,NA
+Investment in new gear or innovations,0.33,0.43,0.27,0.3,0.17,0.5,0.14
+Investments to improve value chain,NA,NA,NA,0.2,NA,NA,0.14
+Market diversification,NA,NA,0.14,0.2,NA,NA,0.14
+Reductions in other stressors,NA,0.14,0.09,NA,NA,NA,NA
+Research,0.33,NA,0.09,NA,NA,NA,NA
+Restoration,NA,NA,0.09,0.1,NA,NA,NA
+Review programs / regulations,NA,NA,0.05,NA,NA,NA,NA

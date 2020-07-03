@@ -1,23 +1,17 @@
-Context,Community,Implemented,Example,N_Example,total,Prop_Example,id
-CC,N,N,MPAs,2,11,0.18181818181818182,1
-CC,N,N,Review programs / regulations,2,11,0.18181818181818182,2
-CC,N,N,Coordination and organization,1,11,0.09090909090909091,3
-CC,N,N,Education,1,11,0.09090909090909091,4
-CC,N,N,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",1,11,0.09090909090909091,5
-CC,N,N,Reductions in other stressors,1,11,0.09090909090909091,6
-CC,N,N,Research,1,11,0.09090909090909091,7
-CC,N,N,Restoration,1,11,0.09090909090909091,8
-CC,N,N,Transition out of fisheries,1,11,0.09090909090909091,9
-CC,N,Y,Research,2,6,0.3333333333333333,1
-CC,N,Y,Coordination and organization,1,6,0.16666666666666666,2
-CC,N,Y,Diversify livelihoods,1,6,0.16666666666666666,3
-CC,N,Y,Dynamic ocean management,1,6,0.16666666666666666,4
-CC,N,Y,Investment in new gear or innovations,1,6,0.16666666666666666,5
-CC,Y,N,Coordination and organization,1,1,1,1
-CC,Y,Y,Cooperatives,1,4,0.25,1
-CC,Y,Y,Education,1,4,0.25,2
-CC,Y,Y,Investment in new gear or innovations,1,4,0.25,3
-CC,Y,Y,Transition out of fisheries,1,4,0.25,4
-N,N,Y,Individual property rights,1,1,1,1
-N,Y,Y,Economic/community development,1,2,0.5,1
-N,Y,Y,Market diversification,1,2,0.5,2
+Example,CC_Community focused_Implemented,CC_Community focused_Not implemented,CC_Not community focused_Implemented,CC_Not community focused_Not implemented,N_Community focused_Implemented,N_Not community focused_Implemented
+Cooperatives,0.25,NA,NA,NA,NA,NA
+Coordination and organization,NA,1,0.17,0.09,NA,NA
+Diversify livelihoods,NA,NA,0.17,NA,NA,NA
+Dynamic ocean management,NA,NA,0.17,NA,NA,NA
+Economic/community development,NA,NA,NA,NA,0.5,NA
+Education,0.25,NA,NA,0.09,NA,NA
+"Financial assistance or investment for entering,",NA,NA,NA,0.09,NA,NA
+Individual property rights,NA,NA,NA,NA,NA,1
+Investment in new gear or innovations,0.25,NA,0.17,NA,NA,NA
+Market diversification,NA,NA,NA,NA,0.5,NA
+MPAs,NA,NA,NA,0.18,NA,NA
+Reductions in other stressors,NA,NA,NA,0.09,NA,NA
+Research,NA,NA,0.33,0.09,NA,NA
+Restoration,NA,NA,NA,0.09,NA,NA
+Review programs / regulations,NA,NA,NA,0.18,NA,NA
+Transition out of fisheries,0.25,NA,NA,0.09,NA,NA
