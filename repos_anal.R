@@ -789,21 +789,8 @@ write.csv(freq,'Freq_table.csv')
 #prcomp([,c(1:7,10,11)], center = TRUE,scale. = TRUE)
 #install.packages('ca')
 
-abbr <-
-  dat_ca %>% 
-  ungroup %>% 
-  select(Example) %>% 
-  distinct %>% 
-  mutate(AO = c('ADA', 'ORG', 'DIV', 'ENF', 'IAG','NEW','VAL','MAR', 'PLQ', 'RED', 'RES','RET','REV', 'OUT', 'EDU', 'CRI','COO','ECD','ENT','SUR','TRA','INS', 'IRI', 'DRM','DOM', 'MPAs','DFU', 'FAI')) %>% 
-  left_join(labs %>% 
-              ungroup %>% 
-              select(Example, col) %>% 
-              distinct %>% 
-              mutate(Type = ifelse(col=='aquamarine3', 'Nat. Res. Mgmt.', 
-                                   ifelse(col=='darkgoldenrod3', 'Social',
-                                          ifelse(col=='darkblue', 'Insitutional',NA)))))
 
-dat_ca <-
+dat_ca_tmp <-
   dat %>% 
   ungroup() %>% 
   mutate(Region = ifelse(Country %in% c('USA', 'US-SE', 'US-SW', 'US-NE', 'US-NW', 'US-AK', 'US-HA', 'US','CAN'), 'NAM', 
@@ -814,7 +801,24 @@ dat_ca <-
                           ifelse(Country=='FAROES', 'FAR', Country))) %>% 
                                  group_by(Region, Country, Context, Community, Example) %>% 
   count() %>%
-  filter(!is.na(Community), !is.na(Country), !is.na(Context), !is.na(Example), Region!='INT') %>% 
+  filter(!is.na(Community), !is.na(Country), !is.na(Context), !is.na(Example), Region!='INT') 
+
+abbr <-
+  dat_ca_tmp %>% 
+  ungroup %>% 
+  select(Example) %>% 
+  distinct %>% 
+  mutate(AO = c('ADA', 'ORG', 'DIV', 'ENF', 'IAG','NEW','VAL','MAR', 'PLQ', 'RED', 'RES','RET','REV', 'OUT', 'EDU', 'CRI','COO','ECD','ENT','SUR','TRA','INS', 'IRI', 'DRM','DOM', 'MPAs','DFU', 'FAI')) %>% 
+  left_join(labs %>% 
+              ungroup %>% 
+              select(Example, col) %>% 
+              distinct %>% 
+              mutate(Type = ifelse(col=='aquamarine3', 'Ecological', 
+                                   ifelse(col=='darkgoldenrod3', 'Social',
+                                          ifelse(col=='darkblue', 'Insitutional',NA)))))
+
+dat_ca <-
+  dat_ca_tmp %>% 
   left_join(abbr) %>% 
   ungroup %>% 
   select(-c(Example)) %>% 
@@ -829,7 +833,7 @@ dat_ca1<-
   ungroup() %>% 
   group_by(Region, Country, Context, Community) %>% 
   summarise(Institutional = sum(Insitutional), 
-            `Nat. Res. Mgmt.` = sum(`Nat. Res. Mgmt.`),
+            Ecological = sum(Ecological),
             Social = sum(Social)) %>% 
   ungroup
 ord_cc_comm <- ca(dat_ca1 %>% 
@@ -842,7 +846,7 @@ dat_ca2 <-
   spread(key = Type, value = n, fill = 0) %>% 
   group_by(Region, Country, Context, Community) %>% 
   summarise(Institutional = sum(Insitutional), 
-            `Nat. Res. Mgmt.` = sum(`Nat. Res. Mgmt.`),
+            Ecological = sum(Ecological),
             Social = sum(Social))%>% 
   ungroup
 ord_f_comm <- ca(dat_ca2 %>% 
@@ -854,7 +858,7 @@ dat_ca3 <-
   spread(key = Type, value = n, fill = 0) %>% 
   group_by(Region, Country, Context, Community) %>% 
   summarise(Institutional = sum(Insitutional), 
-            `Nat. Res. Mgmt.` = sum(`Nat. Res. Mgmt.`),
+            Ecological = sum(Ecological),
             Social = sum(Social))%>% 
   ungroup
 ord_cc_ncomm <- ca(dat_ca3 %>% 
@@ -866,7 +870,7 @@ dat_ca4 <-
   spread(key = Type, value = n, fill = 0) %>% 
   group_by(Region, Country, Context, Community) %>% 
   summarise(Institutional = sum(Insitutional), 
-            `Nat. Res. Mgmt.` = sum(`Nat. Res. Mgmt.`),
+            Ecological = sum(Ecological),
             Social = sum(Social))%>% 
   ungroup
 
@@ -924,7 +928,7 @@ if(byregion){
     dat %>% 
     mutate(region = ifelse(Country %in% c('USA', 'US-SE', 'US-SW', 'US-NE', 'US-NW', 'US-AK', 'US-HA', 'US','CAN'), 'NAM', 
                            ifelse(Country %in% c('AUS', 'NZ'), 'SP',
-                                  ifelse(Country %in% c('ICE', 'FIN', 'FAROES', 'SW','NOR'), 'NEU',
+                                  ifelse(Country %in% c('ICE', 'FIN', 'FIN-AX', 'FAROES', 'SW','NOR'), 'NEU',
                                          ifelse(Country %in% c('UK', 'IT', 'EU', 'GER','NL'), 'SEU', Country))))) %>%
     mutate(Country = region) %>% 
     select(-region)
@@ -977,20 +981,20 @@ country_list <-
              `Uncertainty (social)` = (max_tot + 1 - `Uncertainty (social)`)/stress_tot) %>% 
       filter(!(is.na(Context) | is.na(Example) | stress_tot==0)) %>% 
       group_by(Context, Example) %>%
-      summarise(`Stock decline` = sum(`Stock decline`, na.rm = T),
-                `Sp. distributional shifts` = sum(`Sp. distributional shifts`, na.rm = T),
-                `Ocean acidification` = sum(`Ocean acidification`, na.rm = T),
-                `Extreme climatic events` = sum(`Extreme climatic events`, na.rm = T),
-                `Uncertainty (ecological)` = sum(`Uncertainty (ecological)`, na.rm = T),
-                `Market changes` = sum(`Market changes`, na.rm = T),
-                `Regulation change` = sum(`Regulation change`, na.rm = T),
-                `Consolidation` = sum(`Consolidation`, na.rm = T),
-                `Globalization` = sum(`Globalization`, na.rm = T),
-                `Uncertainty (social)` = sum(`Uncertainty (social)`, na.rm = T)
+      summarise(`Stock decline` = round(sum(`Stock decline`, na.rm = T),2),
+                `Sp. distributional shifts` = round(sum(`Sp. distributional shifts`, na.rm = T),2),
+                `Ocean acidification` = round(sum(`Ocean acidification`, na.rm = T),2),
+                `Extreme climatic events` = round(sum(`Extreme climatic events`, na.rm = T),2),
+                `Uncertainty (ecological)` = round(sum(`Uncertainty (ecological)`, na.rm = T),2),
+                `Market changes` = round(sum(`Market changes`, na.rm = T),2),
+                `Regulation change` = round(sum(`Regulation change`, na.rm = T),2),
+                `Consolidation` = round(sum(`Consolidation`, na.rm = T),2),
+                `Globalization` = round(sum(`Globalization`, na.rm = T),2),
+                `Uncertainty (social)` = round(sum(`Uncertainty (social)`, na.rm = T),2)
       ) %>% 
       mutate(tot = `Stock decline` +  `Sp. distributional shifts` + `Ocean acidification` + `Extreme climatic events` +
                `Uncertainty (ecological)` + `Market changes` + `Regulation change` + `Consolidation` + `Globalization` +`Uncertainty (social)`,
-             `Total score` = tot,
+             `Total score` = round(tot,2),
       ) %>% 
       arrange(Context, desc(`Total score`)) %>% 
       ungroup() %>% 
@@ -1034,6 +1038,7 @@ country_list <-
              Stressor = recode(Stressor,`Total score` = 'A', `Uncertainty (ecological)` = 'B', `Ocean acidification` = 'C', `Uncertainty (social)` = 'D', `Sp. distributional shifts` = 'E', `Extreme climatic events` = 'F', `Stock decline` = 'G', `Market changes` = 'H', `Regulation change` = 'I', `Globalization` = 'J', `Consolidation` = 'K')) %>% 
       filter(Stressor != 'A') %>% 
       ggplot(aes(Stressor, order, size = Score, color = Context)) + 
+      geom_hline(aes(yintercept = order), color = 'lightgrey', size = 0.1) +
       geom_point() + 
       theme_light() + 
       theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5),
@@ -1044,7 +1049,9 @@ country_list <-
                        labels=c("Uncertainty (ecological)", "Ocean acidification", "Uncertainty (social)",
                                 "Sp. distributional shifts", "Extreme climatic events", "Stock decline", "Market changes","Regulation change", "Globalization", "Consolidation"), 
                        position = 'top') +
-      scale_y_continuous(breaks = NULL, labels = c('', ''), limits = c(0,max(CC_stressor_c$order)+1), expand = expand_scale())
+      scale_y_continuous(breaks = NULL, labels = c('', ''), limits = c(0,max(CC_stressor_c$order)+1), expand = expand_scale())+
+      scale_size(breaks = c(1, 5, 10, 20, 50 ,85), labels = as.character(c(1, 5, 10, 20, 50 ,85)))
+    
     #c(0, max(CC_stressor_c$order)+1)
     
     for(i in 1:length(labsc$br)){ 
@@ -1107,13 +1114,13 @@ country_list <-
              `Take advantage` = (max_tot + 1 - `Take advantage`)/stress_tot) %>% 
       filter(!(is.na(Context) | is.na(Example) | stress_tot==0)) %>% 
       group_by(Context, Example) %>%
-      summarise(`Reduce stressor` = sum(`Reduce stressor`, na.rm = T),
-                `Reduce sensitivity` = sum(`Reduce sensitivity`, na.rm = T),
-                Cope = sum(Cope, na.rm = T),
-                `No change` = sum(`No change`, na.rm = T),
-                `Take advantage` = sum(`Take advantage`, na.rm = T)
+      summarise(`Reduce stressor` = round(sum(`Reduce stressor`, na.rm = T),2),
+                `Reduce sensitivity` = round(sum(`Reduce sensitivity`, na.rm = T),2),
+                Cope = round(sum(Cope, na.rm = T),2),
+                `No change` = round(sum(`No change`, na.rm = T),2),
+                `Take advantage` = round(sum(`Take advantage`, na.rm = T),2)
       ) %>% 
-      mutate(`Total score` = `Reduce stressor` +  `Reduce sensitivity` + Cope + `No change` + `Take advantage`) %>% 
+      mutate(`Total score` = round(`Reduce stressor` +  `Reduce sensitivity` + Cope + `No change` + `Take advantage`,2)) %>% 
       left_join(labsc %>% select(order = br, Example, Context)) %>%  
       ungroup() %>% 
       filter(!is.na(`Total score`)) %>% 
@@ -1148,7 +1155,8 @@ country_list <-
                        labels=c("Reduce stressor", "Reduce sensitivity", "Cope",
                                 "No change", "Take advantage"),
                        position = 'top') +
-      scale_y_continuous(breaks = NULL, labels = c('', ''), limits = c(0,max(CC_goal_c$order)+1), expand = expand_scale())
+      scale_y_continuous(breaks = NULL, labels = c('', ''), limits = c(0,max(CC_goal_c$order)+1), expand = expand_scale())+
+      scale_size(breaks = c(1, 5, 10, 20, 50 ,85, 125), labels = as.character(c(1, 5, 10, 20, 50 ,85, 125)))
     
     
     for(i in 1:length(labsg$br)){ 
@@ -1210,20 +1218,30 @@ country_list <-
                   filter(!(is.na(Implemented) | is.na(Community) | is.na(Context)| is.na(Example))) %>% 
                   group_by(Context, Community, Implemented) %>%
                   summarise(total = n())) %>% 
-      mutate(Prop_Example = N_Example/total) %>% 
+      mutate(Prop_Example = round(N_Example/total,2)) %>% 
       arrange(Context, Community, Implemented, desc(Prop_Example)) %>% 
       #right_join(CC_ex %>% 
       #             select(Context, Community, Implemented)) %>% 
       mutate(id = 1:n()) %>% 
-      filter(id < 11)
+      filter(id < 11)%>% 
+      ungroup %>% 
+      rename(`Proportion of adaptation options` = Prop_Example) %>% 
+      mutate(#Context = ifelse(Context=='CC', 'Climate change context', 'Non-climate-change context'),
+        Community = ifelse(Community == 'Y', 'Community focused', 'Not community focused'),
+        Implemented = ifelse(Implemented == 'Y', 'Implemented', 'Not implemented'),
+        Example = ifelse(grepl('Financial assistance or investment for entering,', Example), 'Financial assistance or investment for entering,', Example))
     
-    write_csv(CC_ex_c, paste0('country_figs/CC_ex_', country_list[[x]], '.csv'))
+    write_csv(CC_ex_c %>% 
+                unite(Attributes, Context, Community, Implemented) %>% 
+                select(-c(N_Example, total, id)) %>% 
+                spread(key = Attributes, value = `Proportion of adaptation options`), paste0('country_figs/CC_ex_', country_list[[x]], '.csv'))
     
+
     CC_ex_plot <-
       CC_ex_c %>% 
       ungroup %>% 
       rename(`Proportion of adaptation options` = Prop_Example) %>% 
-      mutate(Context = ifelse(Context=='CC', 'Climate change', 'Fisheries'),
+      mutate(#Context = ifelse(Context=='CC', 'Climate change', 'Fisheries'),
              Community = ifelse(Community == 'Y', 'Community focused', 'Not community focused'),
              Implemented = ifelse(Implemented == 'Y', 'Implemented', 'Not implemented'),
              Example = ifelse(grepl('Financial assistance or investment for entering,', Example), 'Financial assistance or investment for entering,', Example)) %>% 
@@ -1234,6 +1252,7 @@ country_list <-
       xlab('')+ylab('')+
       labs(size="Proportion of\nadaptation\noptions") +
       scale_y_continuous(expand = expand_scale(), limits = c(0,11))+
+      scale_size(breaks = c(0.05, 0.1, 0.2, 0.3), labels = as.character(c(0.05, 0.1, 0.2, 0.3)))+
       facet_grid( Community*Implemented ~ Context) 
 
     g <- ggplot_gtable(ggplot_build(CC_ex_plot))
@@ -1293,8 +1312,16 @@ country_list <-
       right_join(CC_ant %>% 
                    select(Context, Example, Implemented)) 
     #filter(id < 11)
-    
-    write_csv(CC_ant_c, paste0('country_figs/CC_ant_', country_list[[x]], '.csv'))
+    CC_ant_c %>% 
+      select(Context, Example, Implemented, Prop_Anticipatory, Prop_Responsive, Prop_Both) %>%
+      #  rename(Anticipatory = Prop_Anticipatory, Responsive = Prop_Responsive, Both = Prop_Both) %>% 
+      mutate(Anticipatory = round(Prop_Anticipatory,2), `Resp. or Both` = Prop_Responsive + Prop_Both,
+             Implemented = ifelse(Implemented == 'Y', 'Implemented', 'Not implemented')
+      ) %>% 
+      select(-c(Prop_Anticipatory, Prop_Responsive, Prop_Both, `Resp. or Both`)) %>%
+      unite(Attributes, Context, Implemented) %>% 
+      spread(key = Attributes, value = Anticipatory) %>% 
+    write_csv(paste0('country_figs/CC_ant_', country_list[[x]], '.csv'))
     
     
     ant_labs <-
@@ -1481,16 +1508,23 @@ country_list <-
                   ungroup() %>% 
                   select(Example, id)
       ) %>% 
-      mutate(Prop_top = (Internat. + `Nat. govt.` + `Region. govt.`)/all,
-             Prop_bottom = (`Local govt.` + `Community assoc.` + `Business coop.`)/all,
-             Prop_NGO = (NGO + Uni.)/all,
-             Prop_ind = (Business + Individual)/all) %>% 
+      mutate(Prop_top = round((Internat. + `Nat. govt.` + `Region. govt.`)/all,3),
+             Prop_bottom = round((`Local govt.` + `Community assoc.` + `Business coop.`)/all,3),
+             Prop_NGO = round((NGO + Uni.)/all,3),
+             Prop_ind = round((Business + Individual)/all,3)) %>% 
       arrange(id)%>% 
       right_join(CC_man %>% 
                    select(Context, Example, Implemented)) 
     #filter(id < 11)
     
-    write_csv(CC_man_c, paste0('country_figs/CC_man_', country_list[[x]],'.csv'))
+    write_csv(CC_man_c %>% 
+                select(Example, Context, Implemented, 
+                       `Proportion Top-down` = Prop_top, 
+                       `Proportion Bottom-up` = Prop_bottom, 
+                       `Proportion NGO` = Prop_NGO,
+                       `Proportion Individual` = Prop_ind) %>% 
+                arrange(Example, Context, Implemented), 
+              paste0('country_figs/CC_man_', country_list[[x]],'.csv'))
     
     
     Man_plot1 <-
