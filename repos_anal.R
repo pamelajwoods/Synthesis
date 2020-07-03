@@ -912,7 +912,7 @@
       theme(legend.position = 'none')
   dev.off()
   
-  pdf(paste0('Ord_F_Ncomm_leg',nr,'.pdf'), width = 5, height = 5)
+  pdf(paste0('Ord_F_Ncomm_leg',nr,'.pdf'), width = 5.85, height = 5)
     ggord(ord_f_ncomm, dat_ca4$Region, ellipse = FALSE,
           xlims = xlims,
           ylims = c(-0.9,0.9)) 
