@@ -7,11 +7,11 @@ library(devtools)
 library(ggord)
 library(ca)
 
-byregion <- FALSE # region specific or not?
-noresearch <- FALSE # remove research from plots just to make other ones bigger
-if(noresearch==T){byregion<-FALSE}
+#the noresearch option removes research and enforcement because they are so dominant to see what figures look like
+#the byregion option creates country-specific figures by broader region rather than country
+#country-specific figures ar not created when noresearch==TRUE
 
-for(noresearch in c(FALSE)){
+for(noresearch in c(TRUE,FALSE)){
   
 
 dat_raw <- 
@@ -920,727 +920,728 @@ dev.off()
 
 
 #NOW ADD FILTERS THROUGHOUT AND JOIN TO INTRODUCE NAs
+if(noresearch==FALSE){
 
-for(byregion in c(FALSE)){
+  for(byregion in c(TRUE,FALSE)){
 
-if(byregion){
-  dat <-
-    dat %>% 
-    mutate(region = ifelse(Country %in% c('USA', 'US-SE', 'US-SW', 'US-NE', 'US-NW', 'US-AK', 'US-HA', 'US','CAN'), 'NAM', 
-                           ifelse(Country %in% c('AUS', 'NZ'), 'SP',
-                                  ifelse(Country %in% c('ICE', 'FIN', 'FIN-AX', 'FAROES', 'SW','NOR'), 'NEU',
-                                         ifelse(Country %in% c('UK', 'IT', 'EU', 'GER','NL'), 'SEU', Country))))) %>%
-    mutate(Country = region) %>% 
-    select(-region)
-  
+    if(byregion){
+      dat <-
+        dat %>% 
+        mutate(region = ifelse(Country %in% c('USA', 'US-SE', 'US-SW', 'US-NE', 'US-NW', 'US-AK', 'US-HA', 'US','CAN'), 'NAM', 
+                               ifelse(Country %in% c('AUS', 'NZ'), 'SP',
+                                      ifelse(Country %in% c('ICE', 'FIN', 'FIN-AX', 'FAROES', 'SW','NOR'), 'NEU',
+                                             ifelse(Country %in% c('UK', 'IT', 'EU', 'GER','NL'), 'SEU', Country))))) %>%
+        mutate(Country = region) %>% 
+        select(-region)
+      
+    }
+    
+    allcountries <- dat %>% select(Country) %>% unique %>% unlist
+    country_list <- NULL
+    country_list[[1]]<-c(allcountries)
+    for(i in (length(allcountries)+1):2){
+      country_list[[i]] <- c(allcountries[i-1])
+    }
+    
+    #if(!byregion){country_list <- country_list[-1]}
+    
+    country_list <-
+      set_names(country_list[-1], allcountries)
+    #set_names(country_list[1], 'all')
+    
+    
+    
+    #country_list[-1] %>% 
+    #  map(function(x){
+    
+    for( i in 1:length(country_list)){
+      x <- country_list[[i]]
+      print(x)
+      
+      try(
+        {
+          dat2 <- 
+            dat %>% 
+            filter(Country %in% country_list[[x]]) 
+          
+          
+          #What are examples most often in response to? In CC vs not?
+          CC_stressor_spread_c <- 
+            dat2 %>% 
+            mutate(stress_tot = apply(dat2[5:14], 1, sum, na.rm = T),
+                   max_tot = apply(dat2[5:14], 1, max, na.rm = T),
+                   `Stock decline` = (max_tot + 1 - `Stock decline`)/stress_tot,
+                   `Sp. distributional shifts` = (max_tot + 1 - `Sp. distributional shifts`)/stress_tot,
+                   `Ocean acidification` = (max_tot + 1 - `Ocean acidification`)/stress_tot,
+                   `Extreme climatic events` = (max_tot + 1 - `Extreme climatic events`)/stress_tot,
+                   `Uncertainty (ecological)` = (max_tot + 1 - `Uncertainty (ecological)`)/stress_tot,
+                   `Market changes` = (max_tot + 1 - `Market changes`)/stress_tot,
+                   `Regulation change` = (max_tot + 1 - `Regulation change`)/stress_tot,
+                   `Consolidation` = (max_tot + 1 - `Consolidation`)/stress_tot,
+                   `Globalization` = (max_tot + 1 - `Globalization`)/stress_tot,
+                   `Uncertainty (social)` = (max_tot + 1 - `Uncertainty (social)`)/stress_tot) %>% 
+            filter(!(is.na(Context) | is.na(Example) | stress_tot==0)) %>% 
+            group_by(Context, Example) %>%
+            summarise(`Stock decline` = round(sum(`Stock decline`, na.rm = T),2),
+                      `Sp. distributional shifts` = round(sum(`Sp. distributional shifts`, na.rm = T),2),
+                      `Ocean acidification` = round(sum(`Ocean acidification`, na.rm = T),2),
+                      `Extreme climatic events` = round(sum(`Extreme climatic events`, na.rm = T),2),
+                      `Uncertainty (ecological)` = round(sum(`Uncertainty (ecological)`, na.rm = T),2),
+                      `Market changes` = round(sum(`Market changes`, na.rm = T),2),
+                      `Regulation change` = round(sum(`Regulation change`, na.rm = T),2),
+                      `Consolidation` = round(sum(`Consolidation`, na.rm = T),2),
+                      `Globalization` = round(sum(`Globalization`, na.rm = T),2),
+                      `Uncertainty (social)` = round(sum(`Uncertainty (social)`, na.rm = T),2)
+            ) %>% 
+            mutate(tot = `Stock decline` +  `Sp. distributional shifts` + `Ocean acidification` + `Extreme climatic events` +
+                     `Uncertainty (ecological)` + `Market changes` + `Regulation change` + `Consolidation` + `Globalization` +`Uncertainty (social)`,
+                   `Total score` = round(tot,2),
+            ) %>% 
+            arrange(Context, desc(`Total score`)) %>% 
+            ungroup() %>% 
+            filter(!is.na(`Total score`)) %>% 
+            mutate(order = n():1) %>% 
+            select(order, Context, Example, `Total score`, `Uncertainty (ecological)`, `Ocean acidification`, `Uncertainty (social)`,`Sp. distributional shifts`, `Extreme climatic events`, `Stock decline`, `Market changes`,`Regulation change`, `Globalization`, `Consolidation`) 
+          
+          CC_stressor_c <-
+            CC_stressor_spread_c %>% 
+            # mutate(max_tot = apply(CC_stressor_spread[5:14], 1, max, na.rm = T),
+            #        min_tot = apply(CC_stressor_spread[5:14], 1, min, na.rm = T),
+            #        `Stock decline` = (`Stock decline` - min_tot+0.001)/(max_tot- min_tot+0.001),
+            #        `Sp. distributional shifts` = (`Sp. distributional shifts`- min_tot+0.001)/(max_tot- min_tot+0.001),
+            #        `Ocean acidification` = (`Ocean acidification`- min_tot+0.001)/(max_tot- min_tot+0.001),
+            #        `Extreme climatic events` = (`Extreme climatic events`- min_tot+0.001)/(max_tot- min_tot+0.001),
+            #        `Uncertainty (ecological)` = (`Uncertainty (ecological)`- min_tot+0.001)/(max_tot- min_tot+0.001),
+            #        `Market changes` = (`Market changes`- min_tot+0.001)/(max_tot- min_tot+0.001),
+            #        `Regulation change` = (`Regulation change`- min_tot+0.001)/(max_tot- min_tot+0.001),
+            #        `Consolidation` = (`Consolidation`- min_tot+0.001)/(max_tot- min_tot+0.001),
+            #        `Globalization` = (`Globalization`- min_tot+0.001)/(max_tot- min_tot+0.001),
+          #        `Uncertainty (social)` = (`Uncertainty (social)`- min_tot)/(max_tot- min_tot+0.001)) %>% 
+          # select(-max_tot, -min_tot) %>% 
+          gather(val = 'Score', key = 'Stressor', -c(Context, Example, order)) %>% 
+            mutate(Score = ifelse(Score==0, NA, Score))
+          
+          #View(CC_stressor_spread)
+          
+          br <- CC_stressor_spread_c %>% select(order) %>% unlist %>% c(.)
+          lab <- CC_stressor_spread_c %>% select(Example) %>% unlist %>% substr(., 1, 49) 
+          
+          labsc <- data.frame(x = -12.5, 
+                              br, 
+                              lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab),
+                              Example = CC_stressor_spread_c %>% select(Example) %>% unlist,
+                              Context = CC_stressor_spread_c %>% select(Context) %>% unlist) %>% 
+            left_join(labs %>% select(lab, col, Example, Context) %>% distinct)
+          
+          CC_stress_plot <-
+            CC_stressor_c %>% 
+            mutate(Stressor_name = Stressor, 
+                   Stressor = recode(Stressor,`Total score` = 'A', `Uncertainty (ecological)` = 'B', `Ocean acidification` = 'C', `Uncertainty (social)` = 'D', `Sp. distributional shifts` = 'E', `Extreme climatic events` = 'F', `Stock decline` = 'G', `Market changes` = 'H', `Regulation change` = 'I', `Globalization` = 'J', `Consolidation` = 'K')) %>% 
+            filter(Stressor != 'A') %>% 
+            ggplot(aes(Stressor, order, size = Score, color = Context)) + 
+            geom_hline(aes(yintercept = order), color = 'lightgrey', size = 0.1) +
+            geom_point() + 
+            theme_light() + 
+            theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5),
+                  plot.margin = unit(c(1,5,1,17.5), "lines")) +
+            ylab('') + 
+            #scale_size_continuous(trans = 'boxcox')+
+            scale_x_discrete(breaks=c('B','C', 'D', 'E', 'F', 'G', 'H', 'I' , 'J', 'K'),
+                             labels=c("Uncertainty (ecological)", "Ocean acidification", "Uncertainty (social)",
+                                      "Sp. distributional shifts", "Extreme climatic events", "Stock decline", "Market changes","Regulation change", "Globalization", "Consolidation"), 
+                             position = 'top') +
+            scale_y_continuous(breaks = NULL, labels = c('', ''), limits = c(0,max(CC_stressor_c$order)+1), expand = expand_scale())+
+            scale_size(breaks = c(1, 5, 10, 20, 50 ,85), labels = as.character(c(1, 5, 10, 20, 50 ,85)))
+          
+          #c(0, max(CC_stressor_c$order)+1)
+          
+          for(i in 1:length(labsc$br)){ 
+            CC_stress_plot <-
+              CC_stress_plot + 
+              annotation_custom(
+                grob = grid::textGrob(label = labsc$lab[i], just = 'left',gp = gpar(col = as.character(labsc$col[i]))), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+                ymin = labsc$br[i]+0.2,      # Vertical position of the textGrob
+                ymax = labsc$br[i]-0.2,
+                xmin = labsc$x[i],         # Note: The grobs are positioned outside the plot area
+                xmax = labsc$x[i])
+          }
+          
+          
+          CC_stress_plot <-
+            CC_stress_plot + 
+            annotation_custom(
+              grob = grid::textGrob(label = 'Adaptation options:', just = 'left',gp = gpar(fontsize = 12, fontface = 'bold')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+              ymin = max(CC_stressor_c$order)+1,      # Vertical position of the textGrob
+              ymax = max(CC_stressor_c$order)+1,
+              xmin = 11,         # Note: The grobs are positioned outside the plot area
+              xmax = 11)+ 
+            annotation_custom(
+              grob = grid::textGrob(label = 'Social', just = 'left',gp = gpar(fontsize = 12, col = 'goldenrod3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+              ymin = (max(CC_stressor_c$order)+1)*13/15,      # Vertical position of the textGrob
+              ymax = (max(CC_stressor_c$order)+1)*13/15,
+              xmin = 11,         #   Note: The grobs are positioned outside the plot area
+              xmax = 11)+ 
+            annotation_custom(
+              grob = grid::textGrob(label = 'Ecological', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+              ymin = (max(CC_stressor_c$order)+1)*14/15,      # Vertical position of the textGrob
+              ymax = (max(CC_stressor_c$order)+1)*14/15,
+              xmin = 11,         # Note: The grobs are positioned outside the plot area
+              xmax = 11)+ 
+            annotation_custom(
+              grob = grid::textGrob(label = 'Institutional', just = 'left',gp = gpar(fontsize = 12, col = 'darkblue')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+              ymin = (max(CC_stressor_c$order)+1)*12/15,      # Vertical position of the textGrob
+              ymax = (max(CC_stressor_c$order)+1)*12/15,
+              xmin = 11,         # Note: The grobs are positioned outside the plot area
+              xmax = 11)
+          
+          pdf(paste0('country_figs/Stressor_plot_', country_list[[x]],nr,'.pdf'), width = 8.3)
+          
+          gt <- ggplot_gtable(ggplot_build(CC_stress_plot))
+          gt$layout$clip[gt$layout$name == "panel"] <- "off"
+          grid::grid.draw(gt)
+          
+          dev.off()
+          
+          
+          #What are examples most often intended to do? In CC vs not?
+          CC_goal_spread_c <- 
+            dat2 %>% 
+            mutate(stress_tot = apply(dat2[30:34], 1, sum, na.rm = T),
+                   max_tot = apply(dat2[30:34], 1, max, na.rm = T),
+                   `Reduce stressor` = (max_tot + 1 - `Reduce stressor`)/stress_tot,
+                   `Reduce sensitivity` = (max_tot + 1 - `Reduce sensitivity`)/stress_tot,
+                   Cope = (max_tot + 1 - Cope)/stress_tot,
+                   `No change` = (max_tot + 1 - `No change`)/stress_tot,
+                   `Take advantage` = (max_tot + 1 - `Take advantage`)/stress_tot) %>% 
+            filter(!(is.na(Context) | is.na(Example) | stress_tot==0)) %>% 
+            group_by(Context, Example) %>%
+            summarise(`Reduce stressor` = round(sum(`Reduce stressor`, na.rm = T),2),
+                      `Reduce sensitivity` = round(sum(`Reduce sensitivity`, na.rm = T),2),
+                      Cope = round(sum(Cope, na.rm = T),2),
+                      `No change` = round(sum(`No change`, na.rm = T),2),
+                      `Take advantage` = round(sum(`Take advantage`, na.rm = T),2)
+            ) %>% 
+            mutate(`Total score` = round(`Reduce stressor` +  `Reduce sensitivity` + Cope + `No change` + `Take advantage`,2)) %>% 
+            left_join(labsc %>% select(order = br, Example, Context)) %>%  
+            ungroup() %>% 
+            filter(!is.na(`Total score`)) %>% 
+            arrange(desc(order)) %>% 
+            select(order, Context, Example, `Reduce stressor`, `Reduce sensitivity`, Cope, `No change`, `Take advantage`) 
+          
+          CC_goal_c <-
+            CC_goal_spread_c %>% 
+            gather(val = 'Score', key = 'Goal', -c(Context, Example, order)) %>% 
+            mutate(Score = ifelse(Score==0, NA, Score))
+          
+          #View(CC_stressor_spread)
+          
+          br <- CC_goal_spread_c %>% select(order) %>% unlist %>% c(.)
+          lab <- CC_goal_spread_c %>% select(Example) %>% unlist %>% substr(., 1, 49) 
+          
+          labsg <- #data.frame(x = -13.75, br, lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab)) %>% 
+            #left_join(labs %>% select(lab, col) %>% distinct)
+            labsc %>% mutate(x = -13.75)
+          
+          CC_goal_plot <-
+            CC_goal_c %>% 
+            mutate(Goal_name = Goal, 
+                   Goal = recode(Goal, `Reduce stressor` = 'A', `Reduce sensitivity` = 'B', Cope = 'C', `No change` = 'D', `Take advantage` = 'E')) %>% 
+            ggplot(aes(Goal, order, size = Score, color = Context)) + 
+            geom_point() + 
+            theme_light() + 
+            theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5),
+                  plot.margin = unit(c(1,5,1,17.5), "lines")) +
+            ylab('') + 
+            scale_x_discrete(breaks=c('A', 'B','C', 'D', 'E'),
+                             labels=c("Reduce stressor", "Reduce sensitivity", "Cope",
+                                      "No change", "Take advantage"),
+                             position = 'top') +
+            scale_y_continuous(breaks = NULL, labels = c('', ''), limits = c(0,max(CC_goal_c$order)+1), expand = expand_scale())+
+            scale_size(breaks = c(1, 5, 10, 20, 50 ,85, 125), labels = as.character(c(1, 5, 10, 20, 50 ,85, 125)))
+          
+          
+          for(i in 1:length(labsg$br)){ 
+            CC_goal_plot <-
+              CC_goal_plot + 
+              annotation_custom(
+                grob = grid::textGrob(label = labsg$lab[i], just = 'left',gp = gpar(col = as.character(labsg$col[i]))), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+                ymin = labsg$br[i]+0.2,      # Vertical position of the textGrob
+                ymax = labsg$br[i]-0.2,
+                xmin = labsg$x[i],         # Note: The grobs are positioned outside the plot area
+                xmax = labsg$x[i])
+          }
+          
+          
+          CC_goal_plot <-
+            CC_goal_plot + 
+            annotation_custom(
+              grob = grid::textGrob(label = 'Adaptation options:', just = 'left',gp = gpar(fontsize = 12, fontface = 'bold')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+              ymin = max(CC_goal_c$order, na.rm = T)+1,      # Vertical position of the textGrob
+              ymax = max(CC_goal_c$order, na.rm)+1,
+              xmin = 5.75,         # Note: The grobs are positioned outside the plot area
+              xmax = 5.75)+ 
+            annotation_custom(
+              grob = grid::textGrob(label = 'Social', just = 'left',gp = gpar(fontsize = 12, col = 'goldenrod3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+              ymin = (max(CC_goal_c$order)+1)*13/15,      # Vertical position of the textGrob
+              ymax = (max(CC_goal_c$order)+1)*13/15,
+              xmin = 5.75,         # Note: The grobs are positioned outside the plot area
+              xmax = 5.75)+ 
+            annotation_custom(
+              grob = grid::textGrob(label = 'Ecological', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+              ymin = (max(CC_goal_c$order)+1)*14/15,      # Vertical position of the textGrob
+              ymax = (max(CC_goal_c$order)+1)*14/15,
+              xmin = 5.75,         # Note: The grobs are positioned outside the plot area
+              xmax = 5.75)+ 
+            annotation_custom(
+              grob = grid::textGrob(label = 'Institutional', just = 'left',gp = gpar(fontsize = 12, col = 'darkblue')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+              ymin = (max(CC_goal_c$order)+1)*12/15,      # Vertical position of the textGrob
+              ymax = (max(CC_goal_c$order)+1)*12/15,
+              xmin = 5.75,         # Note: The grobs are positioned outside the plot area
+              xmax = 5.75)
+          
+          pdf(paste0('country_figs/Goal_plot_', country_list[[x]],nr,'.pdf'), width = 6.8)
+          
+          gt <- ggplot_gtable(ggplot_build(CC_goal_plot))
+          gt$layout$clip[gt$layout$name == "panel"] <- "off"
+          grid::grid.draw(gt)
+          
+          dev.off()
+          
+          
+          #What examples are used most within a CC context vs without? Difference between implemented versus idea?
+          
+          CC_ex_c <-
+            dat2 %>% 
+            filter(!(is.na(Implemented) | is.na(Community) | is.na(Context) | is.na(Example))) %>% 
+            group_by(Context, Community, Implemented, Example) %>% 
+            summarise(N_Example = n()) %>% 
+            left_join(dat2 %>%  
+                        filter(!(is.na(Implemented) | is.na(Community) | is.na(Context)| is.na(Example))) %>% 
+                        group_by(Context, Community, Implemented) %>%
+                        summarise(total = n())) %>% 
+            mutate(Prop_Example = round(N_Example/total,2)) %>% 
+            arrange(Context, Community, Implemented, desc(Prop_Example)) %>% 
+            #right_join(CC_ex %>% 
+            #             select(Context, Community, Implemented)) %>% 
+            mutate(id = 1:n()) %>% 
+            filter(id < 11)%>% 
+            ungroup %>% 
+            rename(`Proportion of adaptation options` = Prop_Example) %>% 
+            mutate(#Context = ifelse(Context=='CC', 'Climate change context', 'Non-climate-change context'),
+              Community = ifelse(Community == 'Y', 'Community focused', 'Not community focused'),
+              Implemented = ifelse(Implemented == 'Y', 'Implemented', 'Not implemented'),
+              Example = ifelse(grepl('Financial assistance or investment for entering,', Example), 'Financial assistance or investment for entering,', Example))
+          
+          write_csv(CC_ex_c %>% 
+                      unite(Attributes, Context, Community, Implemented) %>% 
+                      select(-c(N_Example, total, id)) %>% 
+                      spread(key = Attributes, value = `Proportion of adaptation options`), paste0('country_figs/CC_ex_', country_list[[x]], '.csv'))
+          
+          
+          CC_ex_plot <-
+            CC_ex_c %>% 
+            ungroup %>% 
+            rename(`Proportion of adaptation options` = Prop_Example) %>% 
+            mutate(#Context = ifelse(Context=='CC', 'Climate change', 'Fisheries'),
+              Community = ifelse(Community == 'Y', 'Community focused', 'Not community focused'),
+              Implemented = ifelse(Implemented == 'Y', 'Implemented', 'Not implemented'),
+              Example = ifelse(grepl('Financial assistance or investment for entering,', Example), 'Financial assistance or investment for entering,', Example)) %>% 
+            ggplot(aes(x = 1, y = 11 - id, label = Example, size = `Proportion of adaptation options`)) + 
+            geom_text()+
+            theme_classic()+ 
+            theme(panel.border = element_rect(fill = NA), axis.text.y = element_blank(),axis.text.x = element_blank(), axis.ticks = element_blank())+
+            xlab('')+ylab('')+
+            labs(size="Proportion of\nadaptation\noptions") +
+            scale_y_continuous(expand = expand_scale(), limits = c(0,11))+
+            scale_size(breaks = c(0.05, 0.1, 0.2, 0.3), labels = as.character(c(0.05, 0.1, 0.2, 0.3)))+
+            facet_grid( Community*Implemented ~ Context) 
+          
+          g <- ggplot_gtable(ggplot_build(CC_ex_plot))
+          strip_both <- which(grepl('strip-', g$layout$name))
+          fills <- c("green","gold","white","gold", "green","white","white","white")
+          k <- 1
+          for (i in strip_both[3:6]) {
+            j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
+            jj <- which(grepl('rect', g$grobs[[i]]$grobs[[2]]$childrenOrder))
+            g$grobs[[i]]$grobs[[1]]$children[[j]]$gp$fill <- fills[k]
+            g$grobs[[i]]$grobs[[2]]$children[[jj]]$gp$fill <- fills[k+1]
+            k <- k+2
+          }
+          fills <- c('#F8766D', '#00BFC4')
+          k <- 1
+          for (i in strip_both[1:2]) {
+            j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
+            g$grobs[[i]]$grobs[[1]]$children[[j]]$gp$fill <- fills[k]
+            k <- k+1
+          }
+          
+          pdf(paste0('country_figs/CC_ex_', country_list[[x]],nr, '.pdf'), width = 7.8, height = 6.2)
+          grid.draw(g)
+          dev.off()
+          
+          
+          #What examples are anticipatory versus responsive versus both?
+          
+          
+          CC_ant_c <-
+            dat2 %>% 
+            filter(!(is.na(Context) | is.na(Example) | is.na(Implemented))) %>% 
+            group_by(Context, Example, Implemented) %>% 
+            summarise(Anticipatory = sum(Anticipatory, na.rm = T),
+                      Responsive = sum(Responsive, na.rm = T),
+                      Both = sum(Both, na.rm = T)
+            )%>% 
+            mutate(all = Anticipatory+Responsive+Both) %>% 
+            left_join(dat2 %>% 
+                        filter(!(is.na(Context) | is.na(Example))) %>% 
+                        group_by(Context, Example) %>% 
+                        filter(Context=='CC') %>% 
+                        summarise(Anticipatory = sum(Anticipatory, na.rm = T),
+                                  Responsive = sum(Responsive, na.rm = T),
+                                  Both = sum(Both, na.rm = T)
+                        )%>% 
+                        mutate(Prop_Ant = Anticipatory/(Anticipatory+Responsive+Both)) %>% 
+                        arrange(desc(Prop_Ant)) %>% 
+                        mutate(id = 1:n()) %>%
+                        ungroup() %>% 
+                        select(Example, id)
+            ) %>% 
+            mutate(Prop_Anticipatory = Anticipatory/all,
+                   Prop_Responsive = Responsive/all,
+                   Prop_Both = Both/all) %>% 
+            arrange(id) %>% 
+            right_join(CC_ant %>% 
+                         select(Context, Example, Implemented)) 
+          #filter(id < 11)
+          CC_ant_c %>% 
+            select(Context, Example, Implemented, Prop_Anticipatory, Prop_Responsive, Prop_Both) %>%
+            #  rename(Anticipatory = Prop_Anticipatory, Responsive = Prop_Responsive, Both = Prop_Both) %>% 
+            mutate(Anticipatory = round(Prop_Anticipatory,2), `Resp. or Both` = Prop_Responsive + Prop_Both,
+                   Implemented = ifelse(Implemented == 'Y', 'Implemented', 'Not implemented')
+            ) %>% 
+            select(-c(Prop_Anticipatory, Prop_Responsive, Prop_Both, `Resp. or Both`)) %>%
+            unite(Attributes, Context, Implemented) %>% 
+            spread(key = Attributes, value = Anticipatory) %>% 
+            write_csv(paste0('country_figs/CC_ant_', country_list[[x]], '.csv'))
+          
+          
+          ant_labs <-
+            dat %>% 
+            filter(!(is.na(Context) | is.na(Example) | is.na(Implemented))) %>% 
+            group_by(Context, Example, Implemented) %>% 
+            filter(Context=='CC') %>% 
+            summarise(Anticipatory = sum(Anticipatory, na.rm = T),
+                      Responsive = sum(Responsive, na.rm = T),
+                      Both = sum(Both, na.rm = T)
+            )%>% 
+            mutate(Prop_Ant = Anticipatory/(Anticipatory+Responsive+Both)) %>% 
+            arrange(desc(Prop_Ant)) %>%
+            select(Example) %>% 
+            distinct() %>% 
+            mutate(id = 1:n()) %>%
+            ungroup() %>% 
+            select(Example, Context, id) %>% 
+            mutate(lab = substr(Example, 1, 49),
+                   lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab)
+            ) %>% 
+            left_join(labsc %>% 
+                        select(lab, col, Example, Context)) %>% 
+            distinct() %>% 
+            mutate(col_order=ifelse(col=='aquamarine3',1,
+                                    ifelse(col=='darkgoldenrod3',2,3))) %>% 
+            arrange(lab) %>% 
+            mutate(br = n():1,
+                   x = 2) %>% 
+            arrange(col_order, lab)
+          
+          Ant_plot1 <-
+            CC_ant_c %>% 
+            select(Context, Example, Implemented, Prop_Anticipatory, Prop_Responsive, Prop_Both) %>%
+            #      rename(Anticipatory = Prop_Anticipatory, Responsive = Prop_Responsive, Both = Prop_Both) %>% 
+            mutate(Anticipatory = Prop_Anticipatory, `Resp. or Both` = Prop_Responsive + Prop_Both) %>% 
+            select(-c(Prop_Anticipatory, Prop_Responsive, Prop_Both)) %>% 
+            ungroup() %>% 
+            mutate(Example = substr(Example, 1, 49),
+                   Example = ifelse(Example=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', Example),
+                   Context = ifelse(Context=='N', 'F', Context),
+                   Implemented = ifelse(Implemented=='Y', 'I', 'N')) %>%
+            mutate(Example = factor(Example, levels = ant_labs$lab %>% unique())) %>% 
+            gather(value = 'Count', key = 'Group', -c('Context', 'Example','Implemented')) %>% 
+            group_by(Context, Example, Implemented) %>% 
+            ggplot(aes(x="", y=Count, fill=Group))+
+            geom_bar(width = 1, stat = "identity")+ 
+            #scale_fill_manual(values=c("aquamarine", "blue", "red"))+ 
+            scale_fill_manual(values=c("blue", "red"))+ 
+            coord_polar("y", start=0) + 
+            theme_void() + 
+            theme(legend.position="left", plot.margin=unit(c(0,0,0,0.1),"cm"))+
+            labs(fill = '') +
+            facet_grid(Example ~Context*Implemented) 
+          
+          Ant_plot <-
+            CC_ant_c %>% 
+            select(Context, Example, Implemented, Prop_Anticipatory, Prop_Responsive, Prop_Both) %>%
+            #rename(Anticipatory = Prop_Anticipatory, Responsive = Prop_Responsive, Both = Prop_Both) %>% 
+            mutate(Anticipatory = Prop_Anticipatory, `Resp. or Both` = Prop_Responsive + Prop_Both) %>% 
+            select(-c(Prop_Anticipatory, Prop_Responsive, Prop_Both)) %>% 
+            ungroup() %>% 
+            mutate(Example = substr(Example, 1, 49),
+                   Example = ifelse(Example=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', Example),
+                   Context = ifelse(Context=='N', 'F', Context),
+                   Implemented = ifelse(Implemented=='Y', 'I', 'N')) %>%
+            mutate(Example = factor(Example, levels = ant_labs$lab %>% unique())) %>% 
+            gather(value = 'Count', key = 'Group', -c('Context', 'Example','Implemented')) %>% 
+            group_by(Context, Example, Implemented) %>% 
+            ggplot(aes(x="", y=Count, fill=Group))+
+            geom_bar(width = 1, stat = "identity")+ 
+            #scale_fill_manual(values=c("aquamarine", "blue", "red"))+
+            scale_fill_manual(values=c("blue", "red"))+
+            coord_polar("y", start=0) + 
+            theme_void() + 
+            theme(legend.position="left", strip.text.y = element_text(colour = 'white'), plot.margin=unit(c(0,0,0,0.1),"cm"))+
+            labs(fill = '') +
+            facet_grid(Example ~Context*Implemented)  
+          
+          #, strip.text.y = element_text(colour = 'white')
+          
+          gp1 <- ggplot_gtable(ggplot_build(Ant_plot1))
+          gp <- ggplot_gtable(ggplot_build(Ant_plot))
+          gp$widths  <- gp1$widths
+          gp$heights <- gp1$heights
+          gp$widths[10] <- gp1$widths[10] + gp1$widths[10]
+          gp$widths[14] <- gp1$widths[14] + gp1$widths[14]*0.5
+          #gp <- ggplotGrob(gp)
+          #gtable_show_layout(gp)
+          areas <- gtable_filter(gp, "strip-r", trim = F)$layout
+          
+          leg <- which(sapply(gp$grobs, function(x) x$name) == "guide-box")
+          legend <- gp$grobs[[leg]] 
+          gp0 <- gp 
+          
+          leg2 <- ggplot() + geom_blank(aes(c(0,rep(1,4)),1:5)) +  theme_void() +
+            scale_y_continuous(expand = expand_scale())+
+            scale_x_continuous(expand = expand_scale())+
+            theme(plot.margin = unit(c(0,0,0,0), "lines")) +
+            annotation_custom(
+              grob = grid::textGrob(label = 'Adaptation\noptions:', just = 'left',gp = gpar(fontsize = 12, fontface = 'bold')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+              ymin = 4,      # Vertical position of the textGrob
+              ymax = 5,
+              xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+              xmax = 0.05) +
+            annotation_custom(
+              grob = grid::textGrob(label = 'Ecological', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+              ymin = 2.5,      # Vertical position of the textGrob
+              ymax = 3.5,
+              xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+              xmax = 0.05) +
+            annotation_custom(
+              grob = grid::textGrob(label = 'Social', just = 'left',gp = gpar(fontsize = 12, col = 'goldenrod3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+              ymin = 2,      # Vertical position of the textGrob
+              ymax = 3,
+              xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+              xmax = 0.05)+
+            annotation_custom(
+              grob = grid::textGrob(label = 'Institutional', just = 'left',gp = gpar(fontsize = 12, col = 'darkblue')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+              ymin = 1.5,      # Vertical position of the textGrob
+              ymax = 2.5,
+              xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+              xmax = 0.05)
+          
+          for(i in 1:dim(areas)[1]){
+            gp0 <- gtable_add_grob(x = gp0,
+                                   grobs = tableGrob(ant_labs$lab[i],
+                                                     theme = ttheme_minimal(base_colour = as.character(ant_labs$col[i]))),
+                                   t = areas$t[i], 
+                                   l = areas$l[i], 
+                                   b = areas$b[i], 
+                                   r = areas$r[i], 
+                                   name = paste0("new_strip-r-",i))
+          }
+          
+          
+          #grid::grid.draw(gp0)
+          
+          pdf(paste0('country_figs/Ant_plot_', country_list[[x]],nr, '.pdf'), width = 6.25, height = 7.5)
+          grid.newpage()
+          pushViewport(viewport(layout = grid.layout(8, 6)))
+          print(leg2, vp=viewport(layout.pos.row = 1:3, layout.pos.col = 1))
+          #print(grid.draw(legend), vp=viewport(layout.pos.row = 5, layout.pos.col = 1))
+          print(grid.draw(gp0), vp =viewport(layout.pos.row = 1:8, layout.pos.col = 2:6))
+          dev.off()
+          
+          #What managers implement which examples?
+          
+          CC_man_c <-
+            dat2 %>% 
+            filter(!(is.na(Context) | is.na(Example) | is.na(Implemented))) %>% 
+            group_by(Context, Example, Implemented) %>% 
+            summarise(Internat. = sum(Internat., na.rm = T),
+                      `Nat. govt.` = sum(`Nat. govt.`, na.rm = T),
+                      `Region. govt.` = sum(`Region. govt.`, na.rm = T),
+                      `Local govt.` = sum(`Local govt.`, na.rm = T),
+                      NGO = sum(NGO, na.rm = T),
+                      Uni. = sum(Uni., na.rm = T),
+                      `Community assoc.` = sum(`Community assoc.`, na.rm = T),
+                      `Business coop.` = sum(`Business coop.`, na.rm = T),
+                      Business = sum(Business, na.rm = T),
+                      Individual = sum(Individual, na.rm = T)
+            )%>% 
+            mutate(all = Internat. + `Nat. govt.` + `Region. govt.` + `Local govt.` + NGO + Uni. + `Community assoc.` + `Business coop.` + Business + Individual) %>% 
+            left_join(dat2 %>% 
+                        filter(!(is.na(Context) | is.na(Example))) %>% 
+                        group_by(Context, Example) %>% 
+                        filter(Context=='CC') %>% 
+                        summarise(Internat. = sum(Internat., na.rm = T),
+                                  `Nat. govt.` = sum(`Nat. govt.`, na.rm = T),
+                                  `Region. govt.` = sum(`Region. govt.`, na.rm = T),
+                                  `Local govt.` = sum(`Local govt.`, na.rm = T),
+                                  NGO = sum(NGO, na.rm = T),
+                                  Uni. = sum(Uni., na.rm = T),
+                                  `Community assoc.` = sum(`Community assoc.`, na.rm = T),
+                                  `Business coop.` = sum(`Business coop.`, na.rm = T),
+                                  Business = sum(Business, na.rm = T),
+                                  Individual = sum(Individual, na.rm = T)
+                        )%>% 
+                        mutate(all = Internat. + `Nat. govt.` + `Region. govt.` + `Local govt.` + NGO + Uni. + `Community assoc.` + `Business coop.` + Business + Individual) %>% 
+                        mutate(Prop_top = (Internat. + `Nat. govt.` + `Region. govt.`)/all) %>% 
+                        arrange(desc(Prop_top)) %>% 
+                        mutate(id = 1:n()) %>%
+                        ungroup() %>% 
+                        select(Example, id)
+            ) %>% 
+            mutate(Prop_top = round((Internat. + `Nat. govt.` + `Region. govt.`)/all,3),
+                   Prop_bottom = round((`Local govt.` + `Community assoc.` + `Business coop.`)/all,3),
+                   Prop_NGO = round((NGO + Uni.)/all,3),
+                   Prop_ind = round((Business + Individual)/all,3)) %>% 
+            arrange(id)%>% 
+            right_join(CC_man %>% 
+                         select(Context, Example, Implemented)) 
+          #filter(id < 11)
+          
+          write_csv(CC_man_c %>% 
+                      select(Example, Context, Implemented, 
+                             `Proportion Top-down` = Prop_top, 
+                             `Proportion Bottom-up` = Prop_bottom, 
+                             `Proportion NGO` = Prop_NGO,
+                             `Proportion Individual` = Prop_ind) %>% 
+                      arrange(Example, Context, Implemented), 
+                    paste0('country_figs/CC_man_', country_list[[x]],'.csv'))
+          
+          
+          Man_plot1 <-
+            CC_man_c %>% 
+            select(Context, Example, Implemented, Prop_top, Prop_bottom, Prop_NGO, Prop_ind) %>%
+            rename(`Top-down` = Prop_top, `Bottom-up` = Prop_bottom, `Non-profit` = Prop_NGO, Individual = Prop_ind ) %>% 
+            ungroup() %>% 
+            mutate(Example = substr(Example, 1, 49),
+                   Example = ifelse(Example=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', Example),
+                   Context = ifelse(Context=='N', 'F', Context),
+                   Implemented = ifelse(Implemented=='Y', 'I', 'N')) %>%
+            mutate(Example = factor(Example, levels = ant_labs$lab %>% unique())) %>% 
+            gather(value = 'Count', key = 'Group', -c('Context', 'Example','Implemented')) %>% 
+            group_by(Context, Example, Implemented) %>% 
+            ggplot(aes(x="", y=Count, fill=Group))+
+            geom_bar(width = 1, stat = "identity")+ 
+            #  scale_fill_discrete(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual')) +
+            scale_fill_manual(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual'), values=c("blue", "red", "darkorange","yellow"))+ 
+            coord_polar("y", start=0) + 
+            theme_void() + 
+            theme(legend.position="left", plot.margin=unit(c(0.1,0,0.1,0.1),"cm"))+
+            labs(fill = '') +
+            facet_grid(Example ~Context*Implemented) 
+          
+          Man_plot <-
+            CC_man_c %>% 
+            select(Context, Example, Implemented, Prop_top, Prop_bottom, Prop_NGO, Prop_ind) %>%
+            rename(`Top-down` = Prop_top, `Bottom-up` = Prop_bottom, `Non-profit` = Prop_NGO, Individual = Prop_ind ) %>% 
+            ungroup() %>% 
+            mutate(Example = substr(Example, 1, 49),
+                   Example = ifelse(Example=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', Example),
+                   Context = ifelse(Context=='N', 'F', Context),
+                   Implemented = ifelse(Implemented=='Y', 'I', 'N')) %>%
+            mutate(Example = factor(Example, levels = ant_labs$lab %>% unique())) %>% 
+            gather(value = 'Count', key = 'Group', -c('Context', 'Example','Implemented')) %>% 
+            group_by(Context, Example, Implemented) %>% 
+            ggplot(aes(x="", y=Count, fill=Group))+
+            geom_bar(width = 1, stat = "identity")+ 
+            #  scale_fill_discrete(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual')) +
+            scale_fill_manual(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual'), values=c("blue", "red", "darkorange","yellow"))+ 
+            coord_polar("y", start=0) + 
+            theme_void() + 
+            theme(legend.position="left", strip.text.y = element_text(colour = 'white'), plot.margin=unit(c(0.1,0,0.1,0.1),"cm"))+
+            labs(fill = '') +
+            facet_grid(Example ~Context*Implemented) 
+          #, strip.text.y = element_text(colour = 'white')
+          
+          gp1 <- ggplot_gtable(ggplot_build(Man_plot1))
+          gp <- ggplot_gtable(ggplot_build(Man_plot))
+          gp$widths  <- gp1$widths
+          gp$heights <- gp1$heights
+          gp$widths[10] <- gp1$widths[10] + gp1$widths[10]
+          gp$widths[14] <- gp1$widths[14] + gp1$widths[14]*0.5
+          #gp <- ggplotGrob(gp)
+          #gtable_show_layout(gp)
+          areas <- gtable_filter(gp, "strip-r", trim = F)$layout
+          
+          leg <- which(sapply(gp$grobs, function(x) x$name) == "guide-box")
+          legend <- gp$grobs[[leg]] 
+          gp0 <- gp 
+          
+          leg2 <- ggplot() + geom_blank(aes(c(0,rep(1,4)),1:5)) +  theme_void() +
+            scale_y_continuous(expand = expand_scale())+
+            scale_x_continuous(expand = expand_scale())+
+            theme(plot.margin = unit(c(0,0,0,0), "lines")) +
+            annotation_custom(
+              grob = grid::textGrob(label = 'Adaptation\noptions:', just = 'left',gp = gpar(fontsize = 12, fontface = 'bold')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+              ymin = 4,      # Vertical position of the textGrob
+              ymax = 5,
+              xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+              xmax = 0.05) +
+            annotation_custom(
+              grob = grid::textGrob(label = 'Ecological', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+              ymin = 2.5,      # Vertical position of the textGrob
+              ymax = 3.5,
+              xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+              xmax = 0.05) +
+            annotation_custom(
+              grob = grid::textGrob(label = 'Social', just = 'left',gp = gpar(fontsize = 12, col = 'goldenrod3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+              ymin = 2,      # Vertical position of the textGrob
+              ymax = 3,
+              xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+              xmax = 0.05)+
+            annotation_custom(
+              grob = grid::textGrob(label = 'Institutional', just = 'left',gp = gpar(fontsize = 12, col = 'darkblue')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+              ymin = 1.5,      # Vertical position of the textGrob
+              ymax = 2.5,
+              xmin = 0.05,         # Note: The grobs are positioned outside the plot area
+              xmax = 0.05)
+          
+          for(i in 1:dim(areas)[1]){
+            gp0 <- gtable_add_grob(x = gp0,
+                                   grobs = tableGrob(ant_labs$lab[i],
+                                                     theme = ttheme_minimal(base_colour = as.character(ant_labs$col[i]))),
+                                   t = areas$t[i], 
+                                   l = areas$l[i], 
+                                   b = areas$b[i], 
+                                   r = areas$r[i], 
+                                   name = paste0("new_strip-r-",i))
+          }
+          
+          
+          grid::grid.draw(gp0)
+          
+          pdf(paste0('country_figs/Man_plot_',country_list[[x]],nr,'.pdf'), width = 6.25, height = 7.5)
+          grid.newpage()
+          pushViewport(viewport(layout = grid.layout(8, 6)))
+          print(leg2, vp=viewport(layout.pos.row = 1:3, layout.pos.col = 1))
+          #print(grid.draw(legend), vp=viewport(layout.pos.row = 5, layout.pos.col = 1))
+          print(grid.draw(gp0), vp =viewport(layout.pos.row = 1:8, layout.pos.col = 2:6))
+          dev.off()
+        }
+        , silent = T)  
+    }   
+    #  })
+    
+  }
 }
-
-allcountries <- dat %>% select(Country) %>% unique %>% unlist
-country_list <- NULL
-country_list[[1]]<-c(allcountries)
-for(i in (length(allcountries)+1):2){
-  country_list[[i]] <- c(allcountries[i-1])
-}
-
-#if(!byregion){country_list <- country_list[-1]}
-
-country_list <-
- set_names(country_list[-1], allcountries)
-#set_names(country_list[1], 'all')
-
-
-
-#country_list[-1] %>% 
-#  map(function(x){
-
-  for( i in 1:length(country_list)){
-    x <- country_list[[i]]
-    print(x)
-    
-  try(
-    {
-    dat2 <- 
-      dat %>% 
-      filter(Country %in% country_list[[x]]) 
-    
-    
-    #What are examples most often in response to? In CC vs not?
-    CC_stressor_spread_c <- 
-      dat2 %>% 
-      mutate(stress_tot = apply(dat2[5:14], 1, sum, na.rm = T),
-             max_tot = apply(dat2[5:14], 1, max, na.rm = T),
-             `Stock decline` = (max_tot + 1 - `Stock decline`)/stress_tot,
-             `Sp. distributional shifts` = (max_tot + 1 - `Sp. distributional shifts`)/stress_tot,
-             `Ocean acidification` = (max_tot + 1 - `Ocean acidification`)/stress_tot,
-             `Extreme climatic events` = (max_tot + 1 - `Extreme climatic events`)/stress_tot,
-             `Uncertainty (ecological)` = (max_tot + 1 - `Uncertainty (ecological)`)/stress_tot,
-             `Market changes` = (max_tot + 1 - `Market changes`)/stress_tot,
-             `Regulation change` = (max_tot + 1 - `Regulation change`)/stress_tot,
-             `Consolidation` = (max_tot + 1 - `Consolidation`)/stress_tot,
-             `Globalization` = (max_tot + 1 - `Globalization`)/stress_tot,
-             `Uncertainty (social)` = (max_tot + 1 - `Uncertainty (social)`)/stress_tot) %>% 
-      filter(!(is.na(Context) | is.na(Example) | stress_tot==0)) %>% 
-      group_by(Context, Example) %>%
-      summarise(`Stock decline` = round(sum(`Stock decline`, na.rm = T),2),
-                `Sp. distributional shifts` = round(sum(`Sp. distributional shifts`, na.rm = T),2),
-                `Ocean acidification` = round(sum(`Ocean acidification`, na.rm = T),2),
-                `Extreme climatic events` = round(sum(`Extreme climatic events`, na.rm = T),2),
-                `Uncertainty (ecological)` = round(sum(`Uncertainty (ecological)`, na.rm = T),2),
-                `Market changes` = round(sum(`Market changes`, na.rm = T),2),
-                `Regulation change` = round(sum(`Regulation change`, na.rm = T),2),
-                `Consolidation` = round(sum(`Consolidation`, na.rm = T),2),
-                `Globalization` = round(sum(`Globalization`, na.rm = T),2),
-                `Uncertainty (social)` = round(sum(`Uncertainty (social)`, na.rm = T),2)
-      ) %>% 
-      mutate(tot = `Stock decline` +  `Sp. distributional shifts` + `Ocean acidification` + `Extreme climatic events` +
-               `Uncertainty (ecological)` + `Market changes` + `Regulation change` + `Consolidation` + `Globalization` +`Uncertainty (social)`,
-             `Total score` = round(tot,2),
-      ) %>% 
-      arrange(Context, desc(`Total score`)) %>% 
-      ungroup() %>% 
-      filter(!is.na(`Total score`)) %>% 
-      mutate(order = n():1) %>% 
-      select(order, Context, Example, `Total score`, `Uncertainty (ecological)`, `Ocean acidification`, `Uncertainty (social)`,`Sp. distributional shifts`, `Extreme climatic events`, `Stock decline`, `Market changes`,`Regulation change`, `Globalization`, `Consolidation`) 
-    
-    CC_stressor_c <-
-      CC_stressor_spread_c %>% 
-      # mutate(max_tot = apply(CC_stressor_spread[5:14], 1, max, na.rm = T),
-      #        min_tot = apply(CC_stressor_spread[5:14], 1, min, na.rm = T),
-      #        `Stock decline` = (`Stock decline` - min_tot+0.001)/(max_tot- min_tot+0.001),
-      #        `Sp. distributional shifts` = (`Sp. distributional shifts`- min_tot+0.001)/(max_tot- min_tot+0.001),
-      #        `Ocean acidification` = (`Ocean acidification`- min_tot+0.001)/(max_tot- min_tot+0.001),
-      #        `Extreme climatic events` = (`Extreme climatic events`- min_tot+0.001)/(max_tot- min_tot+0.001),
-      #        `Uncertainty (ecological)` = (`Uncertainty (ecological)`- min_tot+0.001)/(max_tot- min_tot+0.001),
-      #        `Market changes` = (`Market changes`- min_tot+0.001)/(max_tot- min_tot+0.001),
-      #        `Regulation change` = (`Regulation change`- min_tot+0.001)/(max_tot- min_tot+0.001),
-      #        `Consolidation` = (`Consolidation`- min_tot+0.001)/(max_tot- min_tot+0.001),
-      #        `Globalization` = (`Globalization`- min_tot+0.001)/(max_tot- min_tot+0.001),
-    #        `Uncertainty (social)` = (`Uncertainty (social)`- min_tot)/(max_tot- min_tot+0.001)) %>% 
-    # select(-max_tot, -min_tot) %>% 
-    gather(val = 'Score', key = 'Stressor', -c(Context, Example, order)) %>% 
-      mutate(Score = ifelse(Score==0, NA, Score))
-    
-    #View(CC_stressor_spread)
-    
-    br <- CC_stressor_spread_c %>% select(order) %>% unlist %>% c(.)
-    lab <- CC_stressor_spread_c %>% select(Example) %>% unlist %>% substr(., 1, 49) 
-    
-    labsc <- data.frame(x = -12.5, 
-                        br, 
-                        lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab),
-                        Example = CC_stressor_spread_c %>% select(Example) %>% unlist,
-                        Context = CC_stressor_spread_c %>% select(Context) %>% unlist) %>% 
-      left_join(labs %>% select(lab, col, Example, Context) %>% distinct)
-    
-    CC_stress_plot <-
-      CC_stressor_c %>% 
-      mutate(Stressor_name = Stressor, 
-             Stressor = recode(Stressor,`Total score` = 'A', `Uncertainty (ecological)` = 'B', `Ocean acidification` = 'C', `Uncertainty (social)` = 'D', `Sp. distributional shifts` = 'E', `Extreme climatic events` = 'F', `Stock decline` = 'G', `Market changes` = 'H', `Regulation change` = 'I', `Globalization` = 'J', `Consolidation` = 'K')) %>% 
-      filter(Stressor != 'A') %>% 
-      ggplot(aes(Stressor, order, size = Score, color = Context)) + 
-      geom_hline(aes(yintercept = order), color = 'lightgrey', size = 0.1) +
-      geom_point() + 
-      theme_light() + 
-      theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5),
-            plot.margin = unit(c(1,5,1,17.5), "lines")) +
-      ylab('') + 
-      #scale_size_continuous(trans = 'boxcox')+
-      scale_x_discrete(breaks=c('B','C', 'D', 'E', 'F', 'G', 'H', 'I' , 'J', 'K'),
-                       labels=c("Uncertainty (ecological)", "Ocean acidification", "Uncertainty (social)",
-                                "Sp. distributional shifts", "Extreme climatic events", "Stock decline", "Market changes","Regulation change", "Globalization", "Consolidation"), 
-                       position = 'top') +
-      scale_y_continuous(breaks = NULL, labels = c('', ''), limits = c(0,max(CC_stressor_c$order)+1), expand = expand_scale())+
-      scale_size(breaks = c(1, 5, 10, 20, 50 ,85), labels = as.character(c(1, 5, 10, 20, 50 ,85)))
-    
-    #c(0, max(CC_stressor_c$order)+1)
-    
-    for(i in 1:length(labsc$br)){ 
-      CC_stress_plot <-
-        CC_stress_plot + 
-        annotation_custom(
-          grob = grid::textGrob(label = labsc$lab[i], just = 'left',gp = gpar(col = as.character(labsc$col[i]))), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-          ymin = labsc$br[i]+0.2,      # Vertical position of the textGrob
-          ymax = labsc$br[i]-0.2,
-          xmin = labsc$x[i],         # Note: The grobs are positioned outside the plot area
-          xmax = labsc$x[i])
-    }
-    
-    
-    CC_stress_plot <-
-      CC_stress_plot + 
-      annotation_custom(
-        grob = grid::textGrob(label = 'Adaptation options:', just = 'left',gp = gpar(fontsize = 12, fontface = 'bold')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = max(CC_stressor_c$order)+1,      # Vertical position of the textGrob
-        ymax = max(CC_stressor_c$order)+1,
-        xmin = 11,         # Note: The grobs are positioned outside the plot area
-        xmax = 11)+ 
-      annotation_custom(
-        grob = grid::textGrob(label = 'Social', just = 'left',gp = gpar(fontsize = 12, col = 'goldenrod3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = (max(CC_stressor_c$order)+1)*13/15,      # Vertical position of the textGrob
-        ymax = (max(CC_stressor_c$order)+1)*13/15,
-        xmin = 11,         #   Note: The grobs are positioned outside the plot area
-        xmax = 11)+ 
-      annotation_custom(
-        grob = grid::textGrob(label = 'Ecological', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = (max(CC_stressor_c$order)+1)*14/15,      # Vertical position of the textGrob
-        ymax = (max(CC_stressor_c$order)+1)*14/15,
-        xmin = 11,         # Note: The grobs are positioned outside the plot area
-        xmax = 11)+ 
-      annotation_custom(
-        grob = grid::textGrob(label = 'Institutional', just = 'left',gp = gpar(fontsize = 12, col = 'darkblue')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = (max(CC_stressor_c$order)+1)*12/15,      # Vertical position of the textGrob
-        ymax = (max(CC_stressor_c$order)+1)*12/15,
-        xmin = 11,         # Note: The grobs are positioned outside the plot area
-        xmax = 11)
-    
-    pdf(paste0('country_figs/Stressor_plot_', country_list[[x]],nr,'.pdf'), width = 8.3)
-    
-    gt <- ggplot_gtable(ggplot_build(CC_stress_plot))
-    gt$layout$clip[gt$layout$name == "panel"] <- "off"
-    grid::grid.draw(gt)
-    
-    dev.off()
-    
-    
-    #What are examples most often intended to do? In CC vs not?
-    CC_goal_spread_c <- 
-      dat2 %>% 
-      mutate(stress_tot = apply(dat2[30:34], 1, sum, na.rm = T),
-             max_tot = apply(dat2[30:34], 1, max, na.rm = T),
-             `Reduce stressor` = (max_tot + 1 - `Reduce stressor`)/stress_tot,
-             `Reduce sensitivity` = (max_tot + 1 - `Reduce sensitivity`)/stress_tot,
-             Cope = (max_tot + 1 - Cope)/stress_tot,
-             `No change` = (max_tot + 1 - `No change`)/stress_tot,
-             `Take advantage` = (max_tot + 1 - `Take advantage`)/stress_tot) %>% 
-      filter(!(is.na(Context) | is.na(Example) | stress_tot==0)) %>% 
-      group_by(Context, Example) %>%
-      summarise(`Reduce stressor` = round(sum(`Reduce stressor`, na.rm = T),2),
-                `Reduce sensitivity` = round(sum(`Reduce sensitivity`, na.rm = T),2),
-                Cope = round(sum(Cope, na.rm = T),2),
-                `No change` = round(sum(`No change`, na.rm = T),2),
-                `Take advantage` = round(sum(`Take advantage`, na.rm = T),2)
-      ) %>% 
-      mutate(`Total score` = round(`Reduce stressor` +  `Reduce sensitivity` + Cope + `No change` + `Take advantage`,2)) %>% 
-      left_join(labsc %>% select(order = br, Example, Context)) %>%  
-      ungroup() %>% 
-      filter(!is.na(`Total score`)) %>% 
-      arrange(desc(order)) %>% 
-      select(order, Context, Example, `Reduce stressor`, `Reduce sensitivity`, Cope, `No change`, `Take advantage`) 
-    
-    CC_goal_c <-
-      CC_goal_spread_c %>% 
-      gather(val = 'Score', key = 'Goal', -c(Context, Example, order)) %>% 
-      mutate(Score = ifelse(Score==0, NA, Score))
-    
-    #View(CC_stressor_spread)
-    
-    br <- CC_goal_spread_c %>% select(order) %>% unlist %>% c(.)
-    lab <- CC_goal_spread_c %>% select(Example) %>% unlist %>% substr(., 1, 49) 
-    
-    labsg <- #data.frame(x = -13.75, br, lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab)) %>% 
-      #left_join(labs %>% select(lab, col) %>% distinct)
-      labsc %>% mutate(x = -13.75)
-    
-    CC_goal_plot <-
-      CC_goal_c %>% 
-      mutate(Goal_name = Goal, 
-             Goal = recode(Goal, `Reduce stressor` = 'A', `Reduce sensitivity` = 'B', Cope = 'C', `No change` = 'D', `Take advantage` = 'E')) %>% 
-      ggplot(aes(Goal, order, size = Score, color = Context)) + 
-      geom_point() + 
-      theme_light() + 
-      theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5),
-            plot.margin = unit(c(1,5,1,17.5), "lines")) +
-      ylab('') + 
-      scale_x_discrete(breaks=c('A', 'B','C', 'D', 'E'),
-                       labels=c("Reduce stressor", "Reduce sensitivity", "Cope",
-                                "No change", "Take advantage"),
-                       position = 'top') +
-      scale_y_continuous(breaks = NULL, labels = c('', ''), limits = c(0,max(CC_goal_c$order)+1), expand = expand_scale())+
-      scale_size(breaks = c(1, 5, 10, 20, 50 ,85, 125), labels = as.character(c(1, 5, 10, 20, 50 ,85, 125)))
-    
-    
-    for(i in 1:length(labsg$br)){ 
-      CC_goal_plot <-
-        CC_goal_plot + 
-        annotation_custom(
-          grob = grid::textGrob(label = labsg$lab[i], just = 'left',gp = gpar(col = as.character(labsg$col[i]))), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-          ymin = labsg$br[i]+0.2,      # Vertical position of the textGrob
-          ymax = labsg$br[i]-0.2,
-          xmin = labsg$x[i],         # Note: The grobs are positioned outside the plot area
-          xmax = labsg$x[i])
-    }
-    
-    
-    CC_goal_plot <-
-      CC_goal_plot + 
-      annotation_custom(
-        grob = grid::textGrob(label = 'Adaptation options:', just = 'left',gp = gpar(fontsize = 12, fontface = 'bold')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = max(CC_goal_c$order, na.rm = T)+1,      # Vertical position of the textGrob
-        ymax = max(CC_goal_c$order, na.rm)+1,
-        xmin = 5.75,         # Note: The grobs are positioned outside the plot area
-        xmax = 5.75)+ 
-      annotation_custom(
-        grob = grid::textGrob(label = 'Social', just = 'left',gp = gpar(fontsize = 12, col = 'goldenrod3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = (max(CC_goal_c$order)+1)*13/15,      # Vertical position of the textGrob
-        ymax = (max(CC_goal_c$order)+1)*13/15,
-        xmin = 5.75,         # Note: The grobs are positioned outside the plot area
-        xmax = 5.75)+ 
-      annotation_custom(
-        grob = grid::textGrob(label = 'Ecological', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = (max(CC_goal_c$order)+1)*14/15,      # Vertical position of the textGrob
-        ymax = (max(CC_goal_c$order)+1)*14/15,
-        xmin = 5.75,         # Note: The grobs are positioned outside the plot area
-        xmax = 5.75)+ 
-      annotation_custom(
-        grob = grid::textGrob(label = 'Institutional', just = 'left',gp = gpar(fontsize = 12, col = 'darkblue')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = (max(CC_goal_c$order)+1)*12/15,      # Vertical position of the textGrob
-        ymax = (max(CC_goal_c$order)+1)*12/15,
-        xmin = 5.75,         # Note: The grobs are positioned outside the plot area
-        xmax = 5.75)
-    
-    pdf(paste0('country_figs/Goal_plot_', country_list[[x]],nr,'.pdf'), width = 6.8)
-    
-    gt <- ggplot_gtable(ggplot_build(CC_goal_plot))
-    gt$layout$clip[gt$layout$name == "panel"] <- "off"
-    grid::grid.draw(gt)
-    
-    dev.off()
-    
-    
-    #What examples are used most within a CC context vs without? Difference between implemented versus idea?
-    
-    CC_ex_c <-
-      dat2 %>% 
-      filter(!(is.na(Implemented) | is.na(Community) | is.na(Context) | is.na(Example))) %>% 
-      group_by(Context, Community, Implemented, Example) %>% 
-      summarise(N_Example = n()) %>% 
-      left_join(dat2 %>%  
-                  filter(!(is.na(Implemented) | is.na(Community) | is.na(Context)| is.na(Example))) %>% 
-                  group_by(Context, Community, Implemented) %>%
-                  summarise(total = n())) %>% 
-      mutate(Prop_Example = round(N_Example/total,2)) %>% 
-      arrange(Context, Community, Implemented, desc(Prop_Example)) %>% 
-      #right_join(CC_ex %>% 
-      #             select(Context, Community, Implemented)) %>% 
-      mutate(id = 1:n()) %>% 
-      filter(id < 11)%>% 
-      ungroup %>% 
-      rename(`Proportion of adaptation options` = Prop_Example) %>% 
-      mutate(#Context = ifelse(Context=='CC', 'Climate change context', 'Non-climate-change context'),
-        Community = ifelse(Community == 'Y', 'Community focused', 'Not community focused'),
-        Implemented = ifelse(Implemented == 'Y', 'Implemented', 'Not implemented'),
-        Example = ifelse(grepl('Financial assistance or investment for entering,', Example), 'Financial assistance or investment for entering,', Example))
-    
-    write_csv(CC_ex_c %>% 
-                unite(Attributes, Context, Community, Implemented) %>% 
-                select(-c(N_Example, total, id)) %>% 
-                spread(key = Attributes, value = `Proportion of adaptation options`), paste0('country_figs/CC_ex_', country_list[[x]], '.csv'))
-    
-
-    CC_ex_plot <-
-      CC_ex_c %>% 
-      ungroup %>% 
-      rename(`Proportion of adaptation options` = Prop_Example) %>% 
-      mutate(#Context = ifelse(Context=='CC', 'Climate change', 'Fisheries'),
-             Community = ifelse(Community == 'Y', 'Community focused', 'Not community focused'),
-             Implemented = ifelse(Implemented == 'Y', 'Implemented', 'Not implemented'),
-             Example = ifelse(grepl('Financial assistance or investment for entering,', Example), 'Financial assistance or investment for entering,', Example)) %>% 
-      ggplot(aes(x = 1, y = 11 - id, label = Example, size = `Proportion of adaptation options`)) + 
-      geom_text()+
-      theme_classic()+ 
-      theme(panel.border = element_rect(fill = NA), axis.text.y = element_blank(),axis.text.x = element_blank(), axis.ticks = element_blank())+
-      xlab('')+ylab('')+
-      labs(size="Proportion of\nadaptation\noptions") +
-      scale_y_continuous(expand = expand_scale(), limits = c(0,11))+
-      scale_size(breaks = c(0.05, 0.1, 0.2, 0.3), labels = as.character(c(0.05, 0.1, 0.2, 0.3)))+
-      facet_grid( Community*Implemented ~ Context) 
-
-    g <- ggplot_gtable(ggplot_build(CC_ex_plot))
-    strip_both <- which(grepl('strip-', g$layout$name))
-    fills <- c("green","gold","white","gold", "green","white","white","white")
-    k <- 1
-    for (i in strip_both[3:6]) {
-      j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
-      jj <- which(grepl('rect', g$grobs[[i]]$grobs[[2]]$childrenOrder))
-      g$grobs[[i]]$grobs[[1]]$children[[j]]$gp$fill <- fills[k]
-      g$grobs[[i]]$grobs[[2]]$children[[jj]]$gp$fill <- fills[k+1]
-      k <- k+2
-    }
-    fills <- c('#F8766D', '#00BFC4')
-    k <- 1
-    for (i in strip_both[1:2]) {
-      j <- which(grepl('rect', g$grobs[[i]]$grobs[[1]]$childrenOrder))
-      g$grobs[[i]]$grobs[[1]]$children[[j]]$gp$fill <- fills[k]
-      k <- k+1
-    }
-    
-    pdf(paste0('country_figs/CC_ex_', country_list[[x]],nr, '.pdf'), width = 7.8, height = 6.2)
-    grid.draw(g)
-    dev.off()
-    
-    
-    #What examples are anticipatory versus responsive versus both?
-    
-    
-    CC_ant_c <-
-      dat2 %>% 
-      filter(!(is.na(Context) | is.na(Example) | is.na(Implemented))) %>% 
-      group_by(Context, Example, Implemented) %>% 
-      summarise(Anticipatory = sum(Anticipatory, na.rm = T),
-                Responsive = sum(Responsive, na.rm = T),
-                Both = sum(Both, na.rm = T)
-      )%>% 
-      mutate(all = Anticipatory+Responsive+Both) %>% 
-      left_join(dat2 %>% 
-                  filter(!(is.na(Context) | is.na(Example))) %>% 
-                  group_by(Context, Example) %>% 
-                  filter(Context=='CC') %>% 
-                  summarise(Anticipatory = sum(Anticipatory, na.rm = T),
-                            Responsive = sum(Responsive, na.rm = T),
-                            Both = sum(Both, na.rm = T)
-                  )%>% 
-                  mutate(Prop_Ant = Anticipatory/(Anticipatory+Responsive+Both)) %>% 
-                  arrange(desc(Prop_Ant)) %>% 
-                  mutate(id = 1:n()) %>%
-                  ungroup() %>% 
-                  select(Example, id)
-      ) %>% 
-      mutate(Prop_Anticipatory = Anticipatory/all,
-             Prop_Responsive = Responsive/all,
-             Prop_Both = Both/all) %>% 
-      arrange(id) %>% 
-      right_join(CC_ant %>% 
-                   select(Context, Example, Implemented)) 
-    #filter(id < 11)
-    CC_ant_c %>% 
-      select(Context, Example, Implemented, Prop_Anticipatory, Prop_Responsive, Prop_Both) %>%
-      #  rename(Anticipatory = Prop_Anticipatory, Responsive = Prop_Responsive, Both = Prop_Both) %>% 
-      mutate(Anticipatory = round(Prop_Anticipatory,2), `Resp. or Both` = Prop_Responsive + Prop_Both,
-             Implemented = ifelse(Implemented == 'Y', 'Implemented', 'Not implemented')
-      ) %>% 
-      select(-c(Prop_Anticipatory, Prop_Responsive, Prop_Both, `Resp. or Both`)) %>%
-      unite(Attributes, Context, Implemented) %>% 
-      spread(key = Attributes, value = Anticipatory) %>% 
-    write_csv(paste0('country_figs/CC_ant_', country_list[[x]], '.csv'))
-    
-    
-    ant_labs <-
-      dat %>% 
-      filter(!(is.na(Context) | is.na(Example) | is.na(Implemented))) %>% 
-      group_by(Context, Example, Implemented) %>% 
-      filter(Context=='CC') %>% 
-      summarise(Anticipatory = sum(Anticipatory, na.rm = T),
-                Responsive = sum(Responsive, na.rm = T),
-                Both = sum(Both, na.rm = T)
-      )%>% 
-      mutate(Prop_Ant = Anticipatory/(Anticipatory+Responsive+Both)) %>% 
-      arrange(desc(Prop_Ant)) %>%
-      select(Example) %>% 
-      distinct() %>% 
-      mutate(id = 1:n()) %>%
-      ungroup() %>% 
-      select(Example, Context, id) %>% 
-      mutate(lab = substr(Example, 1, 49),
-             lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab)
-      ) %>% 
-      left_join(labsc %>% 
-                  select(lab, col, Example, Context)) %>% 
-      distinct() %>% 
-      mutate(col_order=ifelse(col=='aquamarine3',1,
-                              ifelse(col=='darkgoldenrod3',2,3))) %>% 
-      arrange(lab) %>% 
-      mutate(br = n():1,
-             x = 2) %>% 
-      arrange(col_order, lab)
-    
-    Ant_plot1 <-
-      CC_ant_c %>% 
-      select(Context, Example, Implemented, Prop_Anticipatory, Prop_Responsive, Prop_Both) %>%
-#      rename(Anticipatory = Prop_Anticipatory, Responsive = Prop_Responsive, Both = Prop_Both) %>% 
-      mutate(Anticipatory = Prop_Anticipatory, `Resp. or Both` = Prop_Responsive + Prop_Both) %>% 
-      select(-c(Prop_Anticipatory, Prop_Responsive, Prop_Both)) %>% 
-      ungroup() %>% 
-      mutate(Example = substr(Example, 1, 49),
-             Example = ifelse(Example=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', Example),
-             Context = ifelse(Context=='N', 'F', Context),
-             Implemented = ifelse(Implemented=='Y', 'I', 'N')) %>%
-      mutate(Example = factor(Example, levels = ant_labs$lab %>% unique())) %>% 
-      gather(value = 'Count', key = 'Group', -c('Context', 'Example','Implemented')) %>% 
-      group_by(Context, Example, Implemented) %>% 
-      ggplot(aes(x="", y=Count, fill=Group))+
-      geom_bar(width = 1, stat = "identity")+ 
-      #scale_fill_manual(values=c("aquamarine", "blue", "red"))+ 
-      scale_fill_manual(values=c("blue", "red"))+ 
-      coord_polar("y", start=0) + 
-      theme_void() + 
-      theme(legend.position="left", plot.margin=unit(c(0,0,0,0.1),"cm"))+
-      labs(fill = '') +
-      facet_grid(Example ~Context*Implemented) 
-    
-    Ant_plot <-
-      CC_ant_c %>% 
-      select(Context, Example, Implemented, Prop_Anticipatory, Prop_Responsive, Prop_Both) %>%
-      #rename(Anticipatory = Prop_Anticipatory, Responsive = Prop_Responsive, Both = Prop_Both) %>% 
-      mutate(Anticipatory = Prop_Anticipatory, `Resp. or Both` = Prop_Responsive + Prop_Both) %>% 
-      select(-c(Prop_Anticipatory, Prop_Responsive, Prop_Both)) %>% 
-      ungroup() %>% 
-      mutate(Example = substr(Example, 1, 49),
-             Example = ifelse(Example=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', Example),
-             Context = ifelse(Context=='N', 'F', Context),
-             Implemented = ifelse(Implemented=='Y', 'I', 'N')) %>%
-      mutate(Example = factor(Example, levels = ant_labs$lab %>% unique())) %>% 
-      gather(value = 'Count', key = 'Group', -c('Context', 'Example','Implemented')) %>% 
-      group_by(Context, Example, Implemented) %>% 
-      ggplot(aes(x="", y=Count, fill=Group))+
-      geom_bar(width = 1, stat = "identity")+ 
-      #scale_fill_manual(values=c("aquamarine", "blue", "red"))+
-      scale_fill_manual(values=c("blue", "red"))+
-      coord_polar("y", start=0) + 
-      theme_void() + 
-      theme(legend.position="left", strip.text.y = element_text(colour = 'white'), plot.margin=unit(c(0,0,0,0.1),"cm"))+
-      labs(fill = '') +
-      facet_grid(Example ~Context*Implemented)  
-    
-    #, strip.text.y = element_text(colour = 'white')
-    
-    gp1 <- ggplot_gtable(ggplot_build(Ant_plot1))
-    gp <- ggplot_gtable(ggplot_build(Ant_plot))
-    gp$widths  <- gp1$widths
-    gp$heights <- gp1$heights
-    gp$widths[10] <- gp1$widths[10] + gp1$widths[10]
-    gp$widths[14] <- gp1$widths[14] + gp1$widths[14]*0.5
-    #gp <- ggplotGrob(gp)
-    #gtable_show_layout(gp)
-    areas <- gtable_filter(gp, "strip-r", trim = F)$layout
-    
-    leg <- which(sapply(gp$grobs, function(x) x$name) == "guide-box")
-    legend <- gp$grobs[[leg]] 
-    gp0 <- gp 
-    
-    leg2 <- ggplot() + geom_blank(aes(c(0,rep(1,4)),1:5)) +  theme_void() +
-      scale_y_continuous(expand = expand_scale())+
-      scale_x_continuous(expand = expand_scale())+
-      theme(plot.margin = unit(c(0,0,0,0), "lines")) +
-      annotation_custom(
-        grob = grid::textGrob(label = 'Adaptation\noptions:', just = 'left',gp = gpar(fontsize = 12, fontface = 'bold')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = 4,      # Vertical position of the textGrob
-        ymax = 5,
-        xmin = 0.05,         # Note: The grobs are positioned outside the plot area
-        xmax = 0.05) +
-      annotation_custom(
-        grob = grid::textGrob(label = 'Ecological', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = 2.5,      # Vertical position of the textGrob
-        ymax = 3.5,
-        xmin = 0.05,         # Note: The grobs are positioned outside the plot area
-        xmax = 0.05) +
-      annotation_custom(
-        grob = grid::textGrob(label = 'Social', just = 'left',gp = gpar(fontsize = 12, col = 'goldenrod3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = 2,      # Vertical position of the textGrob
-        ymax = 3,
-        xmin = 0.05,         # Note: The grobs are positioned outside the plot area
-        xmax = 0.05)+
-      annotation_custom(
-        grob = grid::textGrob(label = 'Institutional', just = 'left',gp = gpar(fontsize = 12, col = 'darkblue')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = 1.5,      # Vertical position of the textGrob
-        ymax = 2.5,
-        xmin = 0.05,         # Note: The grobs are positioned outside the plot area
-        xmax = 0.05)
-    
-    for(i in 1:dim(areas)[1]){
-      gp0 <- gtable_add_grob(x = gp0,
-                             grobs = tableGrob(ant_labs$lab[i],
-                                               theme = ttheme_minimal(base_colour = as.character(ant_labs$col[i]))),
-                             t = areas$t[i], 
-                             l = areas$l[i], 
-                             b = areas$b[i], 
-                             r = areas$r[i], 
-                             name = paste0("new_strip-r-",i))
-    }
-    
-    
-    #grid::grid.draw(gp0)
-    
-    pdf(paste0('country_figs/Ant_plot_', country_list[[x]],nr, '.pdf'), width = 6.25, height = 7.5)
-    grid.newpage()
-    pushViewport(viewport(layout = grid.layout(8, 6)))
-    print(leg2, vp=viewport(layout.pos.row = 1:3, layout.pos.col = 1))
-    #print(grid.draw(legend), vp=viewport(layout.pos.row = 5, layout.pos.col = 1))
-    print(grid.draw(gp0), vp =viewport(layout.pos.row = 1:8, layout.pos.col = 2:6))
-    dev.off()
-    
-    #What managers implement which examples?
-    
-    CC_man_c <-
-      dat2 %>% 
-      filter(!(is.na(Context) | is.na(Example) | is.na(Implemented))) %>% 
-      group_by(Context, Example, Implemented) %>% 
-      summarise(Internat. = sum(Internat., na.rm = T),
-                `Nat. govt.` = sum(`Nat. govt.`, na.rm = T),
-                `Region. govt.` = sum(`Region. govt.`, na.rm = T),
-                `Local govt.` = sum(`Local govt.`, na.rm = T),
-                NGO = sum(NGO, na.rm = T),
-                Uni. = sum(Uni., na.rm = T),
-                `Community assoc.` = sum(`Community assoc.`, na.rm = T),
-                `Business coop.` = sum(`Business coop.`, na.rm = T),
-                Business = sum(Business, na.rm = T),
-                Individual = sum(Individual, na.rm = T)
-      )%>% 
-      mutate(all = Internat. + `Nat. govt.` + `Region. govt.` + `Local govt.` + NGO + Uni. + `Community assoc.` + `Business coop.` + Business + Individual) %>% 
-      left_join(dat2 %>% 
-                  filter(!(is.na(Context) | is.na(Example))) %>% 
-                  group_by(Context, Example) %>% 
-                  filter(Context=='CC') %>% 
-                  summarise(Internat. = sum(Internat., na.rm = T),
-                            `Nat. govt.` = sum(`Nat. govt.`, na.rm = T),
-                            `Region. govt.` = sum(`Region. govt.`, na.rm = T),
-                            `Local govt.` = sum(`Local govt.`, na.rm = T),
-                            NGO = sum(NGO, na.rm = T),
-                            Uni. = sum(Uni., na.rm = T),
-                            `Community assoc.` = sum(`Community assoc.`, na.rm = T),
-                            `Business coop.` = sum(`Business coop.`, na.rm = T),
-                            Business = sum(Business, na.rm = T),
-                            Individual = sum(Individual, na.rm = T)
-                  )%>% 
-                  mutate(all = Internat. + `Nat. govt.` + `Region. govt.` + `Local govt.` + NGO + Uni. + `Community assoc.` + `Business coop.` + Business + Individual) %>% 
-                  mutate(Prop_top = (Internat. + `Nat. govt.` + `Region. govt.`)/all) %>% 
-                  arrange(desc(Prop_top)) %>% 
-                  mutate(id = 1:n()) %>%
-                  ungroup() %>% 
-                  select(Example, id)
-      ) %>% 
-      mutate(Prop_top = round((Internat. + `Nat. govt.` + `Region. govt.`)/all,3),
-             Prop_bottom = round((`Local govt.` + `Community assoc.` + `Business coop.`)/all,3),
-             Prop_NGO = round((NGO + Uni.)/all,3),
-             Prop_ind = round((Business + Individual)/all,3)) %>% 
-      arrange(id)%>% 
-      right_join(CC_man %>% 
-                   select(Context, Example, Implemented)) 
-    #filter(id < 11)
-    
-    write_csv(CC_man_c %>% 
-                select(Example, Context, Implemented, 
-                       `Proportion Top-down` = Prop_top, 
-                       `Proportion Bottom-up` = Prop_bottom, 
-                       `Proportion NGO` = Prop_NGO,
-                       `Proportion Individual` = Prop_ind) %>% 
-                arrange(Example, Context, Implemented), 
-              paste0('country_figs/CC_man_', country_list[[x]],'.csv'))
-    
-    
-    Man_plot1 <-
-      CC_man_c %>% 
-      select(Context, Example, Implemented, Prop_top, Prop_bottom, Prop_NGO, Prop_ind) %>%
-      rename(`Top-down` = Prop_top, `Bottom-up` = Prop_bottom, `Non-profit` = Prop_NGO, Individual = Prop_ind ) %>% 
-      ungroup() %>% 
-      mutate(Example = substr(Example, 1, 49),
-             Example = ifelse(Example=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', Example),
-             Context = ifelse(Context=='N', 'F', Context),
-             Implemented = ifelse(Implemented=='Y', 'I', 'N')) %>%
-      mutate(Example = factor(Example, levels = ant_labs$lab %>% unique())) %>% 
-      gather(value = 'Count', key = 'Group', -c('Context', 'Example','Implemented')) %>% 
-      group_by(Context, Example, Implemented) %>% 
-      ggplot(aes(x="", y=Count, fill=Group))+
-      geom_bar(width = 1, stat = "identity")+ 
-      #  scale_fill_discrete(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual')) +
-      scale_fill_manual(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual'), values=c("blue", "red", "darkorange","yellow"))+ 
-      coord_polar("y", start=0) + 
-      theme_void() + 
-      theme(legend.position="left", plot.margin=unit(c(0.1,0,0.1,0.1),"cm"))+
-      labs(fill = '') +
-      facet_grid(Example ~Context*Implemented) 
-    
-    Man_plot <-
-      CC_man_c %>% 
-      select(Context, Example, Implemented, Prop_top, Prop_bottom, Prop_NGO, Prop_ind) %>%
-      rename(`Top-down` = Prop_top, `Bottom-up` = Prop_bottom, `Non-profit` = Prop_NGO, Individual = Prop_ind ) %>% 
-      ungroup() %>% 
-      mutate(Example = substr(Example, 1, 49),
-             Example = ifelse(Example=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', Example),
-             Context = ifelse(Context=='N', 'F', Context),
-             Implemented = ifelse(Implemented=='Y', 'I', 'N')) %>%
-      mutate(Example = factor(Example, levels = ant_labs$lab %>% unique())) %>% 
-      gather(value = 'Count', key = 'Group', -c('Context', 'Example','Implemented')) %>% 
-      group_by(Context, Example, Implemented) %>% 
-      ggplot(aes(x="", y=Count, fill=Group))+
-      geom_bar(width = 1, stat = "identity")+ 
-      #  scale_fill_discrete(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual')) +
-      scale_fill_manual(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual'), values=c("blue", "red", "darkorange","yellow"))+ 
-      coord_polar("y", start=0) + 
-      theme_void() + 
-      theme(legend.position="left", strip.text.y = element_text(colour = 'white'), plot.margin=unit(c(0.1,0,0.1,0.1),"cm"))+
-      labs(fill = '') +
-      facet_grid(Example ~Context*Implemented) 
-    #, strip.text.y = element_text(colour = 'white')
-    
-    gp1 <- ggplot_gtable(ggplot_build(Man_plot1))
-    gp <- ggplot_gtable(ggplot_build(Man_plot))
-    gp$widths  <- gp1$widths
-    gp$heights <- gp1$heights
-    gp$widths[10] <- gp1$widths[10] + gp1$widths[10]
-    gp$widths[14] <- gp1$widths[14] + gp1$widths[14]*0.5
-    #gp <- ggplotGrob(gp)
-    #gtable_show_layout(gp)
-    areas <- gtable_filter(gp, "strip-r", trim = F)$layout
-    
-    leg <- which(sapply(gp$grobs, function(x) x$name) == "guide-box")
-    legend <- gp$grobs[[leg]] 
-    gp0 <- gp 
-    
-    leg2 <- ggplot() + geom_blank(aes(c(0,rep(1,4)),1:5)) +  theme_void() +
-      scale_y_continuous(expand = expand_scale())+
-      scale_x_continuous(expand = expand_scale())+
-      theme(plot.margin = unit(c(0,0,0,0), "lines")) +
-      annotation_custom(
-        grob = grid::textGrob(label = 'Adaptation\noptions:', just = 'left',gp = gpar(fontsize = 12, fontface = 'bold')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = 4,      # Vertical position of the textGrob
-        ymax = 5,
-        xmin = 0.05,         # Note: The grobs are positioned outside the plot area
-        xmax = 0.05) +
-      annotation_custom(
-        grob = grid::textGrob(label = 'Ecological', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = 2.5,      # Vertical position of the textGrob
-        ymax = 3.5,
-        xmin = 0.05,         # Note: The grobs are positioned outside the plot area
-        xmax = 0.05) +
-      annotation_custom(
-        grob = grid::textGrob(label = 'Social', just = 'left',gp = gpar(fontsize = 12, col = 'goldenrod3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = 2,      # Vertical position of the textGrob
-        ymax = 3,
-        xmin = 0.05,         # Note: The grobs are positioned outside the plot area
-        xmax = 0.05)+
-      annotation_custom(
-        grob = grid::textGrob(label = 'Institutional', just = 'left',gp = gpar(fontsize = 12, col = 'darkblue')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = 1.5,      # Vertical position of the textGrob
-        ymax = 2.5,
-        xmin = 0.05,         # Note: The grobs are positioned outside the plot area
-        xmax = 0.05)
-    
-    for(i in 1:dim(areas)[1]){
-      gp0 <- gtable_add_grob(x = gp0,
-                             grobs = tableGrob(ant_labs$lab[i],
-                                               theme = ttheme_minimal(base_colour = as.character(ant_labs$col[i]))),
-                             t = areas$t[i], 
-                             l = areas$l[i], 
-                             b = areas$b[i], 
-                             r = areas$r[i], 
-                             name = paste0("new_strip-r-",i))
-    }
-    
-    
-    grid::grid.draw(gp0)
-    
-    pdf(paste0('country_figs/Man_plot_',country_list[[x]],nr,'.pdf'), width = 6.25, height = 7.5)
-    grid.newpage()
-    pushViewport(viewport(layout = grid.layout(8, 6)))
-    print(leg2, vp=viewport(layout.pos.row = 1:3, layout.pos.col = 1))
-    #print(grid.draw(legend), vp=viewport(layout.pos.row = 5, layout.pos.col = 1))
-    print(grid.draw(gp0), vp =viewport(layout.pos.row = 1:8, layout.pos.col = 2:6))
-    dev.off()
-    }
-    , silent = T)  
- }   
-  #  })
-
-}
-
 }
