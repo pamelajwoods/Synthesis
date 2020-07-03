@@ -879,10 +879,11 @@
                       select(-c(Region, Context, Community)))
   
   xlims <- c(-1.1, 1.1)
+  sc <- 0.9
   
   ord_cc_comm$rowcoord[,1] <- ord_cc_comm$rowcoord[,1]*-1
   ord_cc_comm$colcoord[,1] <- ord_cc_comm$colcoord[,1]*-1
-  pdf(paste0('Ord_CC_Comm_',nr,'.pdf'), width = 5, height = 5)
+  pdf(paste0('Ord_CC_Comm_',nr,'.pdf'), width = 5*sc, height = 5*sc)
     ggord(ord_cc_comm, dat_ca1$Region, ellipse = FALSE, obslab = TRUE,
           xlims = xlims,
           ylims = c(-0.9,0.9))+ 
@@ -891,29 +892,29 @@
   
   
   
-  pdf(paste0('Ord_F_Comm_',nr,'.pdf'), width = 5, height = 5)
+  pdf(paste0('Ord_F_Comm_',nr,'.pdf'), width = 5*sc, height = 5*sc)
     ggord(ord_f_comm, dat_ca2$Region, ellipse = FALSE, obslab = TRUE,
           xlims = xlims,
           ylims = c(-0.9,0.9))+ 
       theme(legend.position = 'none')
   dev.off()
   
-  pdf(paste0('Ord_CC_Ncomm_',nr,'.pdf'), width = 5, height = 5)
+  pdf(paste0('Ord_CC_Ncomm_',nr,'.pdf'), width = 5*sc, height = 5*sc)
     ggord(ord_cc_ncomm, dat_ca3$Region, ellipse = FALSE, obslab = TRUE,
           xlims = xlims,
           ylims = c(-0.9,0.9))+ 
       theme(legend.position = 'none')
   dev.off()
   
-  pdf(paste0('Ord_F_Ncomm_',nr,'.pdf'), width = 5, height = 5)
+  pdf(paste0('Ord_F_Ncomm_',nr,'.pdf'), width = 5*sc, height = 5*sc)
     ggord(ord_f_ncomm, dat_ca4$Region, ellipse = FALSE, obslab = TRUE,
           xlims = xlims,
           ylims = c(-0.9,0.9))+ 
       theme(legend.position = 'none')
   dev.off()
   
-  pdf(paste0('Ord_F_Ncomm_leg',nr,'.pdf'), width = 5.85, height = 5)
-    ggord(ord_f_ncomm, dat_ca4$Region, ellipse = FALSE,
+  pdf(paste0('Ord_F_Ncomm_leg',nr,'.pdf'), width = 5.85*sc, height = 5*sc)
+    ggord(ord_f_ncomm, dat_ca4$Region, ellipse = FALSE, obslab = TRUE,
           xlims = xlims,
           ylims = c(-0.9,0.9)) 
   dev.off()
