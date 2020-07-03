@@ -879,7 +879,7 @@
                       select(-c(Region, Context, Community)))
   
   xlims <- c(-1.1, 1.1)
-  sc <- 0.9
+  sc <- 0.8
   
   ord_cc_comm$rowcoord[,1] <- ord_cc_comm$rowcoord[,1]*-1
   ord_cc_comm$colcoord[,1] <- ord_cc_comm$colcoord[,1]*-1
