@@ -2,9 +2,14 @@ library(tidyverse)
 library(grid)
 library(gtable)
 library(gridExtra)
+library(devtools)
+#install_github('fawda123/ggord')
+library(ggord)
+library(ca)
 
-byregion <- TRUE
-noresearch <- FALSE
+byregion <- FALSE # region specific or not?
+noresearch <- FALSE # remove research from plots just to make other ones bigger
+if(noresearch==T){byregion<-FALSE}
 
 for(noresearch in c(FALSE)){
   
@@ -16,7 +21,8 @@ dat_raw <-
   #dat_raw %>%
   #group_by(Implemented) %>% 
   #summarise(n = n())
-
+  
+#This takes care of recording inconsistencies
 dat <-
   dat_raw %>% 
   mutate(Implemented = ifelse(Implemented=='Y' | Implemented=='y' | Implemented=='Y?', 'Y',
@@ -81,13 +87,13 @@ dat <-
                           ifelse(Country=='US-CAN', 'USA',
                                  ifelse(Country=='Int', 'INT',
                                         ifelse(Country=='US', 'USA',
-                                               ifelse(Country=='FIN-AX', 'FIN',
-                                                      ifelse(Country=='Baltic Sea', 'EU',
+                                               #ifelse(Country=='FIN-AX', 'FIN',
+                                                      ifelse(Country=='Baltic Sea', 'SW', 
                                                              ifelse(Country=='NL (Southwest Delta)', 'NL', 
                                                                     ifelse(Country == 'Italy', 'IT', 
                                                                            ifelse(Country == 'Sweden', 'SW',
                                                                                   ifelse(Country == 'USA-NE', 'US-NE',
-                                                                                                Country)))))))))),
+                                                                                                Country))))))))),
          Country = ifelse(Country=='USA-NW', 'US-NW',Country)
   )
          
@@ -118,20 +124,20 @@ CC_stressor_spread <-
            `Uncertainty (social)` = (max_tot + 1 - `Uncertainty (social)`)/stress_tot) %>% 
     filter(!(is.na(Context) | is.na(Example) | stress_tot==0)) %>% 
     group_by(Context, Example) %>%
-    summarise(`Stock decline` = sum(`Stock decline`, na.rm = T),
-              `Sp. distributional shifts` = sum(`Sp. distributional shifts`, na.rm = T),
-              `Ocean acidification` = sum(`Ocean acidification`, na.rm = T),
-              `Extreme climatic events` = sum(`Extreme climatic events`, na.rm = T),
-              `Uncertainty (ecological)` = sum(`Uncertainty (ecological)`, na.rm = T),
-              `Market changes` = sum(`Market changes`, na.rm = T),
-              `Regulation change` = sum(`Regulation change`, na.rm = T),
-              `Consolidation` = sum(`Consolidation`, na.rm = T),
-              `Globalization` = sum(`Globalization`, na.rm = T),
-              `Uncertainty (social)` = sum(`Uncertainty (social)`, na.rm = T)
+    summarise(`Stock decline` = round(sum(`Stock decline`, na.rm = T), 2),
+              `Sp. distributional shifts` = round(sum(`Sp. distributional shifts`, na.rm = T), 2),
+              `Ocean acidification` = round(sum(`Ocean acidification`, na.rm = T), 2),
+              `Extreme climatic events` = round(sum(`Extreme climatic events`, na.rm = T), 2),
+              `Uncertainty (ecological)` = round(sum(`Uncertainty (ecological)`, na.rm = T), 2),
+              `Market changes` = round(sum(`Market changes`, na.rm = T), 2),
+              `Regulation change` = round(sum(`Regulation change`, na.rm = T), 2),
+              `Consolidation` = round(sum(`Consolidation`, na.rm = T), 2),
+              `Globalization` = round(sum(`Globalization`, na.rm = T), 2),
+              `Uncertainty (social)` = round(sum(`Uncertainty (social)`, na.rm = T), 2)
               ) %>% 
     mutate(tot = `Stock decline` +  `Sp. distributional shifts` + `Ocean acidification` + `Extreme climatic events` +
              `Uncertainty (ecological)` + `Market changes` + `Regulation change` + `Consolidation` + `Globalization` +`Uncertainty (social)`,
-           `Total score` = tot,
+           `Total score` = round(tot,2),
            ) %>% 
   arrange(Context, desc(`Total score`)) %>% 
   ungroup() %>% 
@@ -172,8 +178,9 @@ CC_stress_plot <-
   CC_stressor %>% 
   mutate(Stressor_name = Stressor, 
          Stressor = recode(Stressor,`Total score` = 'A', `Uncertainty (ecological)` = 'B', `Ocean acidification` = 'C', `Uncertainty (social)` = 'D', `Sp. distributional shifts` = 'E', `Extreme climatic events` = 'F', `Stock decline` = 'G', `Market changes` = 'H', `Regulation change` = 'I', `Globalization` = 'J', `Consolidation` = 'K')) %>% 
-  filter(Stressor != 'A') %>% 
+  filter(Stressor != 'A') %>%
   ggplot(aes(Stressor, order, size = Score, color = Context)) + 
+  geom_hline(aes(yintercept = order), color = 'lightgrey', size = 0.1) +
   geom_point() + 
   theme_light() + 
   theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5),
@@ -184,7 +191,8 @@ CC_stress_plot <-
                                   labels=c("Uncertainty (ecological)", "Ocean acidification", "Uncertainty (social)",
                                            "Sp. distributional shifts", "Extreme climatic events", "Stock decline", "Market changes","Regulation change", "Globalization", "Consolidation"), 
                    position = 'top') +
-  scale_y_continuous(breaks = c(0,57), labels = c('', ''), limits = c(0,57), expand = expand_scale())
+  scale_y_continuous(breaks = c(0,57), labels = c('', ''), limits = c(0,57), expand = expand_scale()) + 
+  scale_size(breaks = c(1, 5, 10, 20, 50 ,85), labels = as.character(c(1, 5, 10, 20, 50 ,85)))
 
 
  for(i in 1:length(labs$br)){ 
@@ -214,7 +222,7 @@ CC_stress_plot <-
     xmin = 11,         # Note: The grobs are positioned outside the plot area
     xmax = 11)+ 
   annotation_custom(
-    grob = grid::textGrob(label = 'Natural resource mgmt', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+    grob = grid::textGrob(label = 'Ecological', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
     ymin = 56,      # Vertical position of the textGrob
     ymax = 56,
     xmin = 11,         # Note: The grobs are positioned outside the plot area
@@ -246,13 +254,13 @@ CC_goal_spread <-
          `Take advantage` = (max_tot + 1 - `Take advantage`)/stress_tot) %>% 
   filter(!(is.na(Context) | is.na(Example) | stress_tot==0)) %>% 
   group_by(Context, Example) %>%
-  summarise(`Reduce stressor` = sum(`Reduce stressor`, na.rm = T),
-            `Reduce sensitivity` = sum(`Reduce sensitivity`, na.rm = T),
-            Cope = sum(Cope, na.rm = T),
-            `No change` = sum(`No change`, na.rm = T),
-            `Take advantage` = sum(`Take advantage`, na.rm = T)
+  summarise(`Reduce stressor` = round(sum(`Reduce stressor`, na.rm = T), 2),
+            `Reduce sensitivity` = round(sum(`Reduce sensitivity`, na.rm = T), 2),
+            Cope = round(sum(Cope, na.rm = T), 2),
+            `No change` = round(sum(`No change`, na.rm = T), 2),
+            `Take advantage` = round(sum(`Take advantage`, na.rm = T), 2)
   ) %>% 
-  mutate(`Total score` = `Reduce stressor` +  `Reduce sensitivity` + Cope + `No change` + `Take advantage`) %>% 
+  mutate(`Total score` = round(`Reduce stressor` +  `Reduce sensitivity` + Cope + `No change` + `Take advantage`, 2)) %>% 
   left_join(labs %>% select(order = br, Example, Context)) %>%  
   ungroup() %>% 
   filter(!is.na(`Total score`)) %>% 
@@ -287,7 +295,9 @@ CC_goal_plot <-
                    labels=c("Reduce stressor", "Reduce sensitivity", "Cope",
                             "No change", "Take advantage"),
                    position = 'top') +
-  scale_y_continuous(breaks = c(0,57), labels = c('', ''), limits = c(0,57), expand = expand_scale())
+  scale_y_continuous(breaks = c(0,57), labels = c('', ''), limits = c(0,57), expand = expand_scale())+
+  scale_size(breaks = c(1, 5, 10, 20, 50 ,85, 125), labels = as.character(c(1, 5, 10, 20, 50 ,85, 125)))
+
 
 
 for(i in 1:length(labs$br)){ 
@@ -317,7 +327,7 @@ CC_goal_plot <-
     xmin = 5.75,         # Note: The grobs are positioned outside the plot area
     xmax = 5.75)+ 
   annotation_custom(
-    grob = grid::textGrob(label = 'Natural resource mgmt', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+    grob = grid::textGrob(label = 'Ecological', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
     ymin = 56,      # Vertical position of the textGrob
     ymax = 56,
     xmin = 5.75,         # Note: The grobs are positioned outside the plot area
@@ -349,21 +359,24 @@ CC_ex <-
               filter(!(is.na(Implemented) | is.na(Community) | is.na(Context)| is.na(Example))) %>% 
               group_by(Context, Community, Implemented) %>%
               summarise(total = n())) %>% 
-  mutate(Prop_Example = N_Example/total) %>% 
+  mutate(Prop_Example = round(N_Example/total, 2)) %>% 
   arrange(Context, Community, Implemented, desc(Prop_Example)) %>% 
   mutate(id = 1:n()) %>% 
-  filter(id < 11)
-  
-write_csv(CC_ex, 'CC_ex.csv')
-
-CC_ex_plot <-
-  CC_ex %>% 
+  filter(id < 11) %>% 
   ungroup %>% 
   rename(`Proportion of adaptation options` = Prop_Example) %>% 
-  mutate(Context = ifelse(Context=='CC', 'Climate change included', 'Not including climate change'),
+  mutate(#Context = ifelse(Context=='CC', 'Climate change context', 'Non-climate-change context'),
          Community = ifelse(Community == 'Y', 'Community focused', 'Not community focused'),
          Implemented = ifelse(Implemented == 'Y', 'Implemented', 'Not implemented'),
-         Example = ifelse(grepl('Financial assistance or investment for entering,', Example), 'Financial assistance or investment for entering,', Example)) %>% 
+         Example = ifelse(grepl('Financial assistance or investment for entering,', Example), 'Financial assistance or investment for entering,', Example))
+  
+write_csv(CC_ex %>% 
+            unite(Attributes, Context, Community, Implemented) %>% 
+            select(-c(N_Example, total, id)) %>% 
+            spread(key = Attributes, value = `Proportion of adaptation options`), 'CC_ex.csv')
+
+CC_ex_plot <-
+  CC_ex  %>% 
   ggplot(aes(x = 1, y = 11 - id, label = Example, size = `Proportion of adaptation options`)) + 
   geom_text()+
   theme_classic()+ 
@@ -371,6 +384,7 @@ CC_ex_plot <-
   xlab('')+ylab('')+
   labs(size="Proportion of\nadaptation\noptions") +
   scale_y_continuous(expand = expand_scale(), limits = c(0,11))+
+  scale_size(breaks = c(0.05, 0.1, 0.2, 0.3), labels = as.character(c(0.05, 0.1, 0.2, 0.3)))+
   facet_grid(Community*Implemented ~ Context) 
 
 g <- ggplot_gtable(ggplot_build(CC_ex_plot))
@@ -429,7 +443,16 @@ CC_ant <-
   arrange(id)
   #filter(id < 11)
 
-write_csv(CC_ant, 'CC_ant.csv')
+CC_ant %>% 
+  select(Context, Example, Implemented, Prop_Anticipatory, Prop_Responsive, Prop_Both) %>%
+  #  rename(Anticipatory = Prop_Anticipatory, Responsive = Prop_Responsive, Both = Prop_Both) %>% 
+  mutate(Anticipatory = round(Prop_Anticipatory,2), `Resp. or Both` = Prop_Responsive + Prop_Both,
+         Implemented = ifelse(Implemented == 'Y', 'Implemented', 'Not implemented')
+  ) %>% 
+  select(-c(Prop_Anticipatory, Prop_Responsive, Prop_Both, `Resp. or Both`)) %>%
+  unite(Attributes, Context, Implemented) %>% 
+  spread(key = Attributes, value = Anticipatory) %>% 
+  write_csv('CC_ant.csv')
 
 
 ant_labs <-
@@ -537,9 +560,9 @@ leg2 <- ggplot() + geom_blank(aes(c(0,rep(1,4)),1:5)) +  theme_void() +
     xmin = 0.05,         # Note: The grobs are positioned outside the plot area
     xmax = 0.05) +
   annotation_custom(
-    grob = grid::textGrob(label = 'Natural\nresource\nmgmt', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-    ymin = 3,      # Vertical position of the textGrob
-    ymax = 4,
+    grob = grid::textGrob(label = 'Ecological', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+    ymin = 2.5,      # Vertical position of the textGrob
+    ymax = 3.5,
     xmin = 0.05,         # Note: The grobs are positioned outside the plot area
     xmax = 0.05) +
   annotation_custom(
@@ -617,14 +640,20 @@ CC_man <-
               ungroup() %>% 
               select(Example, id)
   ) %>% 
-  mutate(Prop_top = (Internat. + `Nat. govt.` + `Region. govt.`)/all,
-         Prop_bottom = (`Local govt.` + `Community assoc.` + `Business coop.`)/all,
-         Prop_NGO = (NGO + Uni.)/all,
-         Prop_ind = (Business + Individual)/all) %>% 
+  mutate(Prop_top = round((Internat. + `Nat. govt.` + `Region. govt.`)/all,3),
+         Prop_bottom = round((`Local govt.` + `Community assoc.` + `Business coop.`)/all,3),
+         Prop_NGO = round((NGO + Uni.)/all,3),
+         Prop_ind = round((Business + Individual)/all,3)) %>% 
   arrange(id)
 #filter(id < 11)
 
-write_csv(CC_man, 'CC_man.csv')
+write_csv(CC_man %>% 
+            select(Example, Context, Implemented, 
+                   `Proportion Top-down` = Prop_top, 
+                   `Proportion Bottom-up` = Prop_bottom, 
+                   `Proportion NGO` = Prop_NGO,
+                   `Proportion Individual` = Prop_ind) %>% 
+            arrange(Example, Context, Implemented), 'CC_man.csv')
 
 
 Man_plot1 <-
@@ -697,9 +726,9 @@ leg2 <- ggplot() + geom_blank(aes(c(0,rep(1,4)),1:5)) +  theme_void() +
     xmin = 0.05,         # Note: The grobs are positioned outside the plot area
     xmax = 0.05) +
   annotation_custom(
-    grob = grid::textGrob(label = 'Natural\nresource\nmgmt', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-    ymin = 3,      # Vertical position of the textGrob
-    ymax = 4,
+    grob = grid::textGrob(label = 'Ecological', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+    ymin = 2.5,      # Vertical position of the textGrob
+    ymax = 3.5,
     xmin = 0.05,         # Note: The grobs are positioned outside the plot area
     xmax = 0.05) +
   annotation_custom(
@@ -742,7 +771,13 @@ freq <-
   dat %>% 
   ungroup() %>% 
   group_by(Country, Context, Implemented, Community) %>% 
-  count() 
+  count() %>% 
+  filter(!is.na(Context),!is.na(Implemented), !is.na(Community)) %>% 
+  mutate(Community = ifelse(Community == 'Y', 'Community focused', 'Not community focused'),
+         Implemented = ifelse(Implemented == 'Y', 'Implemented', 'Not implemented'),
+  ) %>%   
+  unite(Attributes, Context, Implemented, Community) %>% 
+  spread(key = Attributes, value = n)
   #table(.) %>% 
 write.csv(freq,'Freq_table.csv')
 
@@ -753,10 +788,6 @@ write.csv(freq,'Freq_table.csv')
 
 #prcomp([,c(1:7,10,11)], center = TRUE,scale. = TRUE)
 #install.packages('ca')
-library(devtools)
-install_github('fawda123/ggord')
-library(ggord)
-library(ca)
 
 abbr <-
   dat_ca %>% 
@@ -1040,10 +1071,10 @@ country_list <-
         grob = grid::textGrob(label = 'Social', just = 'left',gp = gpar(fontsize = 12, col = 'goldenrod3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
         ymin = (max(CC_stressor_c$order)+1)*13/15,      # Vertical position of the textGrob
         ymax = (max(CC_stressor_c$order)+1)*13/15,
-        xmin = 11,         # Note: The grobs are positioned outside the plot area
+        xmin = 11,         #   Note: The grobs are positioned outside the plot area
         xmax = 11)+ 
       annotation_custom(
-        grob = grid::textGrob(label = 'Natural resource mgmt', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+        grob = grid::textGrob(label = 'Ecological', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
         ymin = (max(CC_stressor_c$order)+1)*14/15,      # Vertical position of the textGrob
         ymax = (max(CC_stressor_c$order)+1)*14/15,
         xmin = 11,         # Note: The grobs are positioned outside the plot area
@@ -1147,7 +1178,7 @@ country_list <-
         xmin = 5.75,         # Note: The grobs are positioned outside the plot area
         xmax = 5.75)+ 
       annotation_custom(
-        grob = grid::textGrob(label = 'Natural resource mgmt', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+        grob = grid::textGrob(label = 'Ecological', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
         ymin = (max(CC_goal_c$order)+1)*14/15,      # Vertical position of the textGrob
         ymax = (max(CC_goal_c$order)+1)*14/15,
         xmin = 5.75,         # Note: The grobs are positioned outside the plot area
@@ -1370,9 +1401,9 @@ country_list <-
         xmin = 0.05,         # Note: The grobs are positioned outside the plot area
         xmax = 0.05) +
       annotation_custom(
-        grob = grid::textGrob(label = 'Natural\nresource\nmgmt', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = 3,      # Vertical position of the textGrob
-        ymax = 4,
+        grob = grid::textGrob(label = 'Ecological', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+        ymin = 2.5,      # Vertical position of the textGrob
+        ymax = 3.5,
         xmin = 0.05,         # Note: The grobs are positioned outside the plot area
         xmax = 0.05) +
       annotation_custom(
@@ -1532,9 +1563,9 @@ country_list <-
         xmin = 0.05,         # Note: The grobs are positioned outside the plot area
         xmax = 0.05) +
       annotation_custom(
-        grob = grid::textGrob(label = 'Natural\nresource\nmgmt', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
-        ymin = 3,      # Vertical position of the textGrob
-        ymax = 4,
+        grob = grid::textGrob(label = 'Ecological', just = 'left',gp = gpar(fontsize = 12, col = 'aquamarine3')), #df$n[i], hjust = 0, gp = gpar(cex = 1.5)),
+        ymin = 2.5,      # Vertical position of the textGrob
+        ymax = 3.5,
         xmin = 0.05,         # Note: The grobs are positioned outside the plot area
         xmax = 0.05) +
       annotation_custom(
