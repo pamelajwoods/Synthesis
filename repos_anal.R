@@ -795,7 +795,7 @@
     ungroup() %>% 
     mutate(Region = ifelse(Country %in% c('USA', 'US-SE', 'US-SW', 'US-NE', 'US-NW', 'US-AK', 'US-HA', 'US','CAN'), 'NAM', 
                            ifelse(Country %in% c('AUS', 'NZ'), 'SP',
-                                  ifelse(Country %in% c('ICE', 'FIN', 'FAROES', 'SW','NOR'), 'NEU',
+                                  ifelse(Country %in% c('ICE', 'FIN', 'FIN-AX', 'FAROES', 'SW','NOR'), 'NEU',
                                          ifelse(Country %in% c('UK', 'IT', 'EU', 'GER','NL'), 'SEU', Country))))) %>%
     mutate(Country = ifelse(Country %in% c('USA', 'US-SE', 'US-SW', 'US-NE', 'US-NW', 'US-AK', 'US-HA', 'US'), 'USA', 
                             ifelse(Country=='FAROES', 'FAR', Country))) %>% 
