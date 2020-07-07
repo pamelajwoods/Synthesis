@@ -172,7 +172,8 @@
                      Context = CC_stressor_spread %>% select(Context) %>% unlist,
                      Example = CC_stressor_spread %>% select(Example) %>% unlist,
                      br, 
-                     lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab), col = c('aquamarine3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'aquamarine3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkblue', 'aquamarine3', 'darkgoldenrod3'))
+                     lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab), 
+                     col = c('aquamarine3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'aquamarine3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkblue','darkgoldenrod3',  'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3',  'aquamarine3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3'))
   
   CC_stress_plot <-
     CC_stressor %>% 
@@ -286,6 +287,7 @@
     mutate(Goal_name = Goal, 
            Goal = recode(Goal, `Reduce stressor` = 'A', `Reduce sensitivity` = 'B', Cope = 'C', `No change` = 'D', `Take advantage` = 'E')) %>% 
     ggplot(aes(Goal, order, size = Score, color = Context)) + 
+    geom_hline(aes(yintercept = order), color = 'lightgrey', size = 0.1) +
     geom_point() + 
     theme_light() + 
     theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5),
@@ -494,7 +496,7 @@
     ungroup() %>% 
     mutate(Example = substr(Example, 1, 49),
            Example = ifelse(Example=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', Example),
-           Context = ifelse(Context=='N', 'F', Context),
+           #Context = ifelse(Context=='N', 'F', Context),
            Implemented = ifelse(Implemented=='Y', 'I', 'N')) %>%
     mutate(Example = factor(Example, levels = ant_labs$lab %>% unique())) %>% 
     gather(value = 'Count', key = 'Group', -c('Context', 'Example','Implemented')) %>% 
@@ -502,7 +504,7 @@
     ggplot(aes(x="", y=Count, fill=Group))+
     geom_bar(width = 1, stat = "identity")+ 
     #scale_fill_manual(values=c("aquamarine", "blue", "red"))+ 
-    scale_fill_manual(values=c("blue", "red"))+ 
+    scale_fill_manual(values=c("darkviolet", "darkolivegreen1"))+ 
     coord_polar("y", start=0) + 
     theme_void() + 
     theme(legend.position="left", plot.margin=unit(c(0,0,0,0.1),"cm"))+
@@ -518,7 +520,7 @@
     ungroup() %>% 
     mutate(Example = substr(Example, 1, 49),
            Example = ifelse(Example=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', Example),
-           Context = ifelse(Context=='N', 'F', Context),
+           #Context = ifelse(Context=='N', 'F', Context),
            Implemented = ifelse(Implemented=='Y', 'I', 'N')) %>%
     mutate(Example = factor(Example, levels = ant_labs$lab %>% unique())) %>% 
     gather(value = 'Count', key = 'Group', -c('Context', 'Example','Implemented')) %>% 
@@ -526,7 +528,7 @@
     ggplot(aes(x="", y=Count, fill=Group))+
     geom_bar(width = 1, stat = "identity")+ 
     #scale_fill_manual(values=c("aquamarine", "blue", "red"))+ 
-    scale_fill_manual(values=c("blue", "red"))+ 
+    scale_fill_manual(values=c("darkviolet", "darkolivegreen1"))+ 
     coord_polar("y", start=0) + 
     theme_void() + 
     theme(legend.position="left", strip.text.y = element_text(colour = 'white'), plot.margin=unit(c(0,0,0,0.1),"cm"))+
@@ -663,7 +665,7 @@
     ungroup() %>% 
     mutate(Example = substr(Example, 1, 49),
            Example = ifelse(Example=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', Example),
-           Context = ifelse(Context=='N', 'F', Context),
+           #Context = ifelse(Context=='N', 'F', Context),
            Implemented = ifelse(Implemented=='Y', 'I', 'N')) %>%
     mutate(Example = factor(Example, levels = ant_labs$lab %>% unique())) %>% 
     gather(value = 'Count', key = 'Group', -c('Context', 'Example','Implemented')) %>% 
@@ -685,7 +687,7 @@
     ungroup() %>% 
     mutate(Example = substr(Example, 1, 49),
            Example = ifelse(Example=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', Example),
-           Context = ifelse(Context=='N', 'F', Context),
+           #Context = ifelse(Context=='N', 'F', Context),
            Implemented = ifelse(Implemented=='Y', 'I', 'N')) %>%
     mutate(Example = factor(Example, levels = ant_labs$lab %>% unique())) %>% 
     gather(value = 'Count', key = 'Group', -c('Context', 'Example','Implemented')) %>% 
@@ -1149,6 +1151,7 @@
               mutate(Goal_name = Goal, 
                      Goal = recode(Goal, `Reduce stressor` = 'A', `Reduce sensitivity` = 'B', Cope = 'C', `No change` = 'D', `Take advantage` = 'E')) %>% 
               ggplot(aes(Goal, order, size = Score, color = Context)) + 
+              geom_hline(aes(yintercept = order), color = 'lightgrey', size = 0.1) +
               geom_point() + 
               theme_light() + 
               theme(axis.text.x = element_text(angle = 90, hjust = 0, vjust = 0.5),
@@ -1364,8 +1367,8 @@
               group_by(Context, Example, Implemented) %>% 
               ggplot(aes(x="", y=Count, fill=Group))+
               geom_bar(width = 1, stat = "identity")+ 
-              #scale_fill_manual(values=c("aquamarine", "blue", "red"))+ 
-              scale_fill_manual(values=c("blue", "red"))+ 
+              #scale_fill_manual(values=c("aquamarine", "darkviolet", "darkolivegreen1"))+ 
+              scale_fill_manual(values=c("darkviolet", "darkolivegreen1"))+ 
               coord_polar("y", start=0) + 
               theme_void() + 
               theme(legend.position="left", plot.margin=unit(c(0,0,0,0.1),"cm"))+
@@ -1389,7 +1392,7 @@
               ggplot(aes(x="", y=Count, fill=Group))+
               geom_bar(width = 1, stat = "identity")+ 
               #scale_fill_manual(values=c("aquamarine", "blue", "red"))+
-              scale_fill_manual(values=c("blue", "red"))+
+              scale_fill_manual(values=c("darkviolet", "darkolivegreen1"))+
               coord_polar("y", start=0) + 
               theme_void() + 
               theme(legend.position="left", strip.text.y = element_text(colour = 'white'), plot.margin=unit(c(0,0,0,0.1),"cm"))+
