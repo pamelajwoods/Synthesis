@@ -3,7 +3,7 @@
   library(gtable)
   library(gridExtra)
   library(devtools)
-  #install_github('fawda123/ggord')
+  install_github('fawda123/ggord')
   library(ggord)
   library(ca)
   
@@ -95,7 +95,9 @@
                                                                                     ifelse(Country == 'USA-NE', 'US-NE',
                                                                                                   Country))))))))),
            Country = ifelse(Country=='USA-NW', 'US-NW',Country)
-    )
+    ) %>% 
+    filter(!(grepl('Pinnegar', Source) & Initials=='PJW')) %>% 
+    mutate(Context=ifelse(grepl('Badjeck', Source), 'CC', Context))
            
   
   nr <-''
@@ -173,7 +175,7 @@
                      Example = CC_stressor_spread %>% select(Example) %>% unlist,
                      br, 
                      lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab), 
-                     col = c('aquamarine3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'aquamarine3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkblue','darkgoldenrod3',  'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3',  'aquamarine3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3'))
+                     col = c('aquamarine3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'darkblue', 'darkblue', 'aquamarine3', 'aquamarine3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkblue','darkgoldenrod3',  'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3',  'darkblue', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3'))
   
   CC_stress_plot <-
     CC_stressor %>% 
@@ -502,7 +504,7 @@
     gather(value = 'Count', key = 'Group', -c('Context', 'Example','Implemented')) %>% 
     group_by(Context, Example, Implemented) %>% 
     ggplot(aes(x="", y=Count, fill=Group))+
-    geom_bar(width = 1, stat = "identity")+ 
+    geom_bar(width = 1, stat = "identity", colour = "darkgrey", size = 0.1)+ 
     #scale_fill_manual(values=c("aquamarine", "blue", "red"))+ 
     scale_fill_manual(values=c("darkviolet", "darkolivegreen1"))+ 
     coord_polar("y", start=0) + 
@@ -526,7 +528,7 @@
     gather(value = 'Count', key = 'Group', -c('Context', 'Example','Implemented')) %>% 
     group_by(Context, Example, Implemented) %>% 
     ggplot(aes(x="", y=Count, fill=Group))+
-    geom_bar(width = 1, stat = "identity")+ 
+    geom_bar(width = 1, stat = "identity", colour = "darkgrey", size = 0.1)+ 
     #scale_fill_manual(values=c("aquamarine", "blue", "red"))+ 
     scale_fill_manual(values=c("darkviolet", "darkolivegreen1"))+ 
     coord_polar("y", start=0) + 
@@ -671,7 +673,7 @@
     gather(value = 'Count', key = 'Group', -c('Context', 'Example','Implemented')) %>% 
     group_by(Context, Example, Implemented) %>% 
     ggplot(aes(x="", y=Count, fill=Group))+
-    geom_bar(width = 1, stat = "identity")+ 
+    geom_bar(width = 1, stat = "identity", colour = "darkgrey", size = 0.1) +
   #  scale_fill_discrete(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual')) +
     scale_fill_manual(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual'), values=c("blue", "red", "darkorange","yellow"))+ 
     coord_polar("y", start=0) + 
@@ -693,7 +695,7 @@
     gather(value = 'Count', key = 'Group', -c('Context', 'Example','Implemented')) %>% 
     group_by(Context, Example, Implemented) %>% 
     ggplot(aes(x="", y=Count, fill=Group))+
-    geom_bar(width = 1, stat = "identity")+ 
+    geom_bar(width = 1, stat = "identity", colour = "darkgrey", size = 0.1)+ 
     #  scale_fill_discrete(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual')) +
     scale_fill_manual(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual'), values=c("blue", "red", "darkorange","yellow"))+ #"aquamarine"
     coord_polar("y", start=0) + 
@@ -825,7 +827,14 @@
     ungroup %>% 
     select(-c(Example)) %>% 
     group_by(Region, Country, Context, Community, col, Type) %>% 
-    summarise(n = sum(n, na.rm = T))
+    summarise(n = sum(n, na.rm = T)) 
+  
+  Country_Key<-
+    dat_ca %>% 
+    ungroup() %>% 
+    select(Region, Country) %>% 
+    distinct() %>% 
+    mutate(ID = c('C', 'U', 'R', 'F', 'X', 'I', 'O', 'S', 'E', 'G', 'T', 'N', 'K', 'A', 'Z'))
   
   
   dat_ca1<-
@@ -837,7 +846,10 @@
     summarise(Institutional = sum(Insitutional), 
               Ecological = sum(Ecological),
               Social = sum(Social)) %>% 
-    ungroup
+    ungroup #%>% 
+    #left_join(Country_Key) %>% 
+    #mutate(Abbrev = Country, Country = ID) %>% select(-ID)
+  
   ord_cc_comm <- ca(dat_ca1 %>% 
                       column_to_rownames(var = "Country") %>% 
                       select(-c(Region, Context, Community)))
@@ -850,7 +862,10 @@
     summarise(Institutional = sum(Insitutional), 
               Ecological = sum(Ecological),
               Social = sum(Social))%>% 
-    ungroup
+    ungroup #%>% 
+    #left_join(Country_Key) %>% 
+    #mutate(Abbrev = Country, Country = ID) %>% select(-ID)
+  
   ord_f_comm <- ca(dat_ca2 %>% 
                      column_to_rownames(var = "Country") %>% 
                      select(-c(Region, Context, Community)))
@@ -862,7 +877,9 @@
     summarise(Institutional = sum(Insitutional), 
               Ecological = sum(Ecological),
               Social = sum(Social))%>% 
-    ungroup
+    ungroup #%>% 
+    #left_join(Country_Key) %>% 
+    #mutate(Abbrev = Country, Country = ID) %>% select(-ID)
   ord_cc_ncomm <- ca(dat_ca3 %>% 
                        column_to_rownames(var = "Country") %>% 
                        select(-c(Region, Context, Community)))
@@ -874,7 +891,9 @@
     summarise(Institutional = sum(Insitutional), 
               Ecological = sum(Ecological),
               Social = sum(Social))%>% 
-    ungroup
+    ungroup #%>% 
+    #left_join(Country_Key) %>% 
+    #mutate(Abbrev = Country, Country = ID) %>% select(-ID)
   
   ord_f_ncomm <- ca(dat_ca4 %>% 
                       column_to_rownames(var = "Country") %>% 
@@ -885,38 +904,49 @@
   
   ord_cc_comm$rowcoord[,1] <- ord_cc_comm$rowcoord[,1]*-1
   ord_cc_comm$colcoord[,1] <- ord_cc_comm$colcoord[,1]*-1
+  
+  ord_cc_comm$rowcoord[5,]<-  ord_cc_comm$rowcoord[5,]*1.05
+  ord_cc_comm$rowcoord[3,]<-  ord_cc_comm$rowcoord[3,]*0.95
   pdf(paste0('Ord_CC_Comm_',nr,'.pdf'), width = 5*sc, height = 5*sc)
-    ggord(ord_cc_comm, dat_ca1$Region, ellipse = FALSE, obslab = TRUE,
+    ggord(ord_cc_comm, dat_ca1$Region, cols = c('#F8766D', '#00BFC4', 'darkblue', '#C77CFF'), ellipse = FALSE, obslab = TRUE, #'#7CAE00',
           xlims = xlims,
           ylims = c(-0.9,0.9))+ 
       theme(legend.position = 'none')
   dev.off()
   
   
-  
+  ord_f_comm$rowcoord[3,] <-   ord_f_comm$rowcoord[3,]*1.075
+  ord_f_comm$rowcoord[8,1] <-   ord_f_comm$rowcoord[8,1]*0.925
+  ord_f_comm$rowcoord[8,2] <-   ord_f_comm$rowcoord[8,2]*1.1
+  ord_f_comm$rowcoord[7,2] <-   ord_f_comm$rowcoord[7,2]*0.8
   pdf(paste0('Ord_F_Comm_',nr,'.pdf'), width = 5*sc, height = 5*sc)
-    ggord(ord_f_comm, dat_ca2$Region, ellipse = FALSE, obslab = TRUE,
+    ggord(ord_f_comm, dat_ca2$Region, cols = c('#F8766D', '#00BFC4', 'darkblue', '#C77CFF'), ellipse = FALSE, obslab = TRUE,
           xlims = xlims,
           ylims = c(-0.9,0.9))+ 
       theme(legend.position = 'none')
   dev.off()
   
   pdf(paste0('Ord_CC_Ncomm_',nr,'.pdf'), width = 5*sc, height = 5*sc)
-    ggord(ord_cc_ncomm, dat_ca3$Region, ellipse = FALSE, obslab = TRUE,
+    ggord(ord_cc_ncomm, dat_ca3$Region, cols = c('#F8766D', '#00BFC4', 'darkblue', '#C77CFF'), ellipse = FALSE, obslab = TRUE,
           xlims = xlims,
           ylims = c(-0.9,0.9))+ 
       theme(legend.position = 'none')
   dev.off()
   
+  ord_f_ncomm$rowcoord[1,] <-   ord_f_ncomm$rowcoord[1,]*0.9
+  ord_f_ncomm$rowcoord[9,] <-   ord_f_ncomm$rowcoord[9,]*1.1
+  ord_f_ncomm$rowcoord[3,] <-   ord_f_ncomm$rowcoord[3,]*0.9
+  ord_f_ncomm$rowcoord[11,] <-   ord_f_ncomm$rowcoord[11,]*1.1
+  
   pdf(paste0('Ord_F_Ncomm_',nr,'.pdf'), width = 5*sc, height = 5*sc)
-    ggord(ord_f_ncomm, dat_ca4$Region, ellipse = FALSE, obslab = TRUE,
+    ggord(ord_f_ncomm, dat_ca4$Region, cols = c('#F8766D', '#00BFC4', 'darkblue', '#C77CFF'), ellipse = FALSE, obslab = TRUE,
           xlims = xlims,
           ylims = c(-0.9,0.9))+ 
       theme(legend.position = 'none')
   dev.off()
   
   pdf(paste0('Ord_F_Ncomm_leg',nr,'.pdf'), width = 5.85*sc, height = 5*sc)
-    ggord(ord_f_ncomm, dat_ca4$Region, ellipse = FALSE, obslab = TRUE,
+    ggord(ord_f_ncomm, dat_ca4$Region, cols = c('#F8766D', '#00BFC4', 'darkblue', '#C77CFF'), ellipse = FALSE, obslab = TRUE,
           xlims = xlims,
           ylims = c(-0.9,0.9)) 
   dev.off()
@@ -1366,7 +1396,7 @@
               gather(value = 'Count', key = 'Group', -c('Context', 'Example','Implemented')) %>% 
               group_by(Context, Example, Implemented) %>% 
               ggplot(aes(x="", y=Count, fill=Group))+
-              geom_bar(width = 1, stat = "identity")+ 
+              geom_bar(width = 1, stat = "identity", colour = "darkgrey", size = 0.1)+ 
               #scale_fill_manual(values=c("aquamarine", "darkviolet", "darkolivegreen1"))+ 
               scale_fill_manual(values=c("darkviolet", "darkolivegreen1"))+ 
               coord_polar("y", start=0) + 
@@ -1390,7 +1420,7 @@
               gather(value = 'Count', key = 'Group', -c('Context', 'Example','Implemented')) %>% 
               group_by(Context, Example, Implemented) %>% 
               ggplot(aes(x="", y=Count, fill=Group))+
-              geom_bar(width = 1, stat = "identity")+ 
+              geom_bar(width = 1, stat = "identity", colour = "darkgrey", size = 0.1)+ 
               #scale_fill_manual(values=c("aquamarine", "blue", "red"))+
               scale_fill_manual(values=c("darkviolet", "darkolivegreen1"))+
               coord_polar("y", start=0) + 
@@ -1538,7 +1568,7 @@
               gather(value = 'Count', key = 'Group', -c('Context', 'Example','Implemented')) %>% 
               group_by(Context, Example, Implemented) %>% 
               ggplot(aes(x="", y=Count, fill=Group))+
-              geom_bar(width = 1, stat = "identity")+ 
+              geom_bar(width = 1, stat = "identity", colour = "darkgrey", size = 0.1)+ 
               #  scale_fill_discrete(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual')) +
               scale_fill_manual(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual'), values=c("blue", "red", "darkorange","yellow"))+ 
               coord_polar("y", start=0) + 
@@ -1560,7 +1590,7 @@
               gather(value = 'Count', key = 'Group', -c('Context', 'Example','Implemented')) %>% 
               group_by(Context, Example, Implemented) %>% 
               ggplot(aes(x="", y=Count, fill=Group))+
-              geom_bar(width = 1, stat = "identity")+ 
+              geom_bar(width = 1, stat = "identity", colour = "darkgrey", size = 0.1)+ 
               #  scale_fill_discrete(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual')) +
               scale_fill_manual(limits=c('Top-down', 'Bottom-up', 'Non-profit', 'Individual'), values=c("blue", "red", "darkorange","yellow"))+ 
               coord_polar("y", start=0) + 

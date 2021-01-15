@@ -1,29 +1,29 @@
 Example,CC_Implemented,CC_Not implemented,N_Implemented,N_Not implemented
 Adaptation programs,0.62,0.8,0.33,NA
-Community-based rights,1,NaN,0.15,0
+Community-based rights,1,NA,0.15,0
 Cooperatives,0.75,1,0.43,0.75
-Coordination and organization,0.57,0.9,0.18,0.38
+Coordination and organization,0.57,0.89,0.18,0.38
 Disaster funds,0,1,0,NA
 Disaster risk management,1,1,0.6,1
-Diversify livelihoods,0.33,0.61,0.18,0.23
+Diversify livelihoods,0.33,0.59,0.12,0.23
 Dynamic ocean management,0.5,0.92,0.85,1
 Economic/community development,NA,1,0.28,0.31
-Education,0.65,0.9,0.22,0.58
-Enforcement,0.43,0.86,0.14,0.35
+Education,0.65,0.89,0.22,0.58
+Enforcement,0.43,0.85,0.14,0.35
 Fair trade laws,NA,1,1,NA
-"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",0.33,0.67,0.29,0.4
+"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",0.33,0.5,0.29,0.4
 Financial assistance to help survive bad fishing years,NA,0,0.08,0.33
 Financial assistance to help transition out of fishery,NA,0.67,0.12,0.33
-Individual property rights,NaN,1,0.11,0
+Individual property rights,NA,1,0.11,0
 Insurance,1,1,0,1
-International agreements,0.86,0.95,0.38,1
+International agreements,0.86,0.93,0.38,1
 Investment in new gear or innovations,0.19,0.73,0.11,0.36
 Investments to improve value chain,0.4,0.67,0.35,0.54
-Market diversification,0.25,0.65,0.17,0.6
-MPAs,0.64,0.88,0.12,0.2
+Market diversification,0,0.64,0.17,0.6
+MPAs,0.6,0.88,0.12,0.2
 Permit/license/quota banks,1,NA,0.5,1
-Reductions in other stressors,0.54,0.85,0,0.5
-Research,0.47,0.85,0.2,0.65
-Restoration,0.77,0.96,0.18,0.5
-Review programs / regulations,0.33,0.89,0.14,0.17
+Reductions in other stressors,0.5,0.85,0,0.5
+Research,0.45,0.85,0.2,0.65
+Restoration,0.75,0.96,0.18,0.5
+Review programs / regulations,0.33,0.88,0.14,0.17
 Transition out of fisheries,0,0.3,0.09,0

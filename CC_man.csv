@@ -10,39 +10,39 @@ Cooperatives,CC,N,0.5,0.3,0.1,0.1
 Cooperatives,CC,Y,0.375,0.5,0,0.125
 Cooperatives,N,N,0.333,0.5,0.167,0
 Cooperatives,N,Y,0.111,0.417,0.278,0.194
-Coordination and organization,CC,N,0.578,0.281,0.078,0.062
+Coordination and organization,CC,N,0.571,0.286,0.079,0.063
 Coordination and organization,CC,Y,0.667,0.25,0.083,0
 Coordination and organization,N,N,0.455,0.291,0.145,0.109
 Coordination and organization,N,Y,0.4,0.275,0.1,0.225
 Disaster funds,CC,N,1,0,0,0
 Disaster funds,CC,Y,1,0,0,0
 Disaster funds,N,Y,0.833,0.167,0,0
-Disaster risk management,CC,N,0.857,0,0,0.143
+Disaster risk management,CC,N,0.8,0,0,0.2
 Disaster risk management,CC,Y,0.333,0,0.333,0.333
 Disaster risk management,N,N,1,0,0,0
 Disaster risk management,N,Y,0.833,0.167,0,0
-Diversify livelihoods,CC,N,0.444,0.083,0,0.472
-Diversify livelihoods,CC,Y,0.333,0.111,0,0.556
+Diversify livelihoods,CC,N,0.429,0.086,0,0.486
+Diversify livelihoods,CC,Y,0.222,0.111,0,0.667
 Diversify livelihoods,N,N,0.333,0.19,0.095,0.381
-Diversify livelihoods,N,Y,0.393,0.321,0.036,0.25
-Dynamic ocean management,CC,N,0.773,0.091,0.136,0
+Diversify livelihoods,N,Y,0.407,0.333,0.037,0.222
+Dynamic ocean management,CC,N,0.762,0.095,0.143,0
 Dynamic ocean management,CC,Y,0.667,0.222,0.111,0
 Dynamic ocean management,N,N,1,0,0,0
 Dynamic ocean management,N,Y,0.333,0.095,0.286,0.286
-Economic/community development,CC,N,0.5,0.5,0,0
+Economic/community development,CC,N,0.4,0.6,0,0
 Economic/community development,N,N,0.6,0.28,0.08,0.04
 Economic/community development,N,Y,0.281,0.375,0.125,0.219
-Education,CC,N,0.69,0.19,0.069,0.052
+Education,CC,N,0.679,0.196,0.071,0.054
 Education,CC,Y,0.562,0.25,0.156,0.031
 Education,N,N,0.391,0.348,0.174,0.087
 Education,N,Y,0.6,0.32,0.08,0
-Enforcement,CC,N,0.889,0.089,0,0.022
+Enforcement,CC,N,0.886,0.091,0,0.023
 Enforcement,CC,Y,0.7,0.2,0.1,0
 Enforcement,N,N,0.76,0.2,0,0.04
-Enforcement,N,Y,0.938,0.05,0,0.012
+Enforcement,N,Y,0.938,0.05,0,0.013
 Fair trade laws,CC,N,1,0,0,0
 Fair trade laws,N,Y,1,0,0,0
-"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",CC,N,0.833,0.167,0,0
+"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",CC,N,0.8,0.2,0,0
 "Financial assistance or investment for entering, transferring, or restructuring fishing businesses",CC,Y,0.714,0.286,0,0
 "Financial assistance or investment for entering, transferring, or restructuring fishing businesses",N,N,0.583,0.25,0.083,0.083
 "Financial assistance or investment for entering, transferring, or restructuring fishing businesses",N,Y,0.708,0.167,0.083,0.042
@@ -53,7 +53,7 @@ Financial assistance to help transition out of fishery,CC,N,0.667,0.167,0.167,0
 Financial assistance to help transition out of fishery,N,N,0.625,0.25,0.125,0
 Financial assistance to help transition out of fishery,N,Y,0.909,0.091,0,0
 Individual property rights,CC,N,1,0,0,0
-Individual property rights,CC,Y,NaN,NaN,NaN,NaN
+Individual property rights,CC,Y,NA,NA,NA,NA
 Individual property rights,N,N,1,0,0,0
 Individual property rights,N,Y,0.875,0.062,0,0.062
 Insurance,CC,N,0.4,0,0.1,0.5
@@ -64,7 +64,7 @@ International agreements,CC,N,1,0,0,0
 International agreements,CC,Y,1,0,0,0
 International agreements,N,N,1,0,0,0
 International agreements,N,Y,0.5,0.167,0.167,0.167
-Investment in new gear or innovations,CC,N,0.471,0.103,0,0.426
+Investment in new gear or innovations,CC,N,0.463,0.104,0,0.433
 Investment in new gear or innovations,CC,Y,0.296,0.259,0.037,0.407
 Investment in new gear or innovations,N,N,0.556,0.148,0.074,0.222
 Investment in new gear or innovations,N,Y,0.356,0.111,0.133,0.4
@@ -72,30 +72,30 @@ Investments to improve value chain,CC,N,0.438,0.188,0,0.375
 Investments to improve value chain,CC,Y,0.429,0.143,0.143,0.286
 Investments to improve value chain,N,N,0.4,0.24,0.16,0.2
 Investments to improve value chain,N,Y,0.238,0.381,0.167,0.214
-Market diversification,CC,N,0.537,0.293,0.024,0.146
-Market diversification,CC,Y,0.5,0,0,0.5
+Market diversification,CC,N,0.525,0.3,0.025,0.15
+Market diversification,CC,Y,0.333,0,0,0.667
 Market diversification,N,N,0.308,0.077,0.231,0.385
 Market diversification,N,Y,0.056,0.167,0.167,0.611
 MPAs,CC,N,0.902,0.049,0.024,0.024
-MPAs,CC,Y,0.818,0.136,0.045,0
+MPAs,CC,Y,0.81,0.143,0.048,0
 MPAs,N,N,0.9,0.1,0,0
 MPAs,N,Y,0.8,0.12,0.08,0
 Permit/license/quota banks,CC,Y,1,0,0,0
 Permit/license/quota banks,N,N,0,0,0.5,0.5
 Permit/license/quota banks,N,Y,0.071,0.429,0.429,0.071
-Reductions in other stressors,CC,N,0.78,0.169,0.034,0.017
-Reductions in other stressors,CC,Y,0.773,0.091,0.136,0
+Reductions in other stressors,CC,N,0.776,0.172,0.034,0.017
+Reductions in other stressors,CC,Y,0.762,0.095,0.143,0
 Reductions in other stressors,N,N,0.714,0.143,0.143,0
 Reductions in other stressors,N,Y,0.467,0.267,0.067,0.2
-Research,CC,N,0.59,0.09,0.222,0.099
-Research,CC,Y,0.714,0.06,0.179,0.048
+Research,CC,N,0.58,0.092,0.227,0.101
+Research,CC,Y,0.707,0.061,0.183,0.049
 Research,N,N,0.778,0.139,0.083,0
 Research,N,Y,0.683,0.139,0.079,0.099
 Restoration,CC,N,0.8,0.089,0.044,0.067
-Restoration,CC,Y,0.591,0.318,0.091,0
+Restoration,CC,Y,0.571,0.333,0.095,0
 Restoration,N,N,0.625,0.25,0.125,0
 Restoration,N,Y,0.667,0.167,0.042,0.125
-Review programs / regulations,CC,N,0.797,0.162,0.027,0.014
+Review programs / regulations,CC,N,0.789,0.169,0.028,0.014
 Review programs / regulations,CC,Y,0.444,0.333,0.111,0.111
 Review programs / regulations,N,N,0.643,0.214,0.143,0
 Review programs / regulations,N,Y,0.733,0.1,0.033,0.133
