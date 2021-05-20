@@ -19,7 +19,8 @@ datX <-
                               ifelse(Implemented=='N' |Implemented=='n' | Implemented=='N?', 'N', NA)),
          Community = ifelse(Community=='Y' | Community=='y' | Community=='Y?', 'Y',
                             ifelse(Community=='N' |Community=='n' | Community=='N?', 'N', NA)),
-         Context = ifelse(Context=='Y', 'CC', Context),
+         Context = ifelse(Context=='Y'|Context=='cc', 'CC', Context),
+         Context = ifelse(Context=='n', 'N', Context),
          Example = ifelse(Example=='Adaptation programme', 'Adaptation programs', 
                           ifelse(Example=='cooperatives', 'Cooperatives', 
                                  ifelse(Example=='disaster funds', 'Disaster funds',
@@ -38,13 +39,14 @@ datX <-
                                                                                                                             ifelse(Example=='Reserarch' | Example == 'research' | Example== 'Research (monitoring)', 'Research',
                                                                                                                                    ifelse(Example=='economic/community development' | Example=='Economic/Community development', 'Economic/community development',
                                                                                                                                           ifelse(Example=='education', 'Education',
+                                                                                                                                                 ifelse(Example=='Adaptation program', 'Adaptation',
                                                                                                                                                  ifelse(Example=='enforcement', 'Enforcement',
                                                                                                                                                         ifelse(Example=='Market diversification (catch new species)', 'Market diversification',
                                                                                                                                                                ifelse(Example=='Permit/license/quota bank' | Example=='Permit/licence/quota bank', 'Permit/license/quota banks',
-                                                                                                                                                                      ifelse(Example=='Restrictions on discards (partial or full)', 'Reductions in other stressors',
+                                                                                                                                                                      ifelse(Example=='Restrictions on discards (partial or full)'|'reduction in other stressors', 'Reductions in other stressors',
                                                                                                                                                                              ifelse(Example=='Review program/regulations' | Example=='Review programs', 'Review programs / regulations',
-                                                                                                                                                                                    ifelse(Example=='Transition out of fishery' | Example=='Investments to help transition out of fisheries', 'Transition out of fisheries',
-                                                                                                                                                                                           Example)))))))))))))))))))))))),
+                                                                                                                                                                                    ifelse(Example=='Transition out of fisheries' | Example=='Transition out of fishery' | Example=='Investments to help transition out of fisheries', 'Transition out of fisheries',
+                                                                                                                                                                                           Example))))))))))))))))))))))))),
          Anticipatory = ifelse(Anticipatory %in% c('x', 'X'), 1, Anticipatory) %>% as.numeric(.),
          Responsive = ifelse(Responsive %in% c('x', 'X'), 1, Responsive) %>% as.numeric(.),
          Both = ifelse(Both %in% c('x', 'X'), 1, Both) %>% as.numeric(.),
@@ -96,3 +98,11 @@ datX <-
                                                                                   Country))))))))),
          Country = ifelse(Country=='USA-NW', 'US-NW',Country)
   ) 
+
+ex_counts<-
+  datX %>% 
+  group_by(ID,rep,Example) %>% 
+  count() %>% 
+  spread(key = rep, value = n)
+
+View(ex_counts)
