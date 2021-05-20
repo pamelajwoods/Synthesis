@@ -58,7 +58,7 @@
            Anticipatory = ifelse(Anticipatory %in% c('x', 'X'), 1, Anticipatory) %>% as.numeric(.),
            Responsive = ifelse(Responsive %in% c('x', 'X'), 1, Responsive) %>% as.numeric(.),
            Both = ifelse(Both %in% c('x', 'X'), 1, Both) %>% as.numeric(.),
-           `Stock decline` = ifelse(is.na(`Stock decline`), NA, `Stock decline`),
+           `Stock decline` = ifelse(is.na(`Stock decline`) | `Stock decline`=='none', NA, `Stock decline`),
            `Sp. distributional shifts` = ifelse(is.na(`Sp. distributional shifts`), NA, `Sp. distributional shifts`),
            `Ocean acidification` = ifelse(is.na(`Ocean acidification`), NA, `Ocean acidification`),
            `Extreme climatic events` = ifelse(is.na(`Extreme climatic events`), NA, `Extreme climatic events`),
@@ -68,6 +68,16 @@
            `Consolidation` = ifelse(is.na(`Consolidation`), NA, `Consolidation`),
            `Globalization` = ifelse(is.na(`Globalization`), NA, `Globalization`),
            `Uncertainty (social)` = ifelse(is.na(`Uncertainty (social)`), NA, `Uncertainty (social)`),
+           `Stock decline` = ifelse(`Stock decline`%in% c('x', 'X', '1'), 1, `Stock decline`),
+           `Sp. distributional shifts` = ifelse(`Sp. distributional shifts` %in% c('x', 'X', '1'), 1, `Sp. distributional shifts`),
+           `Ocean acidification` = ifelse(`Ocean acidification` %in% c('x', 'X', '1'), 1, `Ocean acidification`),
+           `Extreme climatic events` = ifelse(`Extreme climatic events` %in% c('x', 'X', '1'), 1, `Extreme climatic events`),
+           `Uncertainty (ecological)` = ifelse(`Uncertainty (ecological)` %in% c('x', 'X', '1'), 1, `Uncertainty (ecological)`),
+           `Market changes` = ifelse(`Market changes` %in% c('x', 'X', '1'), 1, `Market changes`),
+           `Regulation change` = ifelse(`Regulation change` %in% c('x', 'X', '1'), 1, `Regulation change`),
+           `Consolidation` = ifelse(`Consolidation` %in% c('x', 'X', '1'), 1, `Consolidation`),
+           `Globalization` = ifelse(`Globalization` %in% c('x', 'X', '1'), 1, `Globalization`),
+           `Uncertainty (social)` = ifelse(`Uncertainty (social)` %in% c('x', 'X', '1'), 1, `Uncertainty (social)`),
            `Reduce stressor` = ifelse(`Reduce stressor` %in% c('x', 'X', '1'), 1, NA) %>% as.numeric(.),
            `Reduce sensitivity` = ifelse(`Reduce sensitivity` %in% c('x', 'X', '1'), 1, NA) %>% as.numeric(.),
            Cope = ifelse(Cope %in% c('x', 'X', '1'), 1, NA) %>% as.numeric(.),
@@ -175,7 +185,9 @@
                      Example = CC_stressor_spread %>% select(Example) %>% unlist,
                      br, 
                      lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab), 
-                     col = c('aquamarine3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'darkblue', 'darkblue', 'aquamarine3', 'aquamarine3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkblue','darkgoldenrod3',  'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3',  'darkblue', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3'))
+                     col = c('aquamarine3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'darkblue', 'darkblue', 'aquamarine3', 'aquamarine3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkblue','darkgoldenrod3',  'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3',  'darkblue', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3')) %>% 
+    mutate(col=ifelse(Example=='Fair trade laws' | Example=='International agreements', 'darkblue', col))
+  
   
   CC_stress_plot <-
     CC_stressor %>% 
