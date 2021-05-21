@@ -457,7 +457,7 @@ man %>%
   group_by(Proportion, ID) %>% 
   View
 
-write.csv(diff_to_cat_imp, file = 'diff_to_cat_imp.csv',row.names = F)
+write.csv(diff_to_cat_man, file = 'diff_to_cat_man.csv',row.names = F)
 
 
 
