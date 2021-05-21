@@ -22,9 +22,9 @@ Disaster risk management,CC,Y,NA,NA,NA,NA
 Disaster risk management,N,N,1,0,0,0
 Disaster risk management,N,Y,0.667,0.333,0,0
 Diversify livelihoods,CC,N,0.333,0.111,0,0.556
-Diversify livelihoods,CC,Y,0.286,0.143,0,0.571
+Diversify livelihoods,CC,Y,0.25,0.125,0,0.625
 Diversify livelihoods,N,N,0.429,0.214,0.143,0.214
-Diversify livelihoods,N,Y,0.3,0.3,0.1,0.3
+Diversify livelihoods,N,Y,0.333,0.333,0.111,0.222
 Dynamic ocean management,CC,N,0.7,0.2,0.1,0
 Dynamic ocean management,CC,Y,0.667,0.167,0.167,0
 Dynamic ocean management,N,N,1,0,0,0
@@ -53,7 +53,7 @@ Financial assistance to help transition out of fishery,CC,N,0.5,0.25,0.25,0
 Financial assistance to help transition out of fishery,N,N,0.571,0.286,0.143,0
 Financial assistance to help transition out of fishery,N,Y,0.875,0.125,0,0
 Individual property rights,CC,N,NA,NA,NA,NA
-Individual property rights,CC,Y,NaN,NaN,NaN,NaN
+Individual property rights,CC,Y,NA,NA,NA,NA
 Individual property rights,N,N,1,0,0,0
 Individual property rights,N,Y,1,0,0,0
 Insurance,CC,N,0,0,0,1

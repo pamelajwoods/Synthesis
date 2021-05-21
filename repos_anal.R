@@ -186,7 +186,8 @@
                      br, 
                      lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab), 
                      col = c('aquamarine3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'darkblue', 'darkblue', 'aquamarine3', 'aquamarine3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkblue','darkgoldenrod3',  'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3',  'darkblue', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3')) %>% 
-    mutate(col=ifelse(Example=='Fair trade laws' | Example=='International agreements', 'darkblue', col))
+    mutate(col=ifelse(Example=='Fair trade laws' | Example=='International agreements', 'darkblue', 
+                      ifelse(Example=='Education', 'darkgoldenrod3', col)))
   
   
   CC_stress_plot <-

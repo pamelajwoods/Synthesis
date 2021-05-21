@@ -22,9 +22,9 @@ Disaster risk management,CC,Y,NA,NA,NA,NA
 Disaster risk management,N,N,NA,NA,NA,NA
 Disaster risk management,N,Y,1,0,0,0
 Diversify livelihoods,CC,N,0.571,0,0,0.429
-Diversify livelihoods,CC,Y,1,0,0,0
+Diversify livelihoods,CC,Y,0.667,0,0,0.333
 Diversify livelihoods,N,N,1,0,0,0
-Diversify livelihoods,N,Y,0.167,0.167,0.167,0.5
+Diversify livelihoods,N,Y,0.2,0.2,0.2,0.4
 Dynamic ocean management,CC,N,0.667,0.167,0.167,0
 Dynamic ocean management,CC,Y,1,0,0,0
 Dynamic ocean management,N,N,NA,NA,NA,NA
@@ -94,7 +94,7 @@ Research,N,Y,1,0,0,0
 Restoration,CC,N,0.824,0.118,0.059,0
 Restoration,CC,Y,0.75,0.25,0,0
 Restoration,N,N,NA,NA,NA,NA
-Restoration,N,Y,NaN,NaN,NaN,NaN
+Restoration,N,Y,NA,NA,NA,NA
 Review programs / regulations,CC,N,0.833,0.111,0.056,0
 Review programs / regulations,CC,Y,NA,NA,NA,NA
 Review programs / regulations,N,N,1,0,0,0

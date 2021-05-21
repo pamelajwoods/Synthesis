@@ -10,7 +10,7 @@ Cooperatives,CC,N,NA,NA,NA,NA
 Cooperatives,CC,Y,NA,NA,NA,NA
 Cooperatives,N,N,NA,NA,NA,NA
 Cooperatives,N,Y,NA,NA,NA,NA
-Coordination and organization,CC,N,1,0,0,0
+Coordination and organization,CC,N,NA,NA,NA,NA
 Coordination and organization,CC,Y,NA,NA,NA,NA
 Coordination and organization,N,N,NA,NA,NA,NA
 Coordination and organization,N,Y,NA,NA,NA,NA
@@ -21,28 +21,28 @@ Disaster risk management,CC,N,1,0,0,0
 Disaster risk management,CC,Y,NA,NA,NA,NA
 Disaster risk management,N,N,NA,NA,NA,NA
 Disaster risk management,N,Y,NA,NA,NA,NA
-Diversify livelihoods,CC,N,1,0,0,0
-Diversify livelihoods,CC,Y,1,0,0,0
+Diversify livelihoods,CC,N,NA,NA,NA,NA
+Diversify livelihoods,CC,Y,NA,NA,NA,NA
 Diversify livelihoods,N,N,NA,NA,NA,NA
 Diversify livelihoods,N,Y,NA,NA,NA,NA
-Dynamic ocean management,CC,N,0.667,0,0.333,0
+Dynamic ocean management,CC,N,0.6,0,0.4,0
 Dynamic ocean management,CC,Y,0,1,0,0
 Dynamic ocean management,N,N,NA,NA,NA,NA
 Dynamic ocean management,N,Y,1,0,0,0
-Economic/community development,CC,N,1,0,0,0
+Economic/community development,CC,N,NA,NA,NA,NA
 Economic/community development,N,N,NA,NA,NA,NA
 Economic/community development,N,Y,NA,NA,NA,NA
-Education,CC,N,0.533,0.4,0.067,0
+Education,CC,N,0.462,0.462,0.077,0
 Education,CC,Y,1,0,0,0
 Education,N,N,NA,NA,NA,NA
 Education,N,Y,NA,NA,NA,NA
-Enforcement,CC,N,0.875,0.094,0,0.031
+Enforcement,CC,N,0.871,0.097,0,0.032
 Enforcement,CC,Y,NA,NA,NA,NA
 Enforcement,N,N,NA,NA,NA,NA
 Enforcement,N,Y,NA,NA,NA,NA
 Fair trade laws,CC,N,NA,NA,NA,NA
 Fair trade laws,N,Y,NA,NA,NA,NA
-"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",CC,N,0.667,0.333,0,0
+"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",CC,N,0.5,0.5,0,0
 "Financial assistance or investment for entering, transferring, or restructuring fishing businesses",CC,Y,0.5,0.5,0,0
 "Financial assistance or investment for entering, transferring, or restructuring fishing businesses",N,N,NA,NA,NA,NA
 "Financial assistance or investment for entering, transferring, or restructuring fishing businesses",N,Y,NA,NA,NA,NA
@@ -52,7 +52,7 @@ Financial assistance to help survive bad fishing years,N,Y,NA,NA,NA,NA
 Financial assistance to help transition out of fishery,CC,N,NA,NA,NA,NA
 Financial assistance to help transition out of fishery,N,N,NA,NA,NA,NA
 Financial assistance to help transition out of fishery,N,Y,NA,NA,NA,NA
-Individual property rights,CC,N,1,0,0,0
+Individual property rights,CC,N,NA,NA,NA,NA
 Individual property rights,CC,Y,NA,NA,NA,NA
 Individual property rights,N,N,NA,NA,NA,NA
 Individual property rights,N,Y,NA,NA,NA,NA
@@ -64,7 +64,7 @@ International agreements,CC,N,1,0,0,0
 International agreements,CC,Y,NA,NA,NA,NA
 International agreements,N,N,NA,NA,NA,NA
 International agreements,N,Y,NA,NA,NA,NA
-Investment in new gear or innovations,CC,N,0.7,0.2,0,0.1
+Investment in new gear or innovations,CC,N,0.667,0.222,0,0.111
 Investment in new gear or innovations,CC,Y,NA,NA,NA,NA
 Investment in new gear or innovations,N,N,NA,NA,NA,NA
 Investment in new gear or innovations,N,Y,NA,NA,NA,NA
@@ -72,7 +72,7 @@ Investments to improve value chain,CC,N,NA,NA,NA,NA
 Investments to improve value chain,CC,Y,NA,NA,NA,NA
 Investments to improve value chain,N,N,NA,NA,NA,NA
 Investments to improve value chain,N,Y,NA,NA,NA,NA
-Market diversification,CC,N,0.571,0.429,0,0
+Market diversification,CC,N,0.538,0.462,0,0
 Market diversification,CC,Y,1,0,0,0
 Market diversification,N,N,NA,NA,NA,NA
 Market diversification,N,Y,NA,NA,NA,NA
@@ -83,19 +83,19 @@ MPAs,N,Y,NA,NA,NA,NA
 Permit/license/quota banks,CC,Y,NA,NA,NA,NA
 Permit/license/quota banks,N,N,NA,NA,NA,NA
 Permit/license/quota banks,N,Y,NA,NA,NA,NA
-Reductions in other stressors,CC,N,0.75,0.25,0,0
-Reductions in other stressors,CC,Y,1,0,0,0
+Reductions in other stressors,CC,N,0.727,0.273,0,0
+Reductions in other stressors,CC,Y,NA,NA,NA,NA
 Reductions in other stressors,N,N,NA,NA,NA,NA
 Reductions in other stressors,N,Y,NA,NA,NA,NA
-Research,CC,N,0.561,0.047,0.28,0.112
+Research,CC,N,0.539,0.049,0.294,0.118
 Research,CC,Y,1,0,0,0
 Research,N,N,NA,NA,NA,NA
 Research,N,Y,NA,NA,NA,NA
 Restoration,CC,N,0.75,0.25,0,0
-Restoration,CC,Y,1,0,0,0
+Restoration,CC,Y,NA,NA,NA,NA
 Restoration,N,N,NA,NA,NA,NA
 Restoration,N,Y,NA,NA,NA,NA
-Review programs / regulations,CC,N,0.667,0.333,0,0
+Review programs / regulations,CC,N,0.6,0.4,0,0
 Review programs / regulations,CC,Y,0,0.5,0,0.5
 Review programs / regulations,N,N,NA,NA,NA,NA
 Review programs / regulations,N,Y,NA,NA,NA,NA

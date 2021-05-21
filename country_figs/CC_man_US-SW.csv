@@ -83,11 +83,11 @@ MPAs,N,Y,NA,NA,NA,NA
 Permit/license/quota banks,CC,Y,NA,NA,NA,NA
 Permit/license/quota banks,N,N,NA,NA,NA,NA
 Permit/license/quota banks,N,Y,NA,NA,NA,NA
-Reductions in other stressors,CC,N,NaN,NaN,NaN,NaN
+Reductions in other stressors,CC,N,NA,NA,NA,NA
 Reductions in other stressors,CC,Y,NA,NA,NA,NA
 Reductions in other stressors,N,N,NA,NA,NA,NA
 Reductions in other stressors,N,Y,NA,NA,NA,NA
-Research,CC,N,NaN,NaN,NaN,NaN
+Research,CC,N,NA,NA,NA,NA
 Research,CC,Y,0.5,0.5,0,0
 Research,N,N,NA,NA,NA,NA
 Research,N,Y,NA,NA,NA,NA
