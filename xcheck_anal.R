@@ -14,6 +14,10 @@ datX_raw <-
   read_csv('Adaptation_option_repository_consolidated_r2_Xcheck.csv') %>% 
   select(-c(grep('X', names(read_csv('Adaptation_option_repository_consolidated_r2_Xcheck.csv')), value = T))) 
 
+datX_raw %>% select(ID) %>% distinct %>% arrange() %>% unlist()
+
+dim(datX_raw %>% filter(rep=='b'))
+
 #This takes care of recording inconsistencies
 datX <-
   datX_raw %>% 
