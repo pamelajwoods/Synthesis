@@ -120,7 +120,7 @@ ex_count_plot<-
   scale_y_continuous(breaks = c(0,1,2,3,4,5,6,7,8,9,10)) + 
   scale_x_continuous(breaks = c(0,1,2,3,4,5,6,7,8,9,10)) 
   
-pdf('ex_count_plot.pdf', width = 6, height = 5)
+pdf('ex_count_plot.pdf', width = 5, height = 4)
   print(ex_count_plot)
 dev.off()
 
@@ -210,7 +210,7 @@ str_plot <-
   theme_bw()
 
 
-pdf('str_plot.pdf', width = 6, height = 5)
+pdf('str_plot.pdf', width = 5, height = 4)
   print(str_plot)
 dev.off()
 
@@ -267,7 +267,7 @@ goal_plot <-
   theme_bw()
 
 
-pdf('goal_plot.pdf', width = 6, height = 5)
+pdf('goal_plot.pdf', width = 5, height = 4)
 print(goal_plot)
 dev.off()
 
@@ -316,7 +316,7 @@ comm_plot <-
   theme_bw()
 
 
-pdf('comm_plot.pdf', width = 6, height = 5)
+pdf('comm_plot.pdf', width = 5, height = 4)
 print(comm_plot)
 dev.off()
 
@@ -366,7 +366,7 @@ imp_plot <-
   theme_bw()
 
 
-pdf('imp_plot.pdf', width = 6, height = 5)
+pdf('imp_plot.pdf', width = 5, height = 4)
 print(imp_plot)
 dev.off()
 
@@ -396,6 +396,58 @@ write.csv(diff_to_cat_imp, file = 'diff_to_cat_imp.csv',row.names = F)
 
 
 
+CC<-
+  datX%>% 
+  group_by(rep, ID, Context)%>%
+  count() %>%
+  filter(!is.na(Context)) %>% 
+  spread(key = Context, value = n, fill = 0) %>%
+  mutate(CCp = CC / (CC + N), Np = N / (N + CC)) %>% 
+  select(-c(N, CC)) %>% 
+  gather(key = Context, value = n, -c(ID, rep)) %>% 
+  spread(key = rep, value = n) %>% 
+  mutate(a = ifelse(is.na(a), 0, a),
+         b = ifelse(is.na(b), 0, b)) %>% 
+  rename(original =a, repeated = b)
+
+CC_plot <-
+  CC %>% 
+  filter(Context == 'CCp') %>% 
+  ggplot(aes(original, repeated, color = Context)) +
+  geom_jitter() +
+  theme_bw() 
+
+
+pdf('CC_plot.pdf', width = 5, height = 4)
+print(CC_plot) #jitter overly exaggerating differences
+dev.off()
+
+diff_to_cat_CC<-
+  CC %>% 
+  filter(Context=='CCp') %>% 
+  mutate(diff=abs(original-repeated)) %>% 
+  mutate(difficult = ifelse(diff >= 0.5, 'difficult', 'not')) %>% 
+  ungroup %>% 
+  select(Context, difficult) %>% 
+  filter(!is.na(difficult)) %>% 
+  group_by(Context, difficult) %>% 
+  count %>% 
+  arrange(desc(n)) %>% 
+  spread(key = difficult, value = n)%>% 
+  arrange(desc(difficult)) 
+
+CC %>% 
+  filter(Context=='CCp') %>% 
+  mutate(diff=abs(original-repeated)) %>% 
+  filter(diff >= 0.5) %>% 
+  ungroup %>% 
+  group_by(Context, ID) %>% 
+  View
+
+write.csv(diff_to_cat_CC, file = 'diff_to_cat_CC.csv',row.names = F)
+
+
+
 man <-
   datX %>% 
   group_by(ID,rep) %>% 
@@ -415,7 +467,7 @@ man <-
          Prop_bottom = round((`Local govt.` + `Community assoc.` + `Business coop.`)/all,3),
          Prop_NGO = round((NGO + Uni.)/all,3),
          Prop_ind = round((Business + Individual)/all,3)) %>% 
-  select(ID, rep,  Prop_top, Prop_bottom) %>% 
+  select(ID, rep,  Prop_top, Prop_bottom, Prop_NGO) %>% 
   gather(key = Proportion, value = p, -c(ID, rep)) %>% 
   ungroup %>% 
 #  select(-Example) %>% 
@@ -433,7 +485,7 @@ man_plot <-
   theme_bw()
 
 
-pdf('man_plot.pdf', width = 6, height = 5)
+pdf('man_plot.pdf', width = 5, height = 4)
 print(man_plot)
 dev.off()
 
@@ -487,17 +539,19 @@ ant <-
 
 ant_plot <-
   ant %>% 
+  filter(Proportion=='Anticipatory') %>% 
   ggplot(aes(original, repeated, color = Proportion)) +
   geom_jitter() +
   theme_bw()
 
 
-pdf('ant_plot.pdf', width = 6, height = 5)
+pdf('ant_plot.pdf', width = 5, height = 4)
 print(ant_plot)
 dev.off()
 
 diff_to_cat_ant<-
   ant %>% 
+  filter(Proportion=='Anticipatory') %>% 
   mutate(diff=abs(original-repeated)) %>% 
   mutate(difficult = ifelse(diff >= 0.5, 'difficult', 'not')) %>% 
   ungroup %>% 
@@ -510,6 +564,7 @@ diff_to_cat_ant<-
   arrange(desc(difficult)) 
 
 ant %>% 
+  filter(Proportion=='Anticipatory')%>% 
   mutate(diff=abs(original-repeated)) %>% 
   filter(diff >= 0.5) %>% 
   ungroup %>% 

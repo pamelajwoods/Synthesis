@@ -1,294 +1,299 @@
-rep,ID,Initials,Country  ,Context,Example,Stock decline,Sp. distributional shifts,Ocean acidification,Extreme climatic events,Uncertainty (ecological),Market changes,Regulation change,Consolidation,Globalization,Uncertainty (social),Community,Implemented,Anticipatory,Responsive,Both,,Internat.,Nat. govt.,Region. govt.,Local govt.,NGO,Uni.,Community assoc.,Business coop.,Business,Individual,,Reduce stressor,Reduce sensitivity,Cope,No change,Take advantage,Source
-a,40,PJW,US-AK,N,Community-based rights,,,,,,,,1,,,Y,Y,x,,,,,,x,,,,,,,,,x,,,,,Himes-Cornell and Hoelting 2015
-a,40,PJW,US-AK,N,Economic/community development,,,,,,,,1,2,,Y,Y,x,,,,,,,,x,,x,,,,,x,,,,,Himes-Cornell and Hoelting 2015
-a,40,PJW,US-AK,N,Community-based rights,,,,,,,,1,,,Y,Y,x,,,,,,,,x,,x,,,,,x,,,,,Himes-Cornell and Hoelting 2015
-a,40,PJW,US-AK,N,Fair trade laws,,,,,,,,1,,,Y,Y,x,,,,,,x,,,,,,,,,x,,,,,Himes-Cornell and Hoelting 2015
-a,40,PJW,US-AK,N,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",,,,,,,,1,,,Y,Y,,x,,,,,x,,,,,,,,,,x,,,,Himes-Cornell and Hoelting 2015
-a,40,PJW,US-AK,N,Diversifying livelihoods,,,,,,,,1,,,Y,Y,,,x,,,,,,x,,x,,,,,,x,,,,Himes-Cornell and Hoelting 2015
-a,40,PJW,US-AK,N,Permit/license/quota banks,,,,,,,,1,,,Y,Y,,,x,,,,,,x,,x,,,,,x,,,,,Himes-Cornell and Hoelting 2015
-a,40,PJW,US-AK,N,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",,,,,,,,1,,,Y,Y,,x,,,,,,,x,,x,,,,,,x,,,,"Himes-Cornell and Hoelting 2015, Jain and Garderet 2011"
-a,40,PJW,US-AK,N,Economic/community development,,,,,,,,1,,,Y,Y,,x,,,,,,,x,,x,,,,,,x,,,,Jain and Garderet 2011
-a,40,PJW,US-AK,N,Investments to improve value chain,,,,,,,,,,1,Y,Y,x,,,,,,,,x,,,,,,,,x,,,,Himes-Cornell and Hoelting 2015
-a,40,PJW,US-AK,N,Investments to improve value chain,,,,,,,,,,1,Y,Y,x,,,,,,,,,,,,x,,,,x,,,,Himes-Cornell and Hoelting 2015
-a,40,PJW,US-AK,N,Transition out of fisheries,,,,,,,,1,2,,Y,Y,,x,,,,,,,,,,,,x,,,,x,,,Himes-Cornell and Hoelting 2015
-a,40,PJW,US-AK,N,Diversifying livelihoods,2,,,,,,,1,,,Y,Y,,x,,,,,,,,,,,,x,,,x,,,,Himes-Cornell and Hoelting 2015
-b,40,GR,US-AK,N,Diversify livelihoods,,,,,,,,1,,,N,Y,,x,,,,,,,,,,,,x,,,,x,,,Himes-Cornell&Holting2015 
-b,40,GR,US-AK,N,Transition out of fisheries,,,,,,,,1,,2,N,Y,,x,,,,,,,,,,,,x,,,,x,,,Himes-Cornell&Holting2015 
-b,40,GR,US-AK,N,Economic/community development,,,,,,,,1,,2,Y,Y,,x,,,,,,x,,,,,,,,,x,x,,,Himes-Cornell&Holting2015 
-b,40,GR,US-AK,N,Economic/community development,,,,,,,,1,2,,Y,Y,,x,,,,,,x,,,,,,x,,,x,x,,,Himes-Cornell&Holting2015 
-b,40,GR,US-AK,N,Economic/community development,,,,,,,,2,,1,Y,Y,,,x,,,,x,x,,,,,,,,,x,,,,Himes-Cornell&Holting2015 
-b,40,GR,US-AK,N,Permit/license/quota bank,,,,,,,,1,,2,Y,Y,,,x,,,,x,x,,,,,,,,,x,,,,Himes-Cornell&Holting2015 
-b,40,GR,US-AK,N,Community-based rights,,,,,,,,1,,2,Y,Y,x,,,,,,x,x,,,,,x,,,,x,,,x,Himes-Cornell&Holting2015 
-b,40,GR,US-AK,N,Community-based rights,,,,,,,,1,,2,Y,Y,x,,,,,,x,x,,,,,x,,,,x,,,x,Himes-Cornell&Holting2015 
-b,40,GR,US-AK,N,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",,,,,,,,1,,,N,Y,,,x,,,,x,x,,,,,x,,,,x,,,,Himes-Cornell&Holting2015 
-b,40,GR,US-AK,N,Community-based rights,,,,,,,,1,,2,Y,Y,,x,,,,,x,x,,,,,x,,,,x,,,x,Himes-Cornell&Holting2015 
-b,40,GR,US-AK,N,Permit/license/quota bank,,,,,,,,1,,2,Y,Y,,x,,,,,,,,,x,,x,,,,x,,,,Himes-Cornell&Holting2015 
-b,40,GR,US-AK,N,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses", ,,,,2,,,1,,,Y,Y,,x,,,,,,,,,x,,x,,,,x,,,,Himes-Cornell&Holting2015 
-b,40,GR,US-AK,N,Investments to improve value chain, ,,,,,2,,,,1,Y,Y,,,x,,,,,,x,,,,x,,,,x,,,,Himes-Cornell&Holting2015 
-a,201,PJW,USA,N,Research,1,,,,,,2,,,,Y,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,USA,N,Restoration,1,,,,,,2,,,,Y,Y,,x,,,,,,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,USA,N,Reductions in other stressors,1,,,,,,2,,,,Y,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,USA,N,Disaster risk management,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,USA,N,Disaster funds,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,USA,N,Transition out of fisheries,1,,,,,,2,,,,Y,N,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,USA,N,Financial assistance to help transition out of fishery,1,,,,,,2,,,,Y,N,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,USA,N,Education,1,,,,,,2,,,,Y,N,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,USA,N,Diversify livelihoods,1,,,,,,2,,,,Y,N,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,USA,N,Economic/Community development,1,,,,,,2,,,,Y,N,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,USA,N,Financial assistance to help survive bad fishing years,1,,,,,,2,,,,Y,N,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,USA,N,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",1,,,,,,2,,,,Y,N,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,USA,N,Review program/regulations,1,,,,,,2,,,,Y,N,,x,,,,x,,,,,,,,,,,x,,,,Upton 2013
-a,201,PJW,US-SE,N,Transition out of fisheries,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,US-SE,N,Restoration,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,x,,,,Upton 2013
-a,201,PJW,US-SE,N,Research,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,US-SE,N,Financial assistance to help survive bad fishing years,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,US-SE,N,Restoration,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,x,,,,Upton 2013
-a,201,PJW,US-SE,N,Research,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,x,,,,Upton 2013
-a,201,PJW,US-NE,N,Financial assistance to help survive bad fishing years,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,US-NE,N,Transition out of fisheries,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,US-NE,N,Financial assistance to help transition out of fishery,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,US-NE,N,Education,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,US-NE,N,Research,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,US-NW,N,Financial assistance to help survive bad fishing years,1,,,,,,2,,,,N,Y,,x,,,,x,x,x,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,US-AK,N,Economic/Community development,1,,,,,,2,,,,Y,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,US-AK,N,Research,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,US-NE,N,Financial assistance to help survive bad fishing years,,,,,1,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,US-NE,N,Financial assistance to help survive bad fishing years,,,,,1,,2,,,,N,Y,x,,,,,x,x,,,,,,,,,,x,,,,Upton 2013
-a,201,PJW,US-SE,N,Restoration,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,US-SE,N,Financial assistance to help survive bad fishing years,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,US-SE,N,Financial assistance to help transition out of fishery,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,US-SE,N,Research,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,US-NW,N,Financial assistance to help survive bad fishing years,1,,,,,,2,,,,N,Y,,x,,,x,x,,,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,US-AK,N,Financial assistance to help survive bad fishing years,1,,,,,,2,,,,Y,Y,,x,,,,x,x,x,,,,,,,,,,x,,,Upton 2013
-a,201,PJW,US-SE,N,Investments to improve value chain,,,,,,1,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013
-b,201,KLH-cross,USA,cc,Financial assistance to help survive bad fishing years,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Education,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Transition out of fisheries,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Financial assistance to help transition out of fishery,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Disaster funds,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Disaster risk management,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Restoration,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Research  ,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Diversify livelihoods,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Review program/regulations,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Financial assistance to help survive bad fishing years,1,,,,,2,,,,,,,,,,,,,,,,,,x,,,,,,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Financial assistance to help survive bad fishing years,1,,,,,2,,,,,n,y,,x,,,,,,,,,x,,,,,,,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Economic/community development,1,,,,,2,,,,,n,y,,x,,,,,,,,,x,,,,,,,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Restoration,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Disaster funds,1,,,,,2,,,,,n,y,,x,,,,,,,,,x,,,,,,,,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Research,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Disaster funds,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Market diversification,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Economic/community development,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Research,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Transition out of fisheries,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Financial assistance to help survive bad fishing years,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Research,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Financial assistance to help survive bad fishing years,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Transition out of fisheries,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Economic/community development,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Research,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Economic/community development,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Research ,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Cooperative,1,,,,,2,,,,,n,y,,x,,,,x,,,,,x,,,,,,x,,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Research,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Transition out of fisheries,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Research ,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Education,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Financial assistance to help survive bad fishing years,1,,,,,2,,,,,n,y,,x,,,,x,x,x,,,,,,,,,,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Financial assistance to help survive bad fishing years,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Coordination and organization,2,,,,,1,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,,,,Upton et al. 2013
-b,201,KLH-cross,USA,cc,Investments to improve value chain,2,,,,,1,,,,,,,,,,,,,,,,,,,,,,,x,,,,Upton et al. 2013
-b,276,KLH-cross,USA,n,research ,,,,,1,,,,,2,y,n,x,,,,,,,,,x,,,,,,,x,,,,Johnson et al. 2014
-b,276,KLH-cross,USA,n,Diversify livelihoods,,,,,1,2,,,,,y,n,x,,,,,,,,,,,,x,x,,,x,,,,Johnson et al. 2014
-b,276,KLH-cross,USA,n,Investment in new gear or innovations,,,,,1,2,,,,,y,n,x,,,,,,,,,,,,x,x,,,x,,,,Johnson et al. 2014
-b,276,KLH-cross,USA,n,Financial assistance to help survive bad fishing years,1,,,,,2,,,,,y,n,,x,,,,,,,x,,,,x,x,,,x,,,,Johnson et al. 2014
-b,276,KLH-cross,USA,n,Investments to improve value chain,,,,,,1,,,,,y,n,,x,,,,,,,x,,,,x,x,,,x,,,,Johnson et al. 2014
-b,276,KLH-cross,USA,n,Market diversification,2,,,,,1,,,,,y,n,,x,,,,,,,x,,x,,,x,,,x,,,,Johnson et al. 2014
-b,276,KLH-cross,USA,n,Permit/license/quota bank,2,,,,,1,,,,,y,n,,x,,,,,,,x,,x,,,x,,,x,,,,Johnson et al. 2014
-b,276,KLH-cross,USA,n,Economic/Community development,2,,,,,1,,,,,y,n,,x,,,,,,,,,x,x,,x,,,x,,,,Johnson et al. 2014
-b,372,KLH-cross,USA,cc,Reduction in other stressors,1,,,,2,,,,,,y,y,x,,,,,x,x,,,,,,,,,x,x,,,,TheStateofHA2010 – US
-b,372,KLH-cross,USA,cc,Education,,,,,1,,,,,,y,y,x,,,,,x,x,,,,,,,,,x,x,,,,TheStateofHA2010 – US
-b,372,KLH-cross,USA,cc,MPA,2,,,,1,,,,,,y,y,x,,,,,x,x,,,,,,,,,x,x,,,,TheStateofHA2010 – US
-b,372,KLH-cross,USA,cc,Community-based rights,,,,,1,,,,,,y,y,x,,,,,x,x,,,,,,,,,,x,,,,TheStateofHA2010 – US
-b,372,KLH-cross,USA,cc,Coordination and organization,,,,,1,,,,,,y,y,x,,,,,x,x,,,,,,,,,,x,,,,TheStateofHA2010 – US
-a,477,PJW,US-SE,CC,Review program/regulations,,,,,1,,,,,,N,N,x,,,,,,x,,,,,,,,,,x,,,,Penn 2012
-a,477,PJW,US-SE,CC,MPAs,,,,,1,,,,,,N,N,x,,,,,,x,,,,,,,,,,x,,,,Penn 2012
-b,477,LF ,UK,CC,Reductions in other stressors,1,2,,,,,,,,,N,N,x,,,,,x,,,,,,,,,,x,,,,,Penn 2011
-b,477,LF ,UK,CC,Enforcement,1,,,,,,,,,,N,N,,,x,,,x,,,,,,,,,,x,,,,,Penn 2011
-b,477,LF ,UK,CC,MPAs,1,,,,,,,,,,N,N,,,x,,,x,,,,,,,,,,x,,,,,Penn 2011
-b,477,LF ,UK,CC,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",,,,,,,,,,1,N,N,x,,,,,x,,,,,,,,,,x,x,,,,Penn 2011
-a,477,PJW,US-SE,CC,Enforcement,,,,,1,,,,,,N,N,x,,,,,,x,,,,,,,,,,x,,,,Penn 2012
-a,477,PJW,US-SE,CC,Reductions in other stressors,,,,,1,,,,,,N,N,x,,,,,,x,,,,,,,,,,x,,,,Penn 2012
-a,530,PJW,US-SW,CC,Reductions in other stressors,,,,,1,,,,,,N,N,,,,,,,,,,,,,,,,,x,,,,Chavez et al. 2017
-a,530,PJW,US-SW,CC,Research,,,,,1,,,,,,N,N,,,,,,,,,,,,,,,,,x,,,,Chavez et al. 2017
-a,530,PJW,US-SW,CC,MPAs,,,,,1,,,,,,N,N,,,,,,,,,,,,,,,,,x,,,,Chavez et al. 2017
-a,530,PJW,US-SW,CC,Coordination and organization,,,,,1,,,,,,N,N,,,,,,,x,x,,,,,x,,,,x,,,,Chavez et al. 2017
-a,530,PJW,US-SW,CC,Review program/regulations,,,,,1,,,,,,N,N,,,,,,,x,,,,,,,,,,x,,,,Chavez et al. 2017
-a,530,PJW,US-SW,CC,Diversify livelihoods,,,,,1,,,,,,N,Y,,,,,,,,,,,,,x,,,,x,,,x,Chavez et al. 2017
-a,530,PJW,US-SW,CC,Education,,,,,1,,,,,,N,N,,,,,,,x,,,,,,,,,,,,,x,Chavez et al. 2017
-a,530,PJW,US-SW,CC,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",,,,,1,,,,,,N,N,,,,,,,x,,,,,,,,,,,,,x,Chavez et al. 2017
-a,530,PJW,US-SW,CC,Transition out of fisheries,,,,,1,,,,,,N,N,,,,,,,,,,,,,x,,,,,x,,,Chavez et al. 2017
-a,530,PJW,US-SW,CC,Investments in new gear or innovations,,,,,1,,,,,,N,Y,,,,,,,,,,,,,x,,,,,x,,,Chavez et al. 2017
-b,530,LF,US-SW,CC,Reductions in other stressors,1,,,,,,,,,,N,N,,,x,,,,x,,,,,,,,,x,,,,,Chavez et al. 2017
-b,530,LF,US-SW,CC,Enforcement,1,,,,,,,,,,N,Y,,,x,,,,x,,,,,,,,,x,,,,,Chavez et al. 2017
-b,530,LF,US-SW,CC,MPAs,1,,,,,,,,,,N,Y,,x,,,,x,x,x,x,,,,,,,x,,,,,Chavez et al. 2017
-b,530,LF,US-SW,CC,Restoration,1,2,,,,,,,,,N,Y,x,,,,,,,,,,,,,,,x,,,,,Chavez et al. 2017
-b,530,LF,US-SW,CC,Review program/regulations,1,2,,,,,,,,,N,Y,1,,,,,x,,,,,,,,,,x,x,,,,Chavez et al. 2017
-b,530,LF,US-SW,CC,Investment in new gear or innovations,1,2,,,,,,,,,N,N,,,x,,,x,,,,,,,,,,x,x,,,,Chavez et al. 2017
-b,530,LF,US-SW,CC,Coordination and organization,1,2,,,,,,,,,N,N,,,x,,,x,x,,,,,,,,,x,x,,,,Chavez et al. 2017
-b,530,LF,US-SW,CC,Research,1,2,,,,,,,,,N,Y,,,x,,,x,,,,,,,,,,x,x,,,,Chavez et al. 2017
-b,530,LF,US-SW,CC,Insurance,,,,,,,,,,1,N,N,,,x,,,x,,,,,,,,,,x,x,,,,Chavez et al. 2017
-b,530,LF,US-SW,CC,Disaster funds,1,,,,,,,,,,Y,N,,x,,,,x,,,,,,,,,,,x,,,,Chavez et al. 2017
-b,530,LF,US-SW,CC,Diversify livelihoods,1,,,,,,,,,,N,N,,x,,,,x,,,,,,,,,,,x,,,,Chavez et al. 2017
-b,530,LF,US-SW,CC,Financial assistance to help transition out of fishery,1,,,,,,,,,,N,N,,x,,,,x,,,,,,,,,,,x,,,,Chavez et al. 2017
-b,530,LF,US-SW,CC,Dynamic ocean management,1,2,,,,,,,,,N,N,,,x,,,,x,,,,,,,,,x,,,,,Chavez et al. 2017
-b,530,LF,US-SW,CC,International agreements,,1,,,,,,,,,N,N,,,x,,x,,,,,,,,,,,,,x,,,Chavez et al. 2017
-b,606,KLH- cross,USA,CC,Review program/regulations,,,,,1,,,,,,n,n,x,,,,,x,,,,,,,,,,,x,,,,Field et al. 2001 – US
-b,606,KLH -cross,USA,cc,reduction in other stressors,,,,,1,,,,,,n,n,x,,,,,x,,,,,,,,,,,x,,,,Field et al. 2001 – US
-b,606,KLH -cross,USA,cc,research,,,,,1,,,,,,n,n,x,,,,,x,,,,,,,,,,,x,,,,Field et al. 2001 – US
-b,606,KLH -cross,USA,cc,education,,,,,1,,,,,,n,n,x,,,,,x,,,,,,,,,,,x,,,,Field et al. 2001 – US
-b,606,KLH -cross,USA,cc,insurance,,,,1,2,,,,,,n,n,x,,,,,x,,,,,,,,,,,,,,,Field et al. 2001 – US
-a,726,JM,AUS,N,Review program/regulations,1,,,,2,,,,,,N,Y,,,x,,,x,,,,,,,,,,x,,,,,AFMA 2015d
-a,726,JM,AUS,N,Research,2,,,,1,,,,,,N,Y,,,x,,,x,,,,,,,,,,x,,,,,AFMA 2016b
-b,726,PJW,AUS,N,Research,1,,,,2,,,,,,N,Y,,,x,,,,,,,,,,,,,x,,,,,AFMA 2015d
-b,726,PJW,AUS,N,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",1,,,,2,,,,,,N,Y,,,x,,,,,,,,,,,,,x,,,,,AFMA 2015d
-a,762,JM,AUS,N,Enforcement,1,,,,2,,,,,,N,Y,,,x,,,x,x,,,,,,,,,x,,,,,O'Malley 2015
-a,762,JM,AUS,N,Enforcement,1,,,,2,,,,,,N,Y,,,x,,,x,x,,,,,,,,,x,,,,,O'Malley 2015
-a,762,JM,AUS,N,Enforcement,1,,,,2,,,,,,N,Y,,,x,,,x,x,,,,,,,,,x,,,,,O'Malley 2015
-a,762,JM,AUS,N,Research,,,,,1,,,,,,N,Y,,x,,,,x,,,,,,,,,,x,,,,,O'Malley 2015
-a,762,JM,AUS,N,Enforcement,1,,,,,,,,,,N,Y,,x,,,,x,x,,,,,,,,,x,,,,,O'Malley 2015
-a,762,JM,AUS,N,Research,,,,,1,,,,,,N,Y,,x,,,,x,x,,,,,,,,,x,,,,,O'Malley 2015
-a,762,JM,AUS,N,Enforcement,,,,,1,,,,,,N,N,,x,,,,x,x,,,,,,,,,x,,,,,O'Malley 2015
-a,762,JM,AUS,N,Coordination and organization,2,,,,1,,,,,,Y,Y,,,x,,,,x,,,,,,,,,x,x,,,,O'Malley 2015
-b,762,GR,AUS,N,Enforcement,1,,,,,,,,,,N,Y,x,,,,,x,x,,,,,,,,,x,,,,,O Malley 2015
-b,762,GR,AUS,N,Research,1,,,,,,,,,,N,Y,x,,,,,x,x,,,,,,,,,x,,,,,O Malley 2015
-b,762,GR,AUS,N,MPAs,1,,,,,,,,,,N,Y,x,,,,,x,x,,,,,,,,,x,,,,,O Malley 2015
-b,923,PJW,FIN,N,Education,,,,,,,,,2,1,Y,Y,x,,,,,,,x,,,x,,,,,,x,,,,FARNET 2017
-b,923,PJW,FIN,N,Research,,,,,,,,,2,1,Y,Y,x,,,,,,,x,,,x,,,,,,x,,,,FARNET 2017
-b,923,PJW,FIN,N,Economic/community development,,,,,,,,,2,1,Y,Y,x,,,,,,,x,,,x,,,,,,x,,,,FARNET 2017
-b,804,PJW,AUS,N,Research,1,,,,,,,,,,N,Y,x,,,,,x,,,,,,x,,,,,x,,,,Gaughan et al. 2008 
-b,804,PJW,AUS,N,Reductions in other stressors,1,,,,,,,,,,N,Y,x,,,,,x,,,,,,,,,,,x,,,,Gaughan et al. 2008 
-a,823,JM,AUS,CC,MPAs,2,1,,,,,,,,,N,Y,,,x,,,x,x,,,,,,,,,,x,,,,Ling et al. 2009
-a,823,JM,AUS,CC,Enforcement,2,1,,,,,,,,,N,N,,,x,,,,x,,,,,,,,,x,x,,,,Ling and Johnson 2012
-b,823,PJW,AUS,CC,MPAs,2,1,,,3,,,,,,N,Y,,,x,,,x,,,,,,,,,,x,,,,,Ling and Johnson 2012
-b,823,PJW,AUS,CC,Reductions in other stressors,2,1,,,3,,,,,,N,N,,,x,,,x,,,,,,,,,,,x,,,,Ling and Johnson 2012
-a,839,JM,AUS,CC,Adaptation programs,,,,,1,,,,,2,N,N,,,x,,,x,x,,,,,,x,x,,x,,,,,Hobday et al. 2009
-b,839,HB,AU,C,Adaptation program,,,,,1,,,,,2,N,N,,,x,,,x,x,x,,,,,,,,x,x,,,,Hobday et al 2009
-a,852,PJW,USA-NE,N,Dynamic ocean management,1,,,,,,,,,,N,Y,x,,,,,x,,,,,,,,,,,x,,,,Little et al. 2015
-a,852,PJW,NOR,N,Dynamic ocean management,2,,,,,,1,,,,N,Y,x,,,,,x,,,,,,,x,,,,x,,,,Little et al. 2015
-a,852,PJW,UK,N,Dynamic ocean management,1,,,,,,,,,,N,Y,x,,,,,,x,,,,,,,,,,x,,,,Little et al. 2015
-a,852,PJW,NOR,N,Dynamic ocean management,1,,,,,,,,,,N,Y,x,,,,,x,,,,,,,x,,,,x,,,,Little et al. 2015
-a,852,PJW,ICE,N,Dynamic ocean management,2,,,,,,1,,,,N,Y,x,,,,,,x,,,,,,,,,,x,,,,Little et al. 2015
-a,852,PJW,US-AK,N,Dynamic ocean management,2,,,,,,1,,,,N,Y,x,,,,,,,,x,,,x,,,,,x,,,,Little et al. 2015
-a,852,PJW,US-AK,N,Cooperatives,2,,,,,,1,,,,Y,Y,x,,,,,,,,x,,,,x,,,,x,,,,Little et al. 2015
-a,852,PJW,US-NW,N,Dynamic ocean management,2,,,,,,1,,,,Y,Y,x,,,,,,,,x,,,,x,,,,x,,,,Little et al. 2015
-a,852,PJW,US-NW,N,Cooperatives,2,,,,,,1,,,,Y,Y,x,,,,,,,,x,,,,x,,,,x,,,,Little et al. 2015
-a,852,PJW,US-NW,N,Dynamic ocean management,1,,,,,,,,,,Y,Y,x,,,,,,,,,x,,,x,,,,x,,,,Little et al. 2015
-a,852,PJW,US-NW,N,Cooperatives,1,,,,,,,,,,Y,Y,x,,,,,,,,,x,,,x,,,,x,,,,Little et al. 2015
-a,852,PJW,US-NE,N,Dynamic ocean management,1,,,,,,2,,,,Y,Y,x,,,,,,,,,x,,,x,,,,x,,,,Little et al. 2015
-a,852,PJW,US-NE,N,Cooperatives,1,,,,,,2,,,,Y,Y,x,,,,,,,,,x,,,x,,,,x,,,,Little et al. 2015
-a,852,PJW,US-NE,N,Dynamic ocean management,1,,,,,,,,,,Y,Y,x,,,,,,,,,x,,,x,,,,x,,,,Little et al. 2015
-a,852,PJW,US-NE,N,Cooperatives,1,,,,,,,,,,Y,Y,x,,,,,,,,,x,,,x,,,,x,,,,Little et al. 2015
-b,852,LF,NOR,N,Dynamic ocean management,1,,,,,,,,,,N,Y,,,x,,,x,,,,,x,,,,,x,,,,,Little et al. 2015
-b,852,LF,UK,N,Dynamic ocean management,1,,,,,,,,,,N,Y,,,x,,,x,,,,,,,,,,x,,,,,Little et al. 2015
-b,852,LF,EU,N,Dynamic ocean management,1,,,,,,2,,,,N,Y,,,x,,x,x,,,,,,,,,,x,,,,,Little et al. 2015
-b,852,LF,ICE,N,Dynamic ocean management,1,,,,,,2,,,,N,Y,,,x,,,x,,,,,,,,,,x,,,,,Little et al. 2015
-b,852,LF,US-AK,N,Cooperatives,1,,,,,,2,,,,N,Y,,x,,,,,,,,,,x,,,,x,,,,,Little et al. 2015
-b,852,LF,US-AK,N,Dynamic ocean management,1,,,,,,2,,,,N,Y,,,x,,,,,,,,,x,,,,x,,,,,Little et al. 2015
-b,852,LF,US-NW,N,Dynamic ocean management,1,,,,,,2,,,,N,Y,,,x,,,,,,,,,x,,,,x,,,,,Little et al. 2015
-b,852,LF,US-NW,N,Cooperatives,1,,,,,,2,,,,N,Y,,x,,,,,,,,,,x,,,,x,,,,,Little et al. 2015
-b,852,LF,US-NW,N,Cooperatives,1,,,,,,2,,,,N,Y,,x,,,,,,,x,,,x,,,,x,,,,,Little et al. 2015
-b,852,LF,US-NW,N,Dynamic ocean management,1,,,,,,,,,,N,Y,,,x,,,x,,,x,x,,x,,,,x,,,,,Little et al. 2015
-b,852,LF,US-NE,N,Dynamic ocean management,1,,,,,,,,,,N,Y,,,x,,,,,,,x,,x,,,,,,,,,Little et al. 2015
-b,852,LF,US-SE,N,Dynamic ocean management,1,,,,,,2,,,,N,Y,,,x,,,,,,x,x,,x,,,,,,,,,Little et al. 2015
-a,915,MH,FIN,CC,Research  ,3,2,,,1,,,,,4,Y,N,,,x,,x,,,,,,,,,,,,x,x,,,AMAP. 2017. 
-a,915,MH,FIN,CC,Adaptation programs,1,2,,,3,,,,,,N,N,x,,,,x,,,,,,,,,,,x,x,,,,AMAP. 2017. 
-b,915,JM,FIN,N,International agreements,,,,,1,,,,,2,N,Y,x,,,,x,,,,,,,,,,,x,x,,,,AMAP 2017
-b,915,JM,FIN,CC,Research,,,,,1,,,,,2,Y,N,,,x,,x,,,,,,,,,,,,x,,,x,AMAP 2017
-a,939,MO,NL,CC,Individual property rights,1,2,,,,,,,,,N,N,x,,,,,x,,,,,,,,,,,,x,,,Bruin et al. 2009 / Nillisen & van Ierland 2006
-a,939,MO,NL,CC,Investment in new gear or innovations,1,,,,,,,,,,N,N,x,,,,,x,,,,,,,x,,,,x,,,,Bruin et al. 2009 / Nillisen & van Ierland 2006
-a,939,MO,NL,CC,Coordination and organization,,,,,1,,,,,,N,N,x,,,,,,,,,,,,x,,,,x,,,,Bruin et al. 2009 / Nillisen & van Ierland 2006
-a,939,MO,NL,CC,Research,,,,,1,,,,,,N,N,x,,,,,,,,,,,,x,,,,x,,,,Bruin et al. 2009 / Nillisen & van Ierland 2006
-a,939,MO,NL,CC,Investments to improve value chain,1,,,,,2,,,,,N,N,x,,,,,x,,,,,,x,x,x,,,,x,,,Bruin et al. 2009 / Nillisen & van Ierland 2006
-a,939,MO,NL,CC,Investment in new gear or innovations,none,,,,,,,,,,N,N,x,,,,,,,,,,,,x,,,,,,,x,Bruin et al. 2009 / Nillisen & van Ierland 2006
-a,939,MO,NL,CC,Insurance,,,,,1,,,,,,N,N,x,,,,,x,,,x,,,,x,,,,x,,,,Bruin et al. 2009 / Nillisen & van Ierland 2006
-b,939,LF,NL,CC,Insurance,,,,,,,,,,1,N,N,,x,,,,x,,,,,,,,,,x,x,,,,Bruin et al. 2009
-b,939,LF,NL,CC,Enforcement,1,,,,,,,,,,N,N,,,x,,,x,,,,,,,,,,x,,,,,Bruin et al. 2009
-b,939,LF,NL,CC,Investment in new gear or innovations,1,,,,,,,,,,N,N,,x,,,,x,,,,,,,,,,x,,,,,Bruin et al. 2009
-b,939,LF,NL,CC,Investments to improve value chain,1,,,,2,,,,,,N,N,,,x,,,x,,,,,,,,,,x,x,,,,Bruin et al. 2009
-b,939,LF,NL,CC,Investment in new gear or innovations,,,,,1,,,,,,N,N,,x,,,,x,,,,,,,,,,x,x,,,,Bruin et al. 2009
-b,939,LF,NL,CC,Research,1,,,,,,,,,,N,N,,,x,,,x,,,,,,,,,,x,,,,,Bruin et al. 2009
-b,939,LF,NL,CC,MPAs,1,2,,,,,,,,,N,N,,x,,,,x,,,,,,,,,,,x,,,,Bruin et al. 2009
-a,986,KLH,CAN,CC,Investment in new gear or innovations,,,,1,,,,,,,Y,Y,,x,,,,,x,x,,,x,,,x,,,,x,,,"Giles, A.R., et al. 2013"
-a,986,KLH,CAN,CC,Investment in new gear or innovations,,,,1,,,,,,,Y,Y,,x,,,,,x,x,,,x,,,x,,,,x,,,"Giles, A.R., et al. 2013"
-a,986,KLH,CAN,CC,Education,,,,1,,,,,,,Y,Y,,x,,,,,x,x,,,x,,,x,,,,x,,,"Giles, A.R., et al. 2013"
-b,986,GR,CAN,CC,Investment in new gear or innovations,,,,2,1,,,,,,N,Y,,x,,,,,,,,,,,,x,,,x,,,,Giles et al 2013
-b,986,GR,CAN,CC,Investment in new gear or innovations,,,,2,1,,,,,,Y,N,,x,,,,,,,,,x,,,x,,,x,,,,Giles et al 2013
-b,986,GR,CAN,CC,Investment in new gear or innovations,,,,2,1,,,,,,Y,N,,x,,,,,,,,,x,,,x,,,x,,,,Giles et al 2013
-b,986,GR,CAN,CC,Investment in new gear or innovations,,,,2,1,,,,,,Y,N,,x,,,,,,,,,x,,,x,,,x,,,,Giles et al 2013
-a,1021,KJF,CAN,CC,Coordination and organization,,,,,2,,,,,1,Y,N,,,X,,,,,,X,X,X,,,,,,X,X,,,"Armitage et al, 2011"
-b,1021,LF,CAN,CC,Coordination and organization,1,,,,2,,,,,,Y,Y,,,x,,,,,x,,,,,,,,x,x,,,,"Armitage et al, 2011"
-b,1021,LF,CAN,CC,Research,1,,,,2,,,,,,Y,Y,,,x,,,,,x,,,,,,,,x,x,,,,"Armitage et al, 2011"
-a,1048,KJF,CAN,CC,Review program/regulations,,,,,1,,,,,,Y,Y,,,X,,,,X,,,,,,,,,,,,,X,New Brunstick's Response to Climate Change
-a,1048,KJF,CAN,CC,Preemptive Infrastructure,,,,1,,,,,,,Y,N,X,,,,,,,X,,,,,,,,,,X,X,,New Brunstick's Response to Climate Change
-a,1048,KJF,CAN,CC,Enforcement,,1,,,2,,,,,,Y,N,,X,,,,,,X,,,,,,,,,,,X,X,New Brunstick's Response to Climate Change
-a,1048,KJF,CAN,CC,Market diversification,,1,,,2,3,,,,,Y,N,,X,,,,,,X,,,,,,,,,,,,X,New Brunstick's Response to Climate Change
-b,1048,GR,CAN,CC,Investment in new gear or innovations,,,,1,,,,,,,Y,N,x,,,,,x,,x,,,,,,,,,x,,,,Harvey et al 2016
-b,1048,GR,CAN,CC,Enforcement,2,,,,1,,,,,,Y,N,,x,,,,x,,x,,,,,,,,,x,,,,Harvey et al 2016
-b,1048,GR,CAN,CC,Review program/regulations,,1,,,,,,,,,Y,N,,x,,,,x,,x,,,,,,,,,,,,x,Harvey et al 2016
-b,1048,GR,CAN,CC,Diversify livelihoods,,1,,,2,,,,,,N,Y,,,x,,,,,,,,,,x,x,,,x,,,x,Harvey et al 2016
-b,1048,GR,CAN,CC,MPAs,,,,,1,,,,,,N,N,,,x,,,x,,x,,,,,,,,,x,,,x,Harvey et al 2016
-b,1048,GR,CAN,CC,Reductions in other stressors,,,,,1,,,,,,N,N,,x,,,,x,,x,,,,,,,,x,,,,,Harvey et al 2016
-a,1202,GC & RH,UK,CC,MPAs,,,,,x,,,,,,N,Y,,x,,,x,x,,,,,,,,,,,,x,,,Frost et al 2016
-a,1202,GC & RH,UK,CC,Research,x,,,,x,,,,,,N,Y,,,x,,x,,,,,,,,,,,,,,x,,Frost et al 2016
-a,1202,GC & RH,UK,CC,Research,,,,,x,,,,,,N,Y,,,x,,x,x,,,,,,,,,,,,,x,,Frost et al 2016
-a,1202,GC & RH,UK,CC,Research,,,,,x,,,,,,N,Y,,x,,,x,x,,,,,,,,,,,,,x,,Frost et al 2016
-a,1202,GC & RH,UK,CC,Research,1,2,,,,,,,,,N,Y,,x,,,,x,,,,,,,,,,,,x,,,Frost et al 2016
-a,1202,GC & RH,UK,CC,Research,,x,,,,,,,,,N,Y,,,x,,x,x,,,,,,,,,,,,x,,,Frost et al 2016
-a,1202,GC & RH,UK,CC,Research,,,x,,,,,,,,N,Y,,,x,,x,x,,,,,,,,,,,,x,,,Frost et al 2016
-b,1202,GR,UK,CC,Review program/regulations,1,,,,,,,,,,N,N,,,x,,x,,,,,,,,,,,,x,x,,,Frost et al 2016
-b,1202,GR,UK,CC,Adaptation programs,,,,,1,,,,,,N,N,,,x,,x,x,,,,,,,,,,,x,x,,,Frost et al 2016
-b,1202,GR,UK,CC,Adaptation programs,,,,,1,,,,,,N,N,,,x,,,x,,,,,,,,,,,,,,,Frost et al 2016
-b,1202,GR,UK,CC,Adaptation programs,,,,,1,,,,,,N,N,,,x,,,x,x,,,,,,,,,,,,,,Frost et al 2016
-b,1202,GR,UK,CC,Adaptation programs,,,,,1,,,,,,N,N,,,x,,,x,x,,,,,,,,,,,,,,Frost et al 2016
-b,1202,GR,UK,CC,Adaptation programs,,,,,1,,,,,,N,N,,,x,,,,x,,,,,,,,,,,,,,Frost et al 2016
-a,1202,GC & RH,UK,CC,Research,,,,,x,,,,,,N,Y,,x,,,,x,,,,,,,,,,,,x,,,Frost et al 2016
-a,1216,CS,Italy,N,Enforcement,1,,,,,,1,,,,Y,N,,x,,,,,,x,,,,,,,,,x,,,,Pranovi et al 2015
-a,1216,CS,Italy,N,Diversify livelihoods,1,,,,,,,,,1,Y,N,,x,,,,,,x,,,,,,,,,x,,,,Pranovi et al 2015
-b,1238,JM,IT,CC,Adaptation programs,,,,,1,,,,,2,N,Y,x,,,,,x,,,,,,,,,,,x,,,,Bosnjakovic and Haber 2015
-b,1238,JM,IT,CC,Research,,,,,2,,,,,1,N,Y,x,,,,,x,x,,,,,,,,,,x,,,,Bosnjakovic and Haber 2015
-a,1280,GR,Italy,N,Diversify livelihoods,,,,,2,,,,,1,y,y,,,x,,x,,,x,,,x,,,,,,,,,x,"Farnet Magazine n7, 2012"
-a,1280,GR,Italy,N,Investments to improve value chain,,,,,2,,,,,1,y,y,,,x,,x,,,x,,,x,,,,,,,,,x,"Farnet Magazine n7, 2012"
-a,1280,GR,Italy,N,Economic/community development,,,,,2,,,,,1,y,y,,,x,,x,,,x,,,x,,,,,,,,,x,"Farnet Magazine n7, 2012"
-a,1280,GR,Italy,N,Coordination and organization,,,,,2,,,,,1,y,y,,,x,,x,,,x,,,x,,,,,,,,,x,"Farnet Magazine n7, 2012"
-b,1280,PJW,IT,N,Coordination and organization,,,,,,1,,,,2,Y,Y,,,x,,x,x,x,x,,,,,,,,,x,,,,"Farnet Magazine n7, 2012"
-b,1280,PJW,IT,N,Economic/community development,,,,,,1,,,,2,Y,Y,,,x,,x,x,x,x,,,,,,,,,x,,,,"Farnet Magazine n7, 2012"
-b,1280,PJW,IT,N,Diversify livelihoods,,,,,,1,,,,2,Y,Y,,,x,,x,x,x,x,,,,,,,,,x,,,,"Farnet Magazine n7, 2012"
-b,1280,PJW,IT,N,Improve Value Chain ,,,,,,1,,,,2,Y,Y,,,x,,x,x,x,x,,,,,,,,,x,,,,"Farnet Magazine n7, 2012"
-b,1280,PJW,IT,N,Cooperatives,,,,,,1,,,,2,Y,Y,,,x,,x,x,x,x,,,,,,,,,x,,,,"Farnet Magazine n7, 2012"
-a,1298,GR,Italy,N,research,,,,,1,,,,,2,n,n,x,,,,x,x,,,,,,,,,,x,,,,,"de Leo et al., 2014"
-b,1298,HB,IT,N,Research,,,,,1,,,,,2,N,N,x,,,,,x,,,,,,,,,,x,,,,,De Leo et al 2014
-a,606,PJW,US,CC,Coordination and organization,,,,,1,,,,,,N,N,x,,,,,x,x,,,,,,,,,,x,,,,Field et al. 2001
-a,606,PJW,US-NE,CC,Reductions in other stressors,,,,,1,,,,,,N,N,x,,,,,x,x,,,,,,,,,,x,,,,Field et al. 2001
-a,606,PJW,US-NE,CC,Restoration,,,,,1,,,,,,N,N,x,,,,,x,x,,,,,,,,,,x,,,,Field et al. 2001
-a,606,PJW,US,CC,Research,,,,,1,,,,,,N,N,x,,,,,x,x,,,,,,,,,,x,,,,Field et al. 2001
-a,606,PJW,US,CC,Education,,,,,1,,,,,,N,N,x,,,,,x,x,,,,,,,,,,x,,,,Field et al. 2001
-a,804,JM,AUS,N,Enforcement,1,,,,,,,,,,N,Y,,x,,,,,x,,,,,,,,,x,,,,,Gaughan et al. 2008 
-a,804,JM,AUS,N,Research,1,,,,2,,,,,,Y,Y,,,x,,,,x,,,,,,,,,,x,,,,Gaughan et al. 2008 
-a,923,MH,FIN,N,Education,,,,,2,,,,,1,Y,Y,x,,,,,,x,,,,,,,,,,,,,,FARNET. 2017a. 
-a,276,PJW,US-NE,N,Coordination and organization,,,,,1,,,,,2,Y,N,,,x,,,x,x,x,,,,,x,,,,x,,,,Johnson et al. 2014
-a,276,PJW,US-NE,N,Diversify livelihoods,,,,,1,,,,,2,Y,N,,,x,,,,,,,,,,x,,,,,x,,,Johnson et al. 2014
-a,276,PJW,US-NE,N,Market diversification,,,,,1,,,,,2,Y,N,,,x,,,,,,,,,,x,,,,,x,,,Johnson et al. 2014
-a,276,PJW,US-NE,N,Education,,,,,1,,,,,2,Y,N,,,x,,,,,x,,,,,,,,,x,,,,Johnson et al. 2014
-a,276,PJW,US-NE,N,Economic/Community development,,,,,1,,,,,2,Y,N,,,x,,,,,x,,,,,,,,,,x,,,Johnson et al. 2014
-a,372,PJW,US-HA,CC,MPAs,2,,,,1,,,,,,Y,Y,x,,,,,,x,,,,x,,,,,,x,,,,"The State of Hawaii. 2010. Hawai’i Coral Reef Strategy: Priorities for Management in the Main Hawaiian Islands 2010-2020. Honolulu, HI."
-a,372,PJW,US-HA,CC,Reductions in other stressors,2,,,,1,,,,,,N,Y,x,,,,,,x,,,,,,,,,,x,,,,"The State of Hawaii. 2010. Hawai’i Coral Reef Strategy: Priorities for Management in the Main Hawaiian Islands 2010-2020. Honolulu, HI."
-a,372,PJW,US-HA,CC,International agreements,,,,,1,,,,,2,N,Y,x,,,,,,x,,,,,,,,,,x,,,,"The State of Hawaii. 2010. Hawai’i Coral Reef Strategy: Priorities for Management in the Main Hawaiian Islands 2010-2020. Honolulu, HI."
-a,372,PJW,US-HA,CC,Community-based rights,,,,,1,,,,,2,Y,Y,x,,,,,,x,x,,,x,,,,,,x,,,,"The State of Hawaii. 2010. Hawai’i Coral Reef Strategy: Priorities for Management in the Main Hawaiian Islands 2010-2020. Honolulu, HI."
-b,1216,HB,IT,N,MPA,,,,,,,1,,,,N,Y,,x,,,,x,,,,,,,,,,x,,,,,Pranovi et al 2015
-a,1238,SB,Italy,CC,Reductions in other stressors,,,,,1,,,,,,N,N,x,,,,,x,x,,,,,,,,,x,,,,,Bosnjakovic et al. 2015
-a,1238,SB,Italy,CC,Adaptation programs,,,,,1,,,,,,N,N,x,,,,,x,x,,,,,,,,,x,,,,,Bosnjakovic et al. 2015
+rep,ID,Initials,Country  ,Context,Example,Stock decline,Sp. distributional shifts,Ocean acidification,Extreme climatic events,Uncertainty (ecological),Market changes,Regulation change,Consolidation,Globalization,Uncertainty (social),Community,Implemented,Anticipatory,Responsive,Both,,Internat.,Nat. govt.,Region. govt.,Local govt.,NGO,Uni.,Community assoc.,Business coop.,Business,Individual,,Reduce stressor,Reduce sensitivity,Cope,No change,Take advantage,Source,,
+a,40,PJW,US-AK,N,Community-based rights,,,,,,,,1,,,Y,Y,x,,,,,,x,,,,,,,,,x,,,,,Himes-Cornell and Hoelting 2015,,
+a,40,PJW,US-AK,N,Economic/community development,,,,,,,,1,2,,Y,Y,x,,,,,,,,x,,x,,,,,x,,,,,Himes-Cornell and Hoelting 2015,,
+a,40,PJW,US-AK,N,Community-based rights,,,,,,,,1,,,Y,Y,x,,,,,,,,x,,x,,,,,x,,,,,Himes-Cornell and Hoelting 2015,,
+a,40,PJW,US-AK,N,Fair trade laws,,,,,,,,1,,,Y,Y,x,,,,,,x,,,,,,,,,x,,,,,Himes-Cornell and Hoelting 2015,,
+a,40,PJW,US-AK,N,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",,,,,,,,1,,,Y,Y,,x,,,,,x,,,,,,,,,,x,,,,Himes-Cornell and Hoelting 2015,,
+a,40,PJW,US-AK,N,Diversifying livelihoods,,,,,,,,1,,,Y,Y,,,x,,,,,,x,,x,,,,,,x,,,,Himes-Cornell and Hoelting 2015,,
+a,40,PJW,US-AK,N,Permit/license/quota banks,,,,,,,,1,,,Y,Y,,,x,,,,,,x,,x,,,,,x,,,,,Himes-Cornell and Hoelting 2015,,
+a,40,PJW,US-AK,N,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",,,,,,,,1,,,Y,Y,,x,,,,,,,x,,x,,,,,,x,,,,"Himes-Cornell and Hoelting 2015, Jain and Garderet 2011",,
+a,40,PJW,US-AK,N,Economic/community development,,,,,,,,1,,,Y,Y,,x,,,,,,,x,,x,,,,,,x,,,,Jain and Garderet 2011,,
+a,40,PJW,US-AK,N,Investments to improve value chain,,,,,,,,,,1,Y,Y,x,,,,,,,,x,,,,,,,,x,,,,Himes-Cornell and Hoelting 2015,,
+a,40,PJW,US-AK,N,Investments to improve value chain,,,,,,,,,,1,Y,Y,x,,,,,,,,,,,,x,,,,x,,,,Himes-Cornell and Hoelting 2015,,
+a,40,PJW,US-AK,N,Transition out of fisheries,,,,,,,,1,2,,Y,Y,,x,,,,,,,,,,,,x,,,,x,,,Himes-Cornell and Hoelting 2015,,
+a,40,PJW,US-AK,N,Diversifying livelihoods,2,,,,,,,1,,,Y,Y,,x,,,,,,,,,,,,x,,,x,,,,Himes-Cornell and Hoelting 2015,,
+b,40,GR,US-AK,N,Diversify livelihoods,,,,,,,,1,,,N,Y,,x,,,,,,,,,,,,x,,,,x,,,Himes-Cornell&Holting2015 ,,
+b,40,GR,US-AK,N,Transition out of fisheries,,,,,,,,1,,2,N,Y,,x,,,,,,,,,,,,x,,,,x,,,Himes-Cornell&Holting2015 ,,
+b,40,GR,US-AK,N,Economic/community development,,,,,,,,1,,2,Y,Y,,x,,,,,,x,,,,,,,,,x,x,,,Himes-Cornell&Holting2015 ,,
+b,40,GR,US-AK,N,Economic/community development,,,,,,,,1,2,,Y,Y,,x,,,,,,x,,,,,,x,,,x,x,,,Himes-Cornell&Holting2015 ,,
+b,40,GR,US-AK,N,Economic/community development,,,,,,,,2,,1,Y,Y,,,x,,,,x,x,,,,,,,,,x,,,,Himes-Cornell&Holting2015 ,,
+b,40,GR,US-AK,N,Permit/license/quota bank,,,,,,,,1,,2,Y,Y,,,x,,,,x,x,,,,,,,,,x,,,,Himes-Cornell&Holting2015 ,,
+b,40,GR,US-AK,N,Community-based rights,,,,,,,,1,,2,Y,Y,x,,,,,,x,x,,,,,x,,,,x,,,x,Himes-Cornell&Holting2015 ,,
+b,40,GR,US-AK,N,Community-based rights,,,,,,,,1,,2,Y,Y,x,,,,,,x,x,,,,,x,,,,x,,,x,Himes-Cornell&Holting2015 ,,
+b,40,GR,US-AK,N,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",,,,,,,,1,,,N,Y,,,x,,,,x,x,,,,,x,,,,x,,,,Himes-Cornell&Holting2015 ,,
+b,40,GR,US-AK,N,Community-based rights,,,,,,,,1,,2,Y,Y,,x,,,,,x,x,,,,,x,,,,x,,,x,Himes-Cornell&Holting2015 ,,
+b,40,GR,US-AK,N,Permit/license/quota bank,,,,,,,,1,,2,Y,Y,,x,,,,,,,,,x,,x,,,,x,,,,Himes-Cornell&Holting2015 ,,
+b,40,GR,US-AK,N,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses", ,,,,2,,,1,,,Y,Y,,x,,,,,,,,,x,,x,,,,x,,,,Himes-Cornell&Holting2015 ,,
+b,40,GR,US-AK,N,Investments to improve value chain, ,,,,,2,,,,1,Y,Y,,,x,,,,,,x,,,,x,,,,x,,,,Himes-Cornell&Holting2015 ,,
+a,201,PJW,USA,N,Research,1,,,,,,2,,,,Y,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,USA,N,Restoration,1,,,,,,2,,,,Y,Y,,x,,,,,,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,USA,N,Reductions in other stressors,1,,,,,,2,,,,Y,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,USA,N,Disaster risk management,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,USA,N,Disaster funds,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,USA,N,Transition out of fisheries,1,,,,,,2,,,,Y,N,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,USA,N,Financial assistance to help transition out of fishery,1,,,,,,2,,,,Y,N,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,USA,N,Education,1,,,,,,2,,,,Y,N,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,USA,N,Diversify livelihoods,1,,,,,,2,,,,Y,N,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,USA,N,Economic/Community development,1,,,,,,2,,,,Y,N,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,USA,N,Financial assistance to help survive bad fishing years,1,,,,,,2,,,,Y,N,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,USA,N,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",1,,,,,,2,,,,Y,N,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,USA,N,Review program/regulations,1,,,,,,2,,,,Y,N,,x,,,,x,,,,,,,,,,,x,,,,Upton 2013,,
+a,201,PJW,US-SE,N,Transition out of fisheries,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,US-SE,N,Restoration,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,x,,,,Upton 2013,,
+a,201,PJW,US-SE,N,Research,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,US-SE,N,Financial assistance to help survive bad fishing years,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,US-SE,N,Restoration,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,x,,,,Upton 2013,,
+a,201,PJW,US-SE,N,Research,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,x,,,,Upton 2013,,
+a,201,PJW,US-NE,N,Financial assistance to help survive bad fishing years,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,US-NE,N,Transition out of fisheries,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,US-NE,N,Financial assistance to help transition out of fishery,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,US-NE,N,Education,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,US-NE,N,Research,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,US-NW,N,Financial assistance to help survive bad fishing years,1,,,,,,2,,,,N,Y,,x,,,,x,x,x,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,US-AK,N,Economic/Community development,1,,,,,,2,,,,Y,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,US-AK,N,Research,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,US-NE,N,Financial assistance to help survive bad fishing years,,,,,1,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,US-NE,N,Financial assistance to help survive bad fishing years,,,,,1,,2,,,,N,Y,x,,,,,x,x,,,,,,,,,,x,,,,Upton 2013,,
+a,201,PJW,US-SE,N,Restoration,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,US-SE,N,Financial assistance to help survive bad fishing years,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,US-SE,N,Financial assistance to help transition out of fishery,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,US-SE,N,Research,1,,,,,,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,US-NW,N,Financial assistance to help survive bad fishing years,1,,,,,,2,,,,N,Y,,x,,,x,x,,,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,US-AK,N,Financial assistance to help survive bad fishing years,1,,,,,,2,,,,Y,Y,,x,,,,x,x,x,,,,,,,,,,x,,,Upton 2013,,
+a,201,PJW,US-SE,N,Investments to improve value chain,,,,,,1,2,,,,N,Y,,x,,,,x,x,,,,,,,,,,,x,,,Upton 2013,,
+b,201,KLH-cross,USA,cc,Financial assistance to help survive bad fishing years,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Education,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Transition out of fisheries,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Financial assistance to help transition out of fishery,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Disaster funds,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Disaster risk management,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Restoration,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Research  ,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Diversify livelihoods,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Review program/regulations,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Financial assistance to help survive bad fishing years,1,,,,,2,,,,,,,,,,,,,,,,,,x,,,,,,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Financial assistance to help survive bad fishing years,1,,,,,2,,,,,n,y,,x,,,,,,,,,x,,,,,,,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Economic/community development,1,,,,,2,,,,,n,y,,x,,,,,,,,,x,,,,,,,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Restoration,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Disaster funds,1,,,,,2,,,,,n,y,,x,,,,,,,,,x,,,,,,,,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Research,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Disaster funds,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Market diversification,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Economic/community development,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Research,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Transition out of fisheries,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Financial assistance to help survive bad fishing years,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Research,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Financial assistance to help survive bad fishing years,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Transition out of fisheries,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Economic/community development,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Research,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Economic/community development,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Research ,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Cooperative,1,,,,,2,,,,,n,y,,x,,,,x,,,,,x,,,,,,x,,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Research,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Transition out of fisheries,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Research ,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Education,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Financial assistance to help survive bad fishing years,1,,,,,2,,,,,n,y,,x,,,,x,x,x,,,,,,,,,,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Financial assistance to help survive bad fishing years,1,,,,,2,,,,,n,y,,x,,,,x,x,,,,,,,,,,,x,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Coordination and organization,2,,,,,1,,,,,n,y,,x,,,,x,x,,,,,,,,,,x,,,,Upton et al. 2013,,
+b,201,KLH-cross,USA,cc,Investments to improve value chain,2,,,,,1,,,,,,,,,,,,,,,,,,,,,,,x,,,,Upton et al. 2013,,
+b,276,KLH-cross,USA,n,research ,,,,,1,,,,,2,y,n,x,,,,,,,,,x,,,,,,,x,,,,Johnson et al. 2014,,
+b,276,KLH-cross,USA,n,Diversify livelihoods,,,,,1,2,,,,,y,n,x,,,,,,,,,,,,x,x,,,x,,,,Johnson et al. 2014,,
+b,276,KLH-cross,USA,n,Investment in new gear or innovations,,,,,1,2,,,,,y,n,x,,,,,,,,,,,,x,x,,,x,,,,Johnson et al. 2014,,
+b,276,KLH-cross,USA,n,Financial assistance to help survive bad fishing years,1,,,,,2,,,,,y,n,,x,,,,,,,x,,,,x,x,,,x,,,,Johnson et al. 2014,,
+b,276,KLH-cross,USA,n,Investments to improve value chain,,,,,,1,,,,,y,n,,x,,,,,,,x,,,,x,x,,,x,,,,Johnson et al. 2014,,
+b,276,KLH-cross,USA,n,Market diversification,2,,,,,1,,,,,y,n,,x,,,,,,,x,,x,,,x,,,x,,,,Johnson et al. 2014,,
+b,276,KLH-cross,USA,n,Permit/license/quota bank,2,,,,,1,,,,,y,n,,x,,,,,,,x,,x,,,x,,,x,,,,Johnson et al. 2014,,
+b,276,KLH-cross,USA,n,Economic/Community development,2,,,,,1,,,,,y,n,,x,,,,,,,,,x,x,,x,,,x,,,,Johnson et al. 2014,,
+b,372,KLH-cross,USA,cc,Reduction in other stressors,1,,,,2,,,,,,y,y,x,,,,,x,x,,,,,,,,,x,x,,,,TheStateofHA2010 – US,,
+b,372,KLH-cross,USA,cc,Education,,,,,1,,,,,,y,y,x,,,,,x,x,,,,,,,,,x,x,,,,TheStateofHA2010 – US,,
+b,372,KLH-cross,USA,cc,MPA,2,,,,1,,,,,,y,y,x,,,,,x,x,,,,,,,,,x,x,,,,TheStateofHA2010 – US,,
+b,372,KLH-cross,USA,cc,Community-based rights,,,,,1,,,,,,y,y,x,,,,,x,x,,,,,,,,,,x,,,,TheStateofHA2010 – US,,
+b,372,KLH-cross,USA,cc,Coordination and organization,,,,,1,,,,,,y,y,x,,,,,x,x,,,,,,,,,,x,,,,TheStateofHA2010 – US,,
+a,477,PJW,US-SE,CC,Review program/regulations,,,,,1,,,,,,N,N,x,,,,,,x,,,,,,,,,,x,,,,Penn 2012,,
+a,477,PJW,US-SE,CC,MPAs,,,,,1,,,,,,N,N,x,,,,,,x,,,,,,,,,,x,,,,Penn 2012,,
+b,477,LF ,UK,CC,Reductions in other stressors,1,2,,,,,,,,,N,N,x,,,,,x,,,,,,,,,,x,,,,,Penn 2011,,
+b,477,LF ,UK,CC,Enforcement,1,,,,,,,,,,N,N,,,x,,,x,,,,,,,,,,x,,,,,Penn 2011,,
+b,477,LF ,UK,CC,MPAs,1,,,,,,,,,,N,N,,,x,,,x,,,,,,,,,,x,,,,,Penn 2011,,
+b,477,LF ,UK,CC,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",,,,,,,,,,1,N,N,x,,,,,x,,,,,,,,,,x,x,,,,Penn 2011,,
+a,477,PJW,US-SE,CC,Enforcement,,,,,1,,,,,,N,N,x,,,,,,x,,,,,,,,,,x,,,,Penn 2012,,
+a,477,PJW,US-SE,CC,Reductions in other stressors,,,,,1,,,,,,N,N,x,,,,,,x,,,,,,,,,,x,,,,Penn 2012,,
+a,530,PJW,US-SW,CC,Reductions in other stressors,,,,,1,,,,,,N,N,,,,,,,,,,,,,,,,,x,,,,Chavez et al. 2017,,
+a,530,PJW,US-SW,CC,Research,,,,,1,,,,,,N,N,,,,,,,,,,,,,,,,,x,,,,Chavez et al. 2017,,
+a,530,PJW,US-SW,CC,MPAs,,,,,1,,,,,,N,N,,,,,,,,,,,,,,,,,x,,,,Chavez et al. 2017,,
+a,530,PJW,US-SW,CC,Coordination and organization,,,,,1,,,,,,N,N,,,,,,,x,x,,,,,x,,,,x,,,,Chavez et al. 2017,,
+a,530,PJW,US-SW,CC,Review program/regulations,,,,,1,,,,,,N,N,,,,,,,x,,,,,,,,,,x,,,,Chavez et al. 2017,,
+a,530,PJW,US-SW,CC,Diversify livelihoods,,,,,1,,,,,,N,Y,,,,,,,,,,,,,x,,,,x,,,x,Chavez et al. 2017,,
+a,530,PJW,US-SW,CC,Education,,,,,1,,,,,,N,N,,,,,,,x,,,,,,,,,,,,,x,Chavez et al. 2017,,
+a,530,PJW,US-SW,CC,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",,,,,1,,,,,,N,N,,,,,,,x,,,,,,,,,,,,,x,Chavez et al. 2017,,
+a,530,PJW,US-SW,CC,Transition out of fisheries,,,,,1,,,,,,N,N,,,,,,,,,,,,,x,,,,,x,,,Chavez et al. 2017,,
+a,530,PJW,US-SW,CC,Investments in new gear or innovations,,,,,1,,,,,,N,Y,,,,,,,,,,,,,x,,,,,x,,,Chavez et al. 2017,,
+b,530,LF,US-SW,CC,Reductions in other stressors,1,,,,,,,,,,N,N,,,x,,,,x,,,,,,,,,x,,,,,Chavez et al. 2017,,
+b,530,LF,US-SW,CC,Enforcement,1,,,,,,,,,,N,Y,,,x,,,,x,,,,,,,,,x,,,,,Chavez et al. 2017,,
+b,530,LF,US-SW,CC,MPAs,1,,,,,,,,,,N,Y,,x,,,,x,x,x,x,,,,,,,x,,,,,Chavez et al. 2017,,
+b,530,LF,US-SW,CC,Restoration,1,2,,,,,,,,,N,Y,x,,,,,,,,,,,,,,,x,,,,,Chavez et al. 2017,,
+b,530,LF,US-SW,CC,Review program/regulations,1,2,,,,,,,,,N,Y,1,,,,,x,,,,,,,,,,x,x,,,,Chavez et al. 2017,,
+b,530,LF,US-SW,CC,Investment in new gear or innovations,1,2,,,,,,,,,N,N,,,x,,,x,,,,,,,,,,x,x,,,,Chavez et al. 2017,,
+b,530,LF,US-SW,CC,Coordination and organization,1,2,,,,,,,,,N,N,,,x,,,x,x,,,,,,,,,x,x,,,,Chavez et al. 2017,,
+b,530,LF,US-SW,CC,Research,1,2,,,,,,,,,N,Y,,,x,,,x,,,,,,,,,,x,x,,,,Chavez et al. 2017,,
+b,530,LF,US-SW,CC,Insurance,,,,,,,,,,1,N,N,,,x,,,x,,,,,,,,,,x,x,,,,Chavez et al. 2017,,
+b,530,LF,US-SW,CC,Disaster funds,1,,,,,,,,,,Y,N,,x,,,,x,,,,,,,,,,,x,,,,Chavez et al. 2017,,
+b,530,LF,US-SW,CC,Diversify livelihoods,1,,,,,,,,,,N,N,,x,,,,x,,,,,,,,,,,x,,,,Chavez et al. 2017,,
+b,530,LF,US-SW,CC,Financial assistance to help transition out of fishery,1,,,,,,,,,,N,N,,x,,,,x,,,,,,,,,,,x,,,,Chavez et al. 2017,,
+b,530,LF,US-SW,CC,Dynamic ocean management,1,2,,,,,,,,,N,N,,,x,,,,x,,,,,,,,,x,,,,,Chavez et al. 2017,,
+b,530,LF,US-SW,CC,International agreements,,1,,,,,,,,,N,N,,,x,,x,,,,,,,,,,,,,x,,,Chavez et al. 2017,,
+b,606,KLH- cross,USA,CC,Review program/regulations,,,,,1,,,,,,n,n,x,,,,,x,,,,,,,,,,,x,,,,Field et al. 2001 – US,,
+b,606,KLH -cross,USA,cc,reduction in other stressors,,,,,1,,,,,,n,n,x,,,,,x,,,,,,,,,,,x,,,,Field et al. 2001 – US,,
+b,606,KLH -cross,USA,cc,research,,,,,1,,,,,,n,n,x,,,,,x,,,,,,,,,,,x,,,,Field et al. 2001 – US,,
+b,606,KLH -cross,USA,cc,education,,,,,1,,,,,,n,n,x,,,,,x,,,,,,,,,,,x,,,,Field et al. 2001 – US,,
+b,606,KLH -cross,USA,cc,insurance,,,,1,2,,,,,,n,n,x,,,,,x,,,,,,,,,,,,,,,Field et al. 2001 – US,,
+a,726,JM,AUS,N,Review program/regulations,1,,,,2,,,,,,N,Y,,,x,,,x,,,,,,,,,,x,,,,,AFMA 2015d,,
+a,726,JM,AUS,N,Research,2,,,,1,,,,,,N,Y,,,x,,,x,,,,,,,,,,x,,,,,AFMA 2016b,,
+b,726,PJW,AUS,N,Research,1,,,,2,,,,,,N,Y,,,x,,,,,,,,,,,,,x,,,,,AFMA 2015d,,
+b,726,PJW,AUS,N,"Financial assistance or investment for entering, transferring, or restructuring fishing businesses",1,,,,2,,,,,,N,Y,,,x,,,,,,,,,,,,,x,,,,,AFMA 2015d,,
+a,762,JM,AUS,N,Enforcement,1,,,,2,,,,,,N,Y,,,x,,,x,x,,,,,,,,,x,,,,,O'Malley 2015,,
+a,762,JM,AUS,N,Enforcement,1,,,,2,,,,,,N,Y,,,x,,,x,x,,,,,,,,,x,,,,,O'Malley 2015,,
+a,762,JM,AUS,N,Enforcement,1,,,,2,,,,,,N,Y,,,x,,,x,x,,,,,,,,,x,,,,,O'Malley 2015,,
+a,762,JM,AUS,N,Research,,,,,1,,,,,,N,Y,,x,,,,x,,,,,,,,,,x,,,,,O'Malley 2015,,
+a,762,JM,AUS,N,Enforcement,1,,,,,,,,,,N,Y,,x,,,,x,x,,,,,,,,,x,,,,,O'Malley 2015,,
+a,762,JM,AUS,N,Research,,,,,1,,,,,,N,Y,,x,,,,x,x,,,,,,,,,x,,,,,O'Malley 2015,,
+a,762,JM,AUS,N,Enforcement,,,,,1,,,,,,N,N,,x,,,,x,x,,,,,,,,,x,,,,,O'Malley 2015,,
+a,762,JM,AUS,N,Coordination and organization,2,,,,1,,,,,,Y,Y,,,x,,,,x,,,,,,,,,x,x,,,,O'Malley 2015,,
+b,762,GR,AUS,N,Enforcement,1,,,,,,,,,,N,Y,x,,,,,x,x,,,,,,,,,x,,,,,O Malley 2015,,
+b,762,GR,AUS,N,Research,1,,,,,,,,,,N,Y,x,,,,,x,x,,,,,,,,,x,,,,,O Malley 2015,,
+b,762,GR,AUS,N,MPAs,1,,,,,,,,,,N,Y,x,,,,,x,x,,,,,,,,,x,,,,,O Malley 2015,,
+b,923,PJW,FIN,N,Education,,,,,,,,,2,1,Y,Y,x,,,,,,,x,,,x,,,,,,x,,,,FARNET 2017,,
+b,923,PJW,FIN,N,Research,,,,,,,,,2,1,Y,Y,x,,,,,,,x,,,x,,,,,,x,,,,FARNET 2017,,
+b,923,PJW,FIN,N,Economic/community development,,,,,,,,,2,1,Y,Y,x,,,,,,,x,,,x,,,,,,x,,,,FARNET 2017,,
+b,804,PJW,AUS,N,Research,1,,,,,,,,,,N,Y,x,,,,,x,,,,,,x,,,,,x,,,,Gaughan et al. 2008 ,,
+b,804,PJW,AUS,N,Reductions in other stressors,1,,,,,,,,,,N,Y,x,,,,,x,,,,,,,,,,,x,,,,Gaughan et al. 2008 ,,
+a,823,JM,AUS,CC,MPAs,2,1,,,,,,,,,N,Y,,,x,,,x,x,,,,,,,,,,x,,,,Ling et al. 2009,,
+a,823,JM,AUS,CC,Enforcement,2,1,,,,,,,,,N,N,,,x,,,,x,,,,,,,,,x,x,,,,Ling and Johnson 2012,,
+b,823,PJW,AUS,CC,MPAs,2,1,,,3,,,,,,N,Y,,,x,,,x,,,,,,,,,,x,,,,,Ling and Johnson 2012,,
+b,823,PJW,AUS,CC,Reductions in other stressors,2,1,,,3,,,,,,N,N,,,x,,,x,,,,,,,,,,,x,,,,Ling and Johnson 2012,,
+a,839,JM,AUS,CC,Adaptation programs,,,,,1,,,,,2,N,N,,,x,,,x,x,,,,,,x,x,,x,,,,,Hobday et al. 2009,,
+b,839,HB,AU,C,Adaptation program,,,,,1,,,,,2,N,N,,,x,,,x,x,x,,,,,,,,x,x,,,,Hobday et al 2009,,
+a,852,PJW,USA-NE,N,Dynamic ocean management,1,,,,,,,,,,N,Y,x,,,,,x,,,,,,,,,,,x,,,,Little et al. 2015,,
+a,852,PJW,NOR,N,Dynamic ocean management,2,,,,,,1,,,,N,Y,x,,,,,x,,,,,,,x,,,,x,,,,Little et al. 2015,,
+a,852,PJW,UK,N,Dynamic ocean management,1,,,,,,,,,,N,Y,x,,,,,,x,,,,,,,,,,x,,,,Little et al. 2015,,
+a,852,PJW,NOR,N,Dynamic ocean management,1,,,,,,,,,,N,Y,x,,,,,x,,,,,,,x,,,,x,,,,Little et al. 2015,,
+a,852,PJW,ICE,N,Dynamic ocean management,2,,,,,,1,,,,N,Y,x,,,,,,x,,,,,,,,,,x,,,,Little et al. 2015,,
+a,852,PJW,US-AK,N,Dynamic ocean management,2,,,,,,1,,,,N,Y,x,,,,,,,,x,,,x,,,,,x,,,,Little et al. 2015,,
+a,852,PJW,US-AK,N,Cooperatives,2,,,,,,1,,,,Y,Y,x,,,,,,,,x,,,,x,,,,x,,,,Little et al. 2015,,
+a,852,PJW,US-NW,N,Dynamic ocean management,2,,,,,,1,,,,Y,Y,x,,,,,,,,x,,,,x,,,,x,,,,Little et al. 2015,,
+a,852,PJW,US-NW,N,Cooperatives,2,,,,,,1,,,,Y,Y,x,,,,,,,,x,,,,x,,,,x,,,,Little et al. 2015,,
+a,852,PJW,US-NW,N,Dynamic ocean management,1,,,,,,,,,,Y,Y,x,,,,,,,,,x,,,x,,,,x,,,,Little et al. 2015,,
+a,852,PJW,US-NW,N,Cooperatives,1,,,,,,,,,,Y,Y,x,,,,,,,,,x,,,x,,,,x,,,,Little et al. 2015,,
+a,852,PJW,US-NE,N,Dynamic ocean management,1,,,,,,2,,,,Y,Y,x,,,,,,,,,x,,,x,,,,x,,,,Little et al. 2015,,
+a,852,PJW,US-NE,N,Cooperatives,1,,,,,,2,,,,Y,Y,x,,,,,,,,,x,,,x,,,,x,,,,Little et al. 2015,,
+a,852,PJW,US-NE,N,Dynamic ocean management,1,,,,,,,,,,Y,Y,x,,,,,,,,,x,,,x,,,,x,,,,Little et al. 2015,,
+a,852,PJW,US-NE,N,Cooperatives,1,,,,,,,,,,Y,Y,x,,,,,,,,,x,,,x,,,,x,,,,Little et al. 2015,,
+b,852,LF,NOR,N,Dynamic ocean management,1,,,,,,,,,,N,Y,,,x,,,x,,,,,x,,,,,x,,,,,Little et al. 2015,,
+b,852,LF,UK,N,Dynamic ocean management,1,,,,,,,,,,N,Y,,,x,,,x,,,,,,,,,,x,,,,,Little et al. 2015,,
+b,852,LF,EU,N,Dynamic ocean management,1,,,,,,2,,,,N,Y,,,x,,x,x,,,,,,,,,,x,,,,,Little et al. 2015,,
+b,852,LF,ICE,N,Dynamic ocean management,1,,,,,,2,,,,N,Y,,,x,,,x,,,,,,,,,,x,,,,,Little et al. 2015,,
+b,852,LF,US-AK,N,Cooperatives,1,,,,,,2,,,,N,Y,,x,,,,,,,,,,x,,,,x,,,,,Little et al. 2015,,
+b,852,LF,US-AK,N,Dynamic ocean management,1,,,,,,2,,,,N,Y,,,x,,,,,,,,,x,,,,x,,,,,Little et al. 2015,,
+b,852,LF,US-NW,N,Dynamic ocean management,1,,,,,,2,,,,N,Y,,,x,,,,,,,,,x,,,,x,,,,,Little et al. 2015,,
+b,852,LF,US-NW,N,Cooperatives,1,,,,,,2,,,,N,Y,,x,,,,,,,,,,x,,,,x,,,,,Little et al. 2015,,
+b,852,LF,US-NW,N,Cooperatives,1,,,,,,2,,,,N,Y,,x,,,,,,,x,,,x,,,,x,,,,,Little et al. 2015,,
+b,852,LF,US-NW,N,Dynamic ocean management,1,,,,,,,,,,N,Y,,,x,,,x,,,x,x,,x,,,,x,,,,,Little et al. 2015,,
+b,852,LF,US-NE,N,Dynamic ocean management,1,,,,,,,,,,N,Y,,,x,,,,,,,x,,x,,,,,,,,,Little et al. 2015,,
+b,852,LF,US-SE,N,Dynamic ocean management,1,,,,,,2,,,,N,Y,,,x,,,,,,x,x,,x,,,,,,,,,Little et al. 2015,,
+a,915,MH,FIN,CC,Research  ,3,2,,,1,,,,,4,Y,N,,,x,,x,,,,,,,,,,,,x,x,,,AMAP. 2017. ,,
+a,915,MH,FIN,CC,Adaptation programs,1,2,,,3,,,,,,N,N,x,,,,x,,,,,,,,,,,x,x,,,,AMAP. 2017. ,,
+b,915,JM,FIN,N,International agreements,,,,,1,,,,,2,N,Y,x,,,,x,,,,,,,,,,,x,x,,,,AMAP 2017,,
+b,915,JM,FIN,CC,Research,,,,,1,,,,,2,Y,N,,,x,,x,,,,,,,,,,,,x,,,x,AMAP 2017,,
+a,939,MO,NL,CC,Individual property rights,1,2,,,,,,,,,N,N,x,,,,,x,,,,,,,,,,,,x,,,Bruin et al. 2009 / Nillisen & van Ierland 2006,,
+a,939,MO,NL,CC,Investment in new gear or innovations,1,,,,,,,,,,N,N,x,,,,,x,,,,,,,x,,,,x,,,,Bruin et al. 2009 / Nillisen & van Ierland 2006,,
+a,939,MO,NL,CC,Coordination and organization,,,,,1,,,,,,N,N,x,,,,,,,,,,,,x,,,,x,,,,Bruin et al. 2009 / Nillisen & van Ierland 2006,,
+a,939,MO,NL,CC,Research,,,,,1,,,,,,N,N,x,,,,,,,,,,,,x,,,,x,,,,Bruin et al. 2009 / Nillisen & van Ierland 2006,,
+a,939,MO,NL,CC,Investments to improve value chain,1,,,,,2,,,,,N,N,x,,,,,x,,,,,,x,x,x,,,,x,,,Bruin et al. 2009 / Nillisen & van Ierland 2006,,
+a,939,MO,NL,CC,Investment in new gear or innovations,none,,,,,,,,,,N,N,x,,,,,,,,,,,,x,,,,,,,x,Bruin et al. 2009 / Nillisen & van Ierland 2006,,
+a,939,MO,NL,CC,Insurance,,,,,1,,,,,,N,N,x,,,,,x,,,x,,,,x,,,,x,,,,Bruin et al. 2009 / Nillisen & van Ierland 2006,,
+b,939,LF,NL,CC,Insurance,,,,,,,,,,1,N,N,,x,,,,x,,,,,,,,,,x,x,,,,Bruin et al. 2009,,
+b,939,LF,NL,CC,Enforcement,1,,,,,,,,,,N,N,,,x,,,x,,,,,,,,,,x,,,,,Bruin et al. 2009,,
+b,939,LF,NL,CC,Investment in new gear or innovations,1,,,,,,,,,,N,N,,x,,,,x,,,,,,,,,,x,,,,,Bruin et al. 2009,,
+b,939,LF,NL,CC,Investments to improve value chain,1,,,,2,,,,,,N,N,,,x,,,x,,,,,,,,,,x,x,,,,Bruin et al. 2009,,
+b,939,LF,NL,CC,Investment in new gear or innovations,,,,,1,,,,,,N,N,,x,,,,x,,,,,,,,,,x,x,,,,Bruin et al. 2009,,
+b,939,LF,NL,CC,Research,1,,,,,,,,,,N,N,,,x,,,x,,,,,,,,,,x,,,,,Bruin et al. 2009,,
+b,939,LF,NL,CC,MPAs,1,2,,,,,,,,,N,N,,x,,,,x,,,,,,,,,,,x,,,,Bruin et al. 2009,,
+a,986,KLH,CAN,CC,Investment in new gear or innovations,,,,1,,,,,,,Y,Y,,x,,,,,x,x,,,x,,,x,,,,x,,,"Giles, A.R., et al. 2013",,
+a,986,KLH,CAN,CC,Investment in new gear or innovations,,,,1,,,,,,,Y,Y,,x,,,,,x,x,,,x,,,x,,,,x,,,"Giles, A.R., et al. 2013",,
+a,986,KLH,CAN,CC,Education,,,,1,,,,,,,Y,Y,,x,,,,,x,x,,,x,,,x,,,,x,,,"Giles, A.R., et al. 2013",,
+b,986,GR,CAN,CC,Investment in new gear or innovations,,,,2,1,,,,,,N,Y,,x,,,,,,,,,,,,x,,,x,,,,Giles et al 2013,,
+b,986,GR,CAN,CC,Investment in new gear or innovations,,,,2,1,,,,,,Y,N,,x,,,,,,,,,x,,,x,,,x,,,,Giles et al 2013,,
+b,986,GR,CAN,CC,Investment in new gear or innovations,,,,2,1,,,,,,Y,N,,x,,,,,,,,,x,,,x,,,x,,,,Giles et al 2013,,
+b,986,GR,CAN,CC,Investment in new gear or innovations,,,,2,1,,,,,,Y,N,,x,,,,,,,,,x,,,x,,,x,,,,Giles et al 2013,,
+a,1021,KJF,CAN,CC,Coordination and organization,,,,,2,,,,,1,Y,N,,,X,,,,,,X,X,X,,,,,,X,X,,,"Armitage et al, 2011",,
+b,1021,LF,CAN,CC,Coordination and organization,1,,,,2,,,,,,Y,Y,,,x,,,,,x,,,,,,,,x,x,,,,"Armitage et al, 2011",,
+b,1021,LF,CAN,CC,Research,1,,,,2,,,,,,Y,Y,,,x,,,,,x,,,,,,,,x,x,,,,"Armitage et al, 2011",,
+a,1048,KJF,CAN,CC,Review program/regulations,,,,,1,,,,,,Y,Y,,,X,,,,X,,,,,,,,,,,,,X,New Brunstick's Response to Climate Change,,
+a,1048,KJF,CAN,CC,Preemptive Infrastructure,,,,1,,,,,,,Y,N,X,,,,,,,X,,,,,,,,,,X,X,,New Brunstick's Response to Climate Change,,
+a,1048,KJF,CAN,CC,Enforcement,,1,,,2,,,,,,Y,N,,X,,,,,,X,,,,,,,,,,,X,X,New Brunstick's Response to Climate Change,,
+a,1048,KJF,CAN,CC,Market diversification,,1,,,2,3,,,,,Y,N,,X,,,,,,X,,,,,,,,,,,,X,New Brunstick's Response to Climate Change,,
+b,1048,GR,CAN,CC,Investment in new gear or innovations,,,,1,,,,,,,Y,N,x,,,,,x,,x,,,,,,,,,x,,,,Harvey et al 2016,,
+b,1048,GR,CAN,CC,Enforcement,2,,,,1,,,,,,Y,N,,x,,,,x,,x,,,,,,,,,x,,,,Harvey et al 2016,,
+b,1048,GR,CAN,CC,Review program/regulations,,1,,,,,,,,,Y,N,,x,,,,x,,x,,,,,,,,,,,,x,Harvey et al 2016,,
+b,1048,GR,CAN,CC,Diversify livelihoods,,1,,,2,,,,,,N,Y,,,x,,,,,,,,,,x,x,,,x,,,x,Harvey et al 2016,,
+b,1048,GR,CAN,CC,MPAs,,,,,1,,,,,,N,N,,,x,,,x,,x,,,,,,,,,x,,,x,Harvey et al 2016,,
+b,1048,GR,CAN,CC,Reductions in other stressors,,,,,1,,,,,,N,N,,x,,,,x,,x,,,,,,,,x,,,,,Harvey et al 2016,,
+a,1202,GC & RH,UK,CC,MPAs,,,,,x,,,,,,N,Y,,x,,,x,x,,,,,,,,,,,,x,,,Frost et al 2016,,
+a,1202,GC & RH,UK,CC,Research,x,,,,x,,,,,,N,Y,,,x,,x,,,,,,,,,,,,,,x,,Frost et al 2016,,
+a,1202,GC & RH,UK,CC,Research,,,,,x,,,,,,N,Y,,,x,,x,x,,,,,,,,,,,,,x,,Frost et al 2016,,
+a,1202,GC & RH,UK,CC,Research,,,,,x,,,,,,N,Y,,x,,,x,x,,,,,,,,,,,,,x,,Frost et al 2016,,
+a,1202,GC & RH,UK,CC,Research,1,2,,,,,,,,,N,Y,,x,,,,x,,,,,,,,,,,,x,,,Frost et al 2016,,
+a,1202,GC & RH,UK,CC,Research,,x,,,,,,,,,N,Y,,,x,,x,x,,,,,,,,,,,,x,,,Frost et al 2016,,
+a,1202,GC & RH,UK,CC,Research,,,x,,,,,,,,N,Y,,,x,,x,x,,,,,,,,,,,,x,,,Frost et al 2016,,
+b,1202,GR,UK,CC,Review program/regulations,1,,,,,,,,,,N,N,,,x,,x,,,,,,,,,,,,x,x,,,Frost et al 2016,,
+b,1202,GR,UK,CC,Adaptation programs,,,,,1,,,,,,N,N,,,x,,x,x,,,,,,,,,,,x,x,,,Frost et al 2016,,
+b,1202,GR,UK,CC,Adaptation programs,,,,,1,,,,,,N,N,,,x,,,x,,,,,,,,,,,,,,,Frost et al 2016,,
+b,1202,GR,UK,CC,Adaptation programs,,,,,1,,,,,,N,N,,,x,,,x,x,,,,,,,,,,,,,,Frost et al 2016,,
+b,1202,GR,UK,CC,Adaptation programs,,,,,1,,,,,,N,N,,,x,,,x,x,,,,,,,,,,,,,,Frost et al 2016,,
+b,1202,GR,UK,CC,Adaptation programs,,,,,1,,,,,,N,N,,,x,,,,x,,,,,,,,,,,,,,Frost et al 2016,,
+a,1202,GC & RH,UK,CC,Research,,,,,x,,,,,,N,Y,,x,,,,x,,,,,,,,,,,,x,,,Frost et al 2016,,
+a,1216,CS,Italy,N,Enforcement,1,,,,,,1,,,,Y,N,,x,,,,,,x,,,,,,,,,x,,,,Pranovi et al 2015,,
+a,1216,CS,Italy,N,Diversify livelihoods,1,,,,,,,,,1,Y,N,,x,,,,,,x,,,,,,,,,x,,,,Pranovi et al 2015,,
+b,1238,JM,IT,CC,Adaptation programs,,,,,1,,,,,2,N,Y,x,,,,,x,,,,,,,,,,,x,,,,Bosnjakovic and Haber 2015,,
+b,1238,JM,IT,CC,Research,,,,,2,,,,,1,N,Y,x,,,,,x,x,,,,,,,,,,x,,,,Bosnjakovic and Haber 2015,,
+a,1280,GR,Italy,N,Diversify livelihoods,,,,,2,,,,,1,y,y,,,x,,x,,,x,,,x,,,,,,,,,x,"Farnet Magazine n7, 2012",,
+a,1280,GR,Italy,N,Investments to improve value chain,,,,,2,,,,,1,y,y,,,x,,x,,,x,,,x,,,,,,,,,x,"Farnet Magazine n7, 2012",,
+a,1280,GR,Italy,N,Economic/community development,,,,,2,,,,,1,y,y,,,x,,x,,,x,,,x,,,,,,,,,x,"Farnet Magazine n7, 2012",,
+a,1280,GR,Italy,N,Coordination and organization,,,,,2,,,,,1,y,y,,,x,,x,,,x,,,x,,,,,,,,,x,"Farnet Magazine n7, 2012",,
+b,1280,PJW,IT,N,Coordination and organization,,,,,,1,,,,2,Y,Y,,,x,,x,x,x,x,,,,,,,,,x,,,,"Farnet Magazine n7, 2012",,
+b,1280,PJW,IT,N,Economic/community development,,,,,,1,,,,2,Y,Y,,,x,,x,x,x,x,,,,,,,,,x,,,,"Farnet Magazine n7, 2012",,
+b,1280,PJW,IT,N,Diversify livelihoods,,,,,,1,,,,2,Y,Y,,,x,,x,x,x,x,,,,,,,,,x,,,,"Farnet Magazine n7, 2012",,
+b,1280,PJW,IT,N,Improve Value Chain ,,,,,,1,,,,2,Y,Y,,,x,,x,x,x,x,,,,,,,,,x,,,,"Farnet Magazine n7, 2012",,
+b,1280,PJW,IT,N,Cooperatives,,,,,,1,,,,2,Y,Y,,,x,,x,x,x,x,,,,,,,,,x,,,,"Farnet Magazine n7, 2012",,
+a,1298,GR,Italy,N,research,,,,,1,,,,,2,n,n,x,,,,x,x,,,,,,,,,,x,,,,,"de Leo et al., 2014",,
+b,1298,HB,IT,N,Research,,,,,1,,,,,2,N,N,x,,,,,x,,,,,,,,,,x,,,,,De Leo et al 2014,,
+a,606,PJW,US,CC,Coordination and organization,,,,,1,,,,,,N,N,x,,,,,x,x,,,,,,,,,,x,,,,Field et al. 2001,,
+a,606,PJW,US-NE,CC,Reductions in other stressors,,,,,1,,,,,,N,N,x,,,,,x,x,,,,,,,,,,x,,,,Field et al. 2001,,
+a,606,PJW,US-NE,CC,Restoration,,,,,1,,,,,,N,N,x,,,,,x,x,,,,,,,,,,x,,,,Field et al. 2001,,
+a,606,PJW,US,CC,Research,,,,,1,,,,,,N,N,x,,,,,x,x,,,,,,,,,,x,,,,Field et al. 2001,,
+a,606,PJW,US,CC,Education,,,,,1,,,,,,N,N,x,,,,,x,x,,,,,,,,,,x,,,,Field et al. 2001,,
+a,804,JM,AUS,N,Enforcement,1,,,,,,,,,,N,Y,,x,,,,,x,,,,,,,,,x,,,,,Gaughan et al. 2008 ,,
+a,804,JM,AUS,N,Research,1,,,,2,,,,,,Y,Y,,,x,,,,x,,,,,,,,,,x,,,,Gaughan et al. 2008 ,,
+a,923,MH,FIN,N,Education,,,,,2,,,,,1,Y,Y,x,,,,,,x,,,,,,,,,,,,,,FARNET. 2017a. ,,
+a,276,PJW,US-NE,N,Coordination and organization,,,,,1,,,,,2,Y,N,,,x,,,x,x,x,,,,,x,,,,x,,,,Johnson et al. 2014,,
+a,276,PJW,US-NE,N,Diversify livelihoods,,,,,1,,,,,2,Y,N,,,x,,,,,,,,,,x,,,,,x,,,Johnson et al. 2014,,
+a,276,PJW,US-NE,N,Market diversification,,,,,1,,,,,2,Y,N,,,x,,,,,,,,,,x,,,,,x,,,Johnson et al. 2014,,
+a,276,PJW,US-NE,N,Education,,,,,1,,,,,2,Y,N,,,x,,,,,x,,,,,,,,,x,,,,Johnson et al. 2014,,
+a,276,PJW,US-NE,N,Economic/Community development,,,,,1,,,,,2,Y,N,,,x,,,,,x,,,,,,,,,,x,,,Johnson et al. 2014,,
+a,372,PJW,US-HA,CC,MPAs,2,,,,1,,,,,,Y,Y,x,,,,,,x,,,,x,,,,,,x,,,,"The State of Hawaii. 2010. Hawai’i Coral Reef Strategy: Priorities for Management in the Main Hawaiian Islands 2010-2020. Honolulu, HI.",,
+a,372,PJW,US-HA,CC,Reductions in other stressors,2,,,,1,,,,,,N,Y,x,,,,,,x,,,,,,,,,,x,,,,"The State of Hawaii. 2010. Hawai’i Coral Reef Strategy: Priorities for Management in the Main Hawaiian Islands 2010-2020. Honolulu, HI.",,
+a,372,PJW,US-HA,CC,International agreements,,,,,1,,,,,2,N,Y,x,,,,,,x,,,,,,,,,,x,,,,"The State of Hawaii. 2010. Hawai’i Coral Reef Strategy: Priorities for Management in the Main Hawaiian Islands 2010-2020. Honolulu, HI.",,
+a,372,PJW,US-HA,CC,Community-based rights,,,,,1,,,,,2,Y,Y,x,,,,,,x,x,,,x,,,,,,x,,,,"The State of Hawaii. 2010. Hawai’i Coral Reef Strategy: Priorities for Management in the Main Hawaiian Islands 2010-2020. Honolulu, HI.",,
+b,1216,HB,IT,N,MPA,,,,,,,1,,,,N,Y,,x,,,,x,,,,,,,,,,x,,,,,Pranovi et al 2015,,
+a,1238,SB,Italy,CC,Reductions in other stressors,,,,,1,,,,,,N,N,x,,,,,x,x,,,,,,,,,x,,,,,Bosnjakovic et al. 2015,,
+a,1238,SB,Italy,CC,Adaptation programs,,,,,1,,,,,,N,N,x,,,,,x,x,,,,,,,,,x,,,,,Bosnjakovic et al. 2015,,
+a,924,MH,FIN,N,Market diversification,2,1,,,,,,,,,Y,Y,,x,,,,,,,,,,,x,,,,,,x,,FARNET. 2015.,"Developing fresh fish products from underexploited species. This project aims to attract consumers’ attention towards alternative fish species. The project will build up close cooperation between several actors, e.g. local fishermen and fish refineries in order to guarantee the supply of fish. It will also look at product development and the development of recipes of alternative fish species, as well as offering training for staff in institutional kitchens and for entrepreneurs within fisheries and fish processing businesses.",4
+a,924,MH,FIN,N,Market diversification,,,,,,,,,,1,Y,Y,,,,,,,,,,,,,x,,,,,,,x,FARNET. 2015.,"Diversifying fisheries products: making use of fish skin to make leather. This project involves an awareness raising campaign around the possible uses of fish skin leather, including the production of handbags, lampshades and belts. It also offers training for fishermen, their families and other interested members of the community in tanning and the design and production of fish skin products.",4
+b,924,JM,FIN,N,Market diversification,2,,,,1,,,,,,Y,Y,,,x,,,,x,,,,,,x,,,,x,,,x,FARNET 2015,"This example relates to the Fisheries Local Action Group 'FLAG' strategy for the Ostrobothnian coastline in the Baltic Sea, which covers a 250-km long stretch of coastline on the west coast of Finland. A project was proposed to develop fresh fish products from underexploited species. It aimed to build ties among several actors (e.g. fishers and fish processing businesses), promote new fish products and recipes, and offer training opportunities for existing staff and entrepeneurs.",5
+b,924,JM,FIN,N,Market diversification,,,,,,2,,,,1,Y,Y,,,x,,,,x,,,,,,x,,,,,,,x,FARNET 2015,"A second project proposed under the same FLAG strategy for the Ostrobothnian coastline is to diversify fisheries products: 'making use of fish skin to make leather'. The first phase involved an awareness raising campaign around the possible uses of fish skin leather, including the production of handbags, lampshades and belts. It also offered training for fishers, their families and other interested members of the community in tanning and the design and production of fish skin products.",5
+b,924,JM,FIN,N,Investment in new gear or innovations,,,,,2,,,,,1,Y,Y,x,,,,,,,,,,,,x,x,,,x,,,x,FARNET 2015,"A third project proposed under this same FLAG strategy was to make winter fishing in the region profitable again. The project aimed to develop net and fyke net fishing of whitefish, perch, northern pike, and burbot as well as seine-fishing of Baltic herring under the ice. A key objective was to supply fresh fish to local consumers during winter, whilst improving the financial standing and working conditions of individual fishers. The project will also build up networks between individual fishers and regions.",5

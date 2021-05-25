@@ -122,9 +122,10 @@
   #What are examples most often in response to? In CC vs not?
   CC_stressor_spread <- 
       dat %>% 
-      mutate(stress_tot = apply(dat[5:14], 1, sum, na.rm = T),
-             max_tot = apply(dat[5:14], 1, max, na.rm = T),
-             `Stock decline` = (max_tot + 1 - `Stock decline`)/stress_tot,
+      mutate(stress_tot = apply(dat[5:14], 1, sum, na.rm = T), #total of rankings across stressor options 
+             max_tot = apply(dat[5:14], 1, max, na.rm = T), #max of rankings across stressor options
+             `Stock decline` = (max_tot + 1 - `Stock decline`)/stress_tot, #converted to a score ranging 0 -1, 
+             #where rankings are represented as a proportion of total rankings indicated (number of rankings vary by line)
              `Sp. distributional shifts` = (max_tot + 1 - `Sp. distributional shifts`)/stress_tot,
              `Ocean acidification` = (max_tot + 1 - `Ocean acidification`)/stress_tot,
              `Extreme climatic events` = (max_tot + 1 - `Extreme climatic events`)/stress_tot,
@@ -261,9 +262,10 @@
   #What are examples most often intended to do? In CC vs not?
   CC_goal_spread <- 
     dat %>% 
-    mutate(stress_tot = apply(dat[30:34], 1, sum, na.rm = T),
-           max_tot = apply(dat[30:34], 1, max, na.rm = T),
-           `Reduce stressor` = (max_tot + 1 - `Reduce stressor`)/stress_tot,
+    mutate(stress_tot = apply(dat[30:34], 1, sum, na.rm = T), # total of goals indicated (sum across columns)
+           max_tot = apply(dat[30:34], 1, max, na.rm = T), # max of goals indicated (is 1 for all across columns)
+           `Reduce stressor` = (max_tot + 1 - `Reduce stressor`)/stress_tot, #converted to a score that ranges 0 - 1 and 
+           #essentially similar to stressor except presences tied rankings of 1
            `Reduce sensitivity` = (max_tot + 1 - `Reduce sensitivity`)/stress_tot,
             Cope = (max_tot + 1 - Cope)/stress_tot,
            `No change` = (max_tot + 1 - `No change`)/stress_tot,
