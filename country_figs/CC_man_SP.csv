@@ -1,6 +1,7 @@
 Example,Context,Implemented,Proportion Top-down,Proportion Bottom-up,Proportion NGO,Proportion Individual
-Adaptation programs,CC,N,0.5,0.167,0,0.333
-Adaptation programs,CC,Y,0.556,0.333,0,0.111
+Adaptation programs,CC,N,0.383,0.596,0,0.021
+Adaptation programs,CC,Y,0.417,0.5,0,0.083
+Adaptation programs,N,N,0.5,0,0,0.5
 Adaptation programs,N,Y,0,0,0,1
 Community-based rights,CC,N,NA,NA,NA,NA
 Community-based rights,CC,Y,NA,NA,NA,NA
@@ -10,8 +11,8 @@ Cooperatives,CC,N,NA,NA,NA,NA
 Cooperatives,CC,Y,NA,NA,NA,NA
 Cooperatives,N,N,NA,NA,NA,NA
 Cooperatives,N,Y,0.2,0.6,0,0.2
-Coordination and organization,CC,N,0.571,0.286,0,0.143
-Coordination and organization,CC,Y,0.667,0.333,0,0
+Coordination and organization,CC,N,0.391,0.435,0.043,0.13
+Coordination and organization,CC,Y,0.333,0.167,0.167,0.333
 Coordination and organization,N,N,1,0,0,0
 Coordination and organization,N,Y,0.409,0.182,0.136,0.273
 Disaster funds,CC,N,1,0,0,0
@@ -21,25 +22,25 @@ Disaster risk management,CC,N,NA,NA,NA,NA
 Disaster risk management,CC,Y,0.333,0,0.333,0.333
 Disaster risk management,N,N,NA,NA,NA,NA
 Disaster risk management,N,Y,1,0,0,0
-Diversify livelihoods,CC,N,0,0,0,1
+Diversify livelihoods,CC,N,0.429,0.286,0,0.286
 Diversify livelihoods,CC,Y,0,0,0,1
 Diversify livelihoods,N,N,NA,NA,NA,NA
 Diversify livelihoods,N,Y,1,0,0,0
 Dynamic ocean management,CC,N,1,0,0,0
-Dynamic ocean management,CC,Y,1,0,0,0
+Dynamic ocean management,CC,Y,0.75,0.25,0,0
 Dynamic ocean management,N,N,NA,NA,NA,NA
 Dynamic ocean management,N,Y,1,0,0,0
 Economic/community development,CC,N,NA,NA,NA,NA
 Economic/community development,N,N,0,0.5,0,0.5
 Economic/community development,N,Y,NA,NA,NA,NA
-Education,CC,N,0.5,0.25,0.125,0.125
+Education,CC,N,0.333,0.267,0.2,0.2
 Education,CC,Y,0.5,0,0.5,0
 Education,N,N,NA,NA,NA,NA
 Education,N,Y,1,0,0,0
-Enforcement,CC,N,1,0,0,0
-Enforcement,CC,Y,1,0,0,0
-Enforcement,N,N,0.833,0,0,0.167
-Enforcement,N,Y,0.982,0,0,0.018
+Enforcement,CC,N,0.16,0.84,0,0
+Enforcement,CC,Y,0.154,0.692,0,0.154
+Enforcement,N,N,0.714,0.143,0,0.143
+Enforcement,N,Y,0.933,0.05,0,0.017
 Fair trade laws,CC,N,NA,NA,NA,NA
 Fair trade laws,N,Y,NA,NA,NA,NA
 "Financial assistance or investment for entering, transferring, or restructuring fishing businesses",CC,N,1,0,0,0
@@ -64,42 +65,42 @@ International agreements,CC,N,NA,NA,NA,NA
 International agreements,CC,Y,1,0,0,0
 International agreements,N,N,NA,NA,NA,NA
 International agreements,N,Y,0.4,0.2,0.2,0.2
-Investment in new gear or innovations,CC,N,0.286,0,0,0.714
-Investment in new gear or innovations,CC,Y,0.167,0.167,0.167,0.5
+Investment in new gear or innovations,CC,N,0.107,0.304,0,0.589
+Investment in new gear or innovations,CC,Y,0.1,0.1,0.1,0.7
 Investment in new gear or innovations,N,N,NA,NA,NA,NA
 Investment in new gear or innovations,N,Y,0.267,0,0,0.733
-Investments to improve value chain,CC,N,0.2,0.2,0,0.6
-Investments to improve value chain,CC,Y,0.5,0,0,0.5
+Investments to improve value chain,CC,N,0.286,0.429,0,0.286
+Investments to improve value chain,CC,Y,0.4,0.2,0,0.4
 Investments to improve value chain,N,N,0,0.5,0,0.5
-Investments to improve value chain,N,Y,NA,NA,NA,NA
-Market diversification,CC,N,NA,NA,NA,NA
+Investments to improve value chain,N,Y,1,0,0,0
+Market diversification,CC,N,0.273,0.455,0,0.273
 Market diversification,CC,Y,0,0,0,1
 Market diversification,N,N,NA,NA,NA,NA
 Market diversification,N,Y,NA,NA,NA,NA
-MPAs,CC,N,1,0,0,0
+MPAs,CC,N,0.667,0.333,0,0
 MPAs,CC,Y,1,0,0,0
 MPAs,N,N,NA,NA,NA,NA
 MPAs,N,Y,1,0,0,0
 Permit/license/quota banks,CC,Y,NA,NA,NA,NA
 Permit/license/quota banks,N,N,NA,NA,NA,NA
 Permit/license/quota banks,N,Y,1,0,0,0
-Reductions in other stressors,CC,N,1,0,0,0
+Reductions in other stressors,CC,N,0.333,0.5,0,0.167
 Reductions in other stressors,CC,Y,0.667,0,0.333,0
 Reductions in other stressors,N,N,NA,NA,NA,NA
-Reductions in other stressors,N,Y,NA,NA,NA,NA
-Research,CC,N,0.667,0,0.333,0
-Research,CC,Y,0.622,0,0.333,0.044
-Research,N,N,1,0,0,0
-Research,N,Y,0.754,0.018,0.105,0.123
-Restoration,CC,N,1,0,0,0
-Restoration,CC,Y,1,0,0,0
+Reductions in other stressors,N,Y,0,0,0.5,0.5
+Research,CC,N,0.469,0.49,0.021,0.021
+Research,CC,Y,0.533,0.25,0.174,0.043
+Research,N,N,0.667,0.333,0,0
+Research,N,Y,0.746,0.034,0.102,0.119
+Restoration,CC,N,0.25,0.75,0,0
+Restoration,CC,Y,0.667,0.333,0,0
 Restoration,N,N,NA,NA,NA,NA
 Restoration,N,Y,NA,NA,NA,NA
-Review programs / regulations,CC,N,1,0,0,0
-Review programs / regulations,CC,Y,0.667,0.333,0,0
+Review programs / regulations,CC,N,0.529,0.441,0,0.029
+Review programs / regulations,CC,Y,0.6,0.4,0,0
 Review programs / regulations,N,N,0.5,0,0.5,0
-Review programs / regulations,N,Y,0.85,0.05,0,0.1
-Transition out of fisheries,CC,N,NA,NA,NA,NA
+Review programs / regulations,N,Y,0.857,0.048,0,0.095
+Transition out of fisheries,CC,N,0,0,0,1
 Transition out of fisheries,CC,Y,NA,NA,NA,NA
 Transition out of fisheries,N,N,NA,NA,NA,NA
 Transition out of fisheries,N,Y,0.929,0,0,0.071

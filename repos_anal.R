@@ -3,7 +3,7 @@
   library(gtable)
   library(gridExtra)
   library(devtools)
-  install_github('fawda123/ggord')
+  #install_github('fawda123/ggord')
   library(ggord)
   library(ca)
   
@@ -30,7 +30,7 @@
            Community = ifelse(Community=='Y' | Community=='y' | Community=='Y?', 'Y',
                               ifelse(Community=='N' |Community=='n' | Community=='N?', 'N', NA)),
            Context = ifelse(Context=='Y', 'CC', Context),
-           Example = ifelse(Example=='Adaptation programme', 'Adaptation programs', 
+           Example = ifelse(Example=='Adaptation programme'| Example=='Adaptation programs?? Breeding program', 'Adaptation programs', 
                             ifelse(Example=='cooperatives', 'Cooperatives', 
                                    ifelse(Example=='disaster funds', 'Disaster funds',
                                           ifelse(Example=='Disaster Risk Management', 'Disaster risk management',
@@ -51,7 +51,7 @@
                                                                                                                                                    ifelse(Example=='enforcement', 'Enforcement',
                                                                                                                                                           ifelse(Example=='Market diversification (catch new species)', 'Market diversification',
                                                                                                                                                                  ifelse(Example=='Permit/license/quota bank' | Example=='Permit/licence/quota bank', 'Permit/license/quota banks',
-                                                                                                                                                                        ifelse(Example=='Restrictions on discards (partial or full)', 'Reductions in other stressors',
+                                                                                                                                                                        ifelse(Example=='Restrictions on discards (partial or full)'| Example=='Reduction in other stressors', 'Reductions in other stressors',
                                                                                                                                                                                ifelse(Example=='Review program/regulations' | Example=='Review programs', 'Review programs / regulations',
                                                                                                                                                                                       ifelse(Example=='Transition out of fishery' | Example=='Investments to help transition out of fisheries', 'Transition out of fisheries',
                                                                                                                                                                                              Example)))))))))))))))))))))))),
@@ -186,7 +186,7 @@
                      Example = CC_stressor_spread %>% select(Example) %>% unlist,
                      br, 
                      lab = ifelse(lab=='Financial assistance to help transition out of fi', 'Financial assistance to help transition out of fish', lab), 
-                     col = c('aquamarine3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'darkblue', 'darkblue', 'aquamarine3', 'aquamarine3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkblue','darkgoldenrod3',  'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3',  'darkblue', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3')) %>% 
+                     col = c('aquamarine3', 'aquamarine3', 'darkblue', 'darkgoldenrod3', 'darkblue', 'aquamarine3','darkblue','aquamarine3', 'aquamarine3', 'aquamarine3',  'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkblue','darkgoldenrod3',  'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3',  'darkblue', 'darkgoldenrod3', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkblue', 'aquamarine3', 'aquamarine3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkgoldenrod3', 'darkblue', 'darkgoldenrod3', 'darkgoldenrod3')) %>% 
     mutate(col=ifelse(Example=='Fair trade laws' | Example=='International agreements', 'darkblue', 
                       ifelse(Example=='Education', 'darkgoldenrod3', col)))
   
@@ -383,7 +383,7 @@
     mutate(id = 1:n()) %>% 
     filter(id < 11) %>% 
     ungroup %>% 
-    rename(`Proportion of adaptation options` = Prop_Example) %>% 
+    rename(`Proportion adaptation options` = Prop_Example) %>% 
     mutate(#Context = ifelse(Context=='CC', 'Climate change context', 'Non-climate-change context'),
            Community = ifelse(Community == 'Y', 'Community focused', 'Not community focused'),
            Implemented = ifelse(Implemented == 'Y', 'Implemented', 'Not implemented'),
@@ -392,16 +392,16 @@
   write_csv(CC_ex %>% 
               unite(Attributes, Context, Community, Implemented) %>% 
               select(-c(N_Example, total, id)) %>% 
-              spread(key = Attributes, value = `Proportion of adaptation options`), 'CC_ex.csv')
+              spread(key = Attributes, value = `Proportion adaptation options`), 'CC_ex.csv')
   
   CC_ex_plot <-
     CC_ex  %>% 
-    ggplot(aes(x = 1, y = 11 - id, label = Example, size = `Proportion of adaptation options`)) + 
+    ggplot(aes(x = 1, y = 11 - id, label = Example, size = `Proportion adaptation options`)) + 
     geom_text()+
     theme_classic()+ 
     theme(panel.border = element_rect(fill = NA), axis.text.y = element_blank(),axis.text.x = element_blank(), axis.ticks = element_blank())+
     xlab('')+ylab('')+
-    labs(size="Proportion of\nadaptation\noptions") +
+    labs(size="Proportion\nadaptation\noptions") +
     scale_y_continuous(expand = expand_scale(), limits = c(0,11))+
     scale_size(breaks = c(0.05, 0.1, 0.2, 0.3), labels = as.character(c(0.05, 0.1, 0.2, 0.3)))+
     facet_grid(Community*Implemented ~ Context) 
@@ -425,7 +425,7 @@
     k <- k+1
   }
   
-  pdf(paste0('CC_ex',nr,'.pdf'), width = 7.8, height = 6.2)
+  pdf(paste0('CC_ex',nr,'.pdf'), width = 6.6, height = 6.2)
   grid.draw(g)
   dev.off()
   
@@ -914,7 +914,8 @@
                       column_to_rownames(var = "Country") %>% 
                       select(-c(Region, Context, Community)))
   
-  xlims <- c(-1.1, 1.1)
+  xlims <- c(-1.5,1.5)
+  ylims <- c(-1.5,1.5)
   sc <- 0.8
   
   ord_cc_comm$rowcoord[,1] <- ord_cc_comm$rowcoord[,1]*-1
@@ -922,10 +923,13 @@
   
   ord_cc_comm$rowcoord[5,]<-  ord_cc_comm$rowcoord[5,]*1.05
   ord_cc_comm$rowcoord[3,]<-  ord_cc_comm$rowcoord[3,]*0.95
+  ord_cc_comm$rowcoord[6,2]<-  ord_cc_comm$rowcoord[6,2]*1.1
+  ord_cc_comm$rowcoord[8,2]<-  ord_cc_comm$rowcoord[8,2]*0.9
+  
   pdf(paste0('Ord_CC_Comm_',nr,'.pdf'), width = 5*sc, height = 5*sc)
     ggord(ord_cc_comm, dat_ca1$Region, cols = c('#F8766D', '#00BFC4', 'darkblue', '#C77CFF'), ellipse = FALSE, obslab = TRUE, #'#7CAE00',
           xlims = xlims,
-          ylims = c(-0.9,0.9))+ 
+          ylims = ylims)+ 
       theme(legend.position = 'none')
   dev.off()
   
@@ -937,33 +941,49 @@
   pdf(paste0('Ord_F_Comm_',nr,'.pdf'), width = 5*sc, height = 5*sc)
     ggord(ord_f_comm, dat_ca2$Region, cols = c('#F8766D', '#00BFC4', 'darkblue', '#C77CFF'), ellipse = FALSE, obslab = TRUE,
           xlims = xlims,
-          ylims = c(-0.9,0.9))+ 
+          ylims = ylims)+ 
       theme(legend.position = 'none')
   dev.off()
   
+  ord_cc_ncomm$rowcoord[8,2] <-   ord_cc_ncomm$rowcoord[8,2]*0.8
+  ord_cc_ncomm$rowcoord[3,2] <-   ord_cc_ncomm$rowcoord[3,2]*1.2
+  ord_cc_ncomm$rowcoord[1,2] <-   ord_cc_ncomm$rowcoord[1,2]*1.2
+  ord_cc_ncomm$rowcoord[5,2] <-   ord_cc_ncomm$rowcoord[5,2]*0.9
+  ord_cc_ncomm$rowcoord[4,1] <-   ord_cc_ncomm$rowcoord[4,1]*0.9
+  ord_cc_ncomm$rowcoord[10,1] <-   ord_cc_ncomm$rowcoord[10,1]*1.55
+  ord_cc_ncomm$rowcoord[10,2] <-   ord_cc_ncomm$rowcoord[10,2]*2
+  ord_cc_ncomm$rowcoord[,2] <- ord_cc_ncomm$rowcoord[,2]*-1
+  ord_cc_ncomm$colcoord[,2] <- ord_cc_ncomm$colcoord[,2]*-1
   pdf(paste0('Ord_CC_Ncomm_',nr,'.pdf'), width = 5*sc, height = 5*sc)
     ggord(ord_cc_ncomm, dat_ca3$Region, cols = c('#F8766D', '#00BFC4', 'darkblue', '#C77CFF'), ellipse = FALSE, obslab = TRUE,
           xlims = xlims,
-          ylims = c(-0.9,0.9))+ 
+          ylims = ylims)+ 
       theme(legend.position = 'none')
   dev.off()
+  
   
   ord_f_ncomm$rowcoord[1,] <-   ord_f_ncomm$rowcoord[1,]*0.9
   ord_f_ncomm$rowcoord[9,] <-   ord_f_ncomm$rowcoord[9,]*1.1
   ord_f_ncomm$rowcoord[3,] <-   ord_f_ncomm$rowcoord[3,]*0.9
   ord_f_ncomm$rowcoord[11,] <-   ord_f_ncomm$rowcoord[11,]*1.1
   
+  ord_f_ncomm$rowcoord[,1] <- ord_f_ncomm$rowcoord[,1]*-1
+  ord_f_ncomm$colcoord[,1] <- ord_f_ncomm$colcoord[,1]*-1
+  
+  ord_f_ncomm$rowcoord[,2] <- ord_f_ncomm$rowcoord[,2]*-1
+  ord_f_ncomm$colcoord[,2] <- ord_f_ncomm$colcoord[,2]*-1
+  
   pdf(paste0('Ord_F_Ncomm_',nr,'.pdf'), width = 5*sc, height = 5*sc)
     ggord(ord_f_ncomm, dat_ca4$Region, cols = c('#F8766D', '#00BFC4', 'darkblue', '#C77CFF'), ellipse = FALSE, obslab = TRUE,
           xlims = xlims,
-          ylims = c(-0.9,0.9))+ 
+          ylims = ylims)+ 
       theme(legend.position = 'none')
   dev.off()
   
   pdf(paste0('Ord_F_Ncomm_leg',nr,'.pdf'), width = 5.85*sc, height = 5*sc)
     ggord(ord_f_ncomm, dat_ca4$Region, cols = c('#F8766D', '#00BFC4', 'darkblue', '#C77CFF'), ellipse = FALSE, obslab = TRUE,
           xlims = xlims,
-          ylims = c(-0.9,0.9)) 
+          ylims = ylims) 
   dev.off()
   
   

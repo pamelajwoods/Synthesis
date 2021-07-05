@@ -1,6 +1,7 @@
 Example,Context,Implemented,Proportion Top-down,Proportion Bottom-up,Proportion NGO,Proportion Individual
 Adaptation programs,CC,N,0.667,0.167,0.167,0
 Adaptation programs,CC,Y,0.75,0.25,0,0
+Adaptation programs,N,N,NA,NA,NA,NA
 Adaptation programs,N,Y,0.75,0.25,0,0
 Community-based rights,CC,N,NA,NA,NA,NA
 Community-based rights,CC,Y,NA,NA,NA,NA
